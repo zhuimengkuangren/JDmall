@@ -33,6 +33,7 @@ public abstract class BaseFragment extends Fragment {
     @BindView(R.id.progress_bar)
     ImageView mProgressBar;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,8 +44,14 @@ public abstract class BaseFragment extends Fragment {
         AnimationDrawable drawable = (AnimationDrawable) mProgressBar.getDrawable();
         drawable.start();
 
+        init();
         return root;
     }
+
+    /**
+     * 子类重写,初始化
+     */
+    protected void init(){};
 
     /**
      * 当fragment视图创建完成之后就开始加载数据

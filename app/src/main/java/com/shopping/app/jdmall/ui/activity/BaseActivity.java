@@ -1,5 +1,6 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -38,4 +39,14 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return
      */
     abstract protected int getLayoutResId();
+
+    /**
+     * activity跳转
+     */
+    public void navigateTo(Class activity){
+        Intent intent = new Intent(this,activity);
+        startActivity(intent);
+        finish();
+    }
+
 }

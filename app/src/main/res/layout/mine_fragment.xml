@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/module_login"/>
+    <include layout="@layout/module_mine1"/>
+    <include layout="@layout/module_mine2"/>
+    <include layout="@layout/module_mine3"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ad_plane"
+        />
+
+
+</LinearLayout>

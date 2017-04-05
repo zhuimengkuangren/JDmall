@@ -26,7 +26,7 @@ public class TutorialActivity extends BaseActivity {
     Button mStart;
     @BindView(R.id.indicator)
     CirclePageIndicator mIndicator;
-    private int[] mImages = {R.mipmap.navigation_1, R.mipmap.navigation_2, R.mipmap.navigation_3};
+    private int[] mImages = {R.mipmap.timg_2, R.mipmap.timg_3, R.mipmap.timg_4};
 
     @Override
     protected int getLayoutResId() {

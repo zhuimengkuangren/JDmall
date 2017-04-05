@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!--fragment内容-->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </FrameLayout>
+
+
+    <!--底部导航栏-->
+    <RadioGroup
+        android:id="@+id/tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_home"
+            android:checked="true"
+            style="@style/JDMallTabStyle"
+            android:background="@drawable/tab_home_selector"/>
+
+        <RadioButton
+            android:id="@+id/tab_category"
+            style="@style/JDMallTabStyle"
+            android:background="@drawable/tab_category_selector"/>
+
+        <RadioButton
+            android:id="@+id/tab_find"
+            style="@style/JDMallTabStyle"
+            android:background="@drawable/tab_discover_selector"/>
+
+        <RadioButton
+            android:id="@+id/tab_car"
+            style="@style/JDMallTabStyle"
+            android:background="@drawable/tab_car_selector"/>
+
+        <RadioButton
+            android:id="@+id/tab_mine"
+            style="@style/JDMallTabStyle"
+            android:background="@drawable/tab_mine_selector"/>
+
+    </RadioGroup>
+
+</LinearLayout>

@@ -6,10 +6,10 @@ import android.view.View;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
-import com.shopping.app.jdmall.widget.CategoryFindFragmentView;
-import com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView;
-import com.shopping.app.jdmall.widget.ListFindFragmentView;
-import com.shopping.app.jdmall.widget.TitleFindFragmentView;
+import com.shopping.app.jdmall.widget.FindCategoryView;
+import com.shopping.app.jdmall.widget.FindHorizotalScrollView;
+import com.shopping.app.jdmall.widget.FindListView;
+import com.shopping.app.jdmall.widget.FindTitleView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,10 +43,10 @@ public class FindFragment extends BaseFragment {
     protected View onCreateContentView() {
         View view = View.inflate(getContext(), R.layout.fragment_find, null);
         //标题的创建
-        TitleFindFragmentView titleView = (TitleFindFragmentView) view.findViewById(R.id.title_find_fragment);
-        HorizotalScrollFindFragmentView scrollView = (HorizotalScrollFindFragmentView) view.findViewById(R.id.horizotal_find_frament);
-        CategoryFindFragmentView categoryView = (CategoryFindFragmentView) view.findViewById(R.id.category_find_view);
-        ListFindFragmentView listView = (ListFindFragmentView) view.findViewById(R.id.list_find_fragment);
+        FindTitleView titleView = (FindTitleView) view.findViewById(R.id.title_find_fragment);
+        FindHorizotalScrollView scrollView = (FindHorizotalScrollView) view.findViewById(R.id.horizotal_find_frament);
+        FindCategoryView categoryView = (FindCategoryView) view.findViewById(R.id.category_find_view);
+        FindListView listView = (FindListView) view.findViewById(R.id.list_find_fragment);
 
         //
         return null;

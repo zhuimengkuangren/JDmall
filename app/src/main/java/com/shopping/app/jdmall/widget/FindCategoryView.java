@@ -18,15 +18,15 @@ import com.shopping.app.jdmall.R;
  * Created by user on 2017/4/5.
  */
 
-public class CategoryFindFragmentView extends RelativeLayout {
+public class FindCategoryView extends RelativeLayout {
     String[] categorys={"京东号","型男号","潮女号","爱搞基","生活家","女神范","亲子园","数码控",
             "文艺咖","理财师","吃货党","品牌家","家居馆","视频购"};
     final int padding=10;
-    public CategoryFindFragmentView(Context context) {
+    public FindCategoryView(Context context) {
         this(context,null);
     }
 
-    public CategoryFindFragmentView(Context context, AttributeSet attrs) {
+    public FindCategoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }

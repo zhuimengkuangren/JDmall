@@ -9,7 +9,6 @@ import android.view.View;
  */
 public class CarFragment extends BaseFragment {
 
-
     @Override
     protected void startLoadData() {
 

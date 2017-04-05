@@ -33,6 +33,7 @@ public abstract class BaseFragment extends Fragment {
     @BindView(R.id.progress_bar)
     ImageView mProgressBar;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 子类重写,初始化
      */
-    protected abstract void init();
+    protected void init(){};
 
     /**
      * 当fragment视图创建完成之后就开始加载数据

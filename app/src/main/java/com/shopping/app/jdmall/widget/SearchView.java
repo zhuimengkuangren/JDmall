@@ -34,5 +34,13 @@ public class SearchView extends RelativeLayout {
     private void init() {
         View.inflate(getContext(), R.layout.view_search, this);
         ButterKnife.bind(this);
+        mEtSearch.setOnFocusChangeListener(mListener);
     }
+
+    private OnFocusChangeListener mListener = new OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+
+        }
+    };
 }

@@ -48,30 +48,34 @@ public class CategoryRightView extends LinearLayout {
             @Override
             public void onGlobalLayout() {
                 mWidth = getMeasuredWidth();
-                initData();
                 getViewTreeObserver().removeGlobalOnLayoutListener(this);
             }
         });
 
     }
 
-    private void initData() {
 
-        for (int i = 0; i < 4; i++) {
-            TableRow tableRow = new TableRow(getContext());
-            TableRow.LayoutParams params = new TableRow.LayoutParams();
-            params.width = ( mWidth)/ 3 ;
-            params.gravity = Gravity.CENTER;
-            for (int j = 0; j < 3; j++) {
-                CategoryItemView itemView = new CategoryItemView(getContext());
-                itemView.setLayoutParams(params);
-                tableRow.addView(itemView);
+    public void setData(String category, List<CategoryItemBean.CategoryBean> list) {
+        mTvCategoty.setText(category);
+
+        mTableLayout.removeAllViews();
+        TableRow tableRow = new TableRow(getContext());
+        TableRow.LayoutParams params = new TableRow.LayoutParams();
+        params.width = (mWidth - getPaddingLeft() - getPaddingRight()) / 3;
+        params.gravity = Gravity.CENTER;
+        for (int i = 0; i < list.size(); i++) {
+
+            CategoryItemView itemView = new CategoryItemView(getContext());
+            itemView.setData(list.get(i));
+            itemView.setLayoutParams(params);
+            tableRow.addView(itemView);
+            if ((i + 1) % 3 == 0) {
+                mTableLayout.addView(tableRow);
+                tableRow = new TableRow(getContext());
             }
+        }
+        if(tableRow.getChildCount() != 0) {
             mTableLayout.addView(tableRow);
         }
-    }
-
-    public void bindView(CategoryItemBean.CategoryBean bean) {
-        bean.getParentId();
     }
 }

@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.bean.CategoryItemBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,5 +35,11 @@ public class CategoryItemView extends LinearLayout {
     private void init() {
         View.inflate(getContext(), R.layout.view_category_item, this);
         ButterKnife.bind(this);
+    }
+
+    public void setData(CategoryItemBean.CategoryBean bean) {
+        String name = bean.getName();
+        String pic = bean.getPic();
+        mTvName.setText(name);
     }
 }

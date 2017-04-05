@@ -11,7 +11,6 @@ import com.shopping.app.jdmall.widget.CategoryRightView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -30,15 +29,11 @@ public class CategoryRithtListAdapter extends BaseAdapter {
     public CategoryRithtListAdapter(Context context, HashMap<String, List<CategoryItemBean.CategoryBean>> map) {
         mContext = context;
         Set<String> keySet = map.keySet();
-        Iterator<String> iterator = keySet.iterator();
-        while (iterator.hasNext()) {
-            mList.add(iterator.next());
-        }
     }
 
     @Override
     public int getCount() {
-        return mList.size();
+        return mMap.keySet().size();
     }
 
     @Override

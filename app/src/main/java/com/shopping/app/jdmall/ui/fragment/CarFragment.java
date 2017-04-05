@@ -11,6 +11,11 @@ public class CarFragment extends BaseFragment {
 
 
     @Override
+    protected void init() {
+
+    }
+
+    @Override
     protected void startLoadData() {
 
     }

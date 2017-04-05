@@ -76,33 +76,45 @@ public class CategoryView extends LinearLayout {
         });
     }
 
-    private void initSecondData(int position) {
-        mHashMap.clear();
-        secondTitle.clear();
-        List<CategoryItemBean.CategoryBean> category = mData.getCategory();
-        for (int i = 0; i < category.size(); i++) {
-            CategoryItemBean.CategoryBean bean = category.get(i);
-            if(bean.getParentId() == (position + 1)) {
-                secondTitle.add(bean);
-            }
-        }
-            Iterator<CategoryItemBean.CategoryBean> iterator = secondTitle.iterator();
-            while (iterator.hasNext()) {
-                CategoryItemBean.CategoryBean bean = iterator.next();
-                int parentId = bean.getId();
-                mDataList = new ArrayList<>();
-                for (int j = 0; j < category.size(); j++) {
-                    CategoryItemBean.CategoryBean categoryBean = category.get(j);
-                    if(categoryBean.getParentId() == parentId) {
-
-                        mDataList.add(categoryBean);
+    private void initSecondData(final int position) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mHashMap.clear();
+                secondTitle.clear();
+                List<CategoryItemBean.CategoryBean> category = mData.getCategory();
+                for (int i = 0; i < category.size(); i++) {
+                    CategoryItemBean.CategoryBean bean = category.get(i);
+                    if(bean.getParentId() == (position + 1)) {
+                        secondTitle.add(bean);
                     }
                 }
-                mHashMap.put(bean.getName(),mDataList);
+                Iterator<CategoryItemBean.CategoryBean> iterator = secondTitle.iterator();
+                while (iterator.hasNext()) {
+                    CategoryItemBean.CategoryBean bean = iterator.next();
+                    int parentId = bean.getId();
+                    mDataList = new ArrayList<>();
+                    for (int j = 0; j < category.size(); j++) {
+                        CategoryItemBean.CategoryBean categoryBean = category.get(j);
+                        if(categoryBean.getParentId() == parentId) {
 
-             }
-        mRithtListAdapter.setData(mHashMap);
-        mRithtListAdapter.notifyDataSetChanged();
+                            mDataList.add(categoryBean);
+                        }
+                    }
+                    mHashMap.put(bean.getName(),mDataList);
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mRithtListAdapter.setData(mHashMap);
+                            mRithtListAdapter.notifyDataSetChanged();
+                        }
+                    });
+
+                }
+            }
+        }).start();
+
+
     }
 
 
@@ -115,6 +127,7 @@ public class CategoryView extends LinearLayout {
                 mList.add(bean.getName());
             }
         }
+        initSecondData(0);
         mListAdapter.notifyDataSetChanged();
     }
 

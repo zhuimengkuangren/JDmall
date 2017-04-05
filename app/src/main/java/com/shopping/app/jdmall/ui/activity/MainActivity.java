@@ -25,6 +25,8 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
+    //wwh在mainactivity增加一个注解
+
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
     public static final String categoryFragmentTag = "CategoryFragment";

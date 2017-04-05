@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/fragment_content"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.shopping.app.jdmall.widget.TitleFindFragmentView
+        android:id="@+id/title_find_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.shopping.app.jdmall.widget.TitleFindFragmentView>
+
+    <com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView
+        android:id="@+id/horizotal_find_frament"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView>
+<com.shopping.app.jdmall.widget.FindCategoryView
+    android:id="@+id/category_find_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+</com.shopping.app.jdmall.widget.FindCategoryView>
+    <com.shopping.app.jdmall.widget.ListFindFragmentView
+        android:id="@+id/list_find_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.shopping.app.jdmall.widget.ListFindFragmentView>
+</LinearLayout>

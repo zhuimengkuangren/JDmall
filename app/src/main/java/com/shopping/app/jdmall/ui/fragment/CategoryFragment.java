@@ -12,6 +12,11 @@ public class CategoryFragment extends BaseFragment {
 
 
     @Override
+    protected void init() {
+
+    }
+
+    @Override
     protected void startLoadData() {
         onDataLoadedSuccess();
     }

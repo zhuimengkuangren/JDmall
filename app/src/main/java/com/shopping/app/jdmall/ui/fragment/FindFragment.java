@@ -1,7 +1,6 @@
 package com.shopping.app.jdmall.ui.fragment;
 
 
-import android.os.SystemClock;
 import android.view.View;
 
 
@@ -10,6 +9,11 @@ import android.view.View;
  */
 public class FindFragment extends BaseFragment {
 
+
+    @Override
+    protected void init() {
+
+    }
 
     @Override
     protected void startLoadData() {

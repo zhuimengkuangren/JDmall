@@ -9,15 +9,6 @@ import android.view.View;
  */
 public class FindFragment extends BaseFragment {
 
-    @Override
-    protected void init() {
-
-    }
-
-    @Override
-    protected void init() {
-
-    }
 
     @Override
     protected void startLoadData() {

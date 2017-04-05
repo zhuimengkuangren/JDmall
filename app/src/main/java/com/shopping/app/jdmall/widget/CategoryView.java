@@ -72,7 +72,6 @@ public class CategoryView extends LinearLayout {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CategoryListItem childAt = (CategoryListItem) parent.getChildAt(position);
-                init
                 mRithtListAdapter.notifyDataSetChanged();
             }
         });

@@ -2,8 +2,6 @@ package com.shopping.app.jdmall.ui.fragment;
 
 
 import android.view.View;
-<<<<<<< HEAD
-=======
 
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
@@ -14,7 +12,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
->>>>>>> feature/gongh
 
 
 /**
@@ -27,20 +24,11 @@ public class CategoryFragment extends BaseFragment {
     private List<CategoryItemBean> mDataList;
     private CategoryItemBean mBean;
 
-    @Override
-    protected void init() {
 
-    }
-
-    @Override
-    protected void init() {
-
-    }
 
     @Override
     protected void startLoadData() {
-<<<<<<< HEAD
-=======
+
         Call<CategoryItemBean> listCategory = JDRetrofit.getInstance().getApi().listCategory();
         listCategory.enqueue(new Callback<CategoryItemBean>() {
             @Override
@@ -55,21 +43,16 @@ public class CategoryFragment extends BaseFragment {
             }
         });
 
->>>>>>> feature/gongh
+
     }
 
 
 
     @Override
     protected View onCreateContentView() {
-<<<<<<< HEAD
-
-        return null;
-=======
         CategoryView categoryView = new CategoryView(getContext());
         categoryView.setData(mBean);
         return categoryView;
->>>>>>> feature/gongh
     }
 
 }

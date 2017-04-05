@@ -43,8 +43,15 @@ public abstract class BaseFragment extends Fragment {
         AnimationDrawable drawable = (AnimationDrawable) mProgressBar.getDrawable();
         drawable.start();
 
+        init();
+
         return root;
     }
+
+    /**
+     * 子类重写,初始化
+     */
+    protected abstract void init();
 
     /**
      * 当fragment视图创建完成之后就开始加载数据

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.ui.fragment.CarFragment;
@@ -32,6 +33,8 @@ public class MainActivity extends BaseActivity {
     RadioGroup mTabContainer;
 
     private FragmentManager mFragmentManager;
+    private long lastBackTime;//最后一次点击back的时间
+    private int currentTabId = R.id.tab_home;//当前显示的tab ID,默认初始化为home
 
     @Override
     protected int getLayoutResId() {
@@ -149,6 +152,28 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         ft.commit();
+        currentTabId = checkedId;
+    }
+
+
+    /**
+     * back处理
+     */
+    public void onBackPressed() {
+        long currentBackTime = System.currentTimeMillis();
+
+        //如果当前tab不是home,则切换到home
+        if(currentTabId != R.id.tab_home){
+            mTabContainer.check(R.id.tab_home);
+            return;
+        }
+        //当前tab是home,执行退出逻辑
+        if (currentBackTime - lastBackTime > 2000) {
+            Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+            lastBackTime = currentBackTime;
+        } else {
+            super.onBackPressed();
+        }
     }
 
 

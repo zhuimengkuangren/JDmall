@@ -46,6 +46,7 @@ public class CategoryView extends LinearLayout {
             return o1.getId() - o2.getId();
         }
     });
+    int currentPosition = 0;
 
     public CategoryView(Context context) {
         this(context, null);
@@ -71,9 +72,18 @@ public class CategoryView extends LinearLayout {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mHashMap.clear();
-                secondTitle.clear();
-                initSecondData(position);
+
+                if(currentPosition != position) {
+                    CategoryListItem childAt = (CategoryListItem) parent.getChildAt(currentPosition);
+                    childAt.unSelected();
+                    CategoryListItem selectedView = (CategoryListItem) view;
+                    selectedView.selected();
+                    mHashMap.clear();
+                    secondTitle.clear();
+                    initSecondData(position);
+                    currentPosition = position;
+                }
+
             }
         });
     }

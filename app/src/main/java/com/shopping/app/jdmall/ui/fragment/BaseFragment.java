@@ -45,7 +45,6 @@ public abstract class BaseFragment extends Fragment {
         drawable.start();
 
         init();
-
         return root;
     }
 

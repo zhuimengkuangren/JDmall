@@ -15,6 +15,11 @@ public class HomeFragment extends BaseFragment {
     }
 
     @Override
+    protected void init() {
+
+    }
+
+    @Override
     protected void startLoadData() {
 
     }

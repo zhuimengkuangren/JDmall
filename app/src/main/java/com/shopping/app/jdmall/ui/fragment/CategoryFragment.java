@@ -2,7 +2,8 @@ package com.shopping.app.jdmall.ui.fragment;
 
 
 import android.view.View;
-import android.widget.TextView;
+
+import com.shopping.app.jdmall.widget.CategoryView;
 
 
 /**
@@ -12,14 +13,18 @@ public class CategoryFragment extends BaseFragment {
 
 
     @Override
+    protected void init() {
+
+    }
+
+    @Override
     protected void startLoadData() {
         onDataLoadedSuccess();
     }
 
     @Override
     protected View onCreateContentView() {
-        TextView textView = new TextView(getContext());
-        textView.setText("分类刷新成功!!");
-        return textView;
+        CategoryView categoryView = new CategoryView(getContext());
+        return categoryView;
     }
 }

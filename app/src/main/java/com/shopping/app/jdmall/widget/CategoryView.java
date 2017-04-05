@@ -3,13 +3,17 @@ package com.shopping.app.jdmall.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.CategoryListAdapter;
+import com.shopping.app.jdmall.adapter.CategoryRithtListAdapter;
+import com.shopping.app.jdmall.bean.CategoryItemBean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,9 +27,15 @@ public class CategoryView extends LinearLayout {
     SearchView mSearchView;
     @BindView(R.id.list_view)
     ListView mListView;
-    @BindView(R.id.right_view)
-    CategoryRightView mRightView;
+    @BindView(R.id.list_view_right)
+    ListView mListViewRight;
     private List<String> mList = new ArrayList<String>();
+    private CategoryItemBean mData;
+    private CategoryListAdapter mListAdapter;
+    private List<CategoryItemBean.CategoryBean> mDataList = new ArrayList<>();
+    private CategoryRithtListAdapter mRithtListAdapter;
+    private HashMap<String,List<CategoryItemBean.CategoryBean>> mHashMap = new HashMap<>();
+    private List<String> list = new ArrayList<>();
 
     public CategoryView(Context context) {
         this(context, null);
@@ -33,20 +43,43 @@ public class CategoryView extends LinearLayout {
 
     public CategoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initData();
         init();
     }
 
-    private void initData() {
-        for (int i = 0; i < 30; i++) {
-            mList.add("条目" + i);
-        }
-    }
 
     private void init() {
         View.inflate(getContext(), R.layout.view_category, this);
         ButterKnife.bind(this);
-        CategoryListAdapter listAdapter = new CategoryListAdapter(getContext(), mList);
-        mListView.setAdapter(listAdapter);
+        mListView.setDivider(null);
+        mListAdapter = new CategoryListAdapter(getContext(), mList);
+        mListView.setAdapter(mListAdapter);
+        mRithtListAdapter = new CategoryRithtListAdapter(getContext(), mDataList);
+        mListViewRight.setAdapter(mRithtListAdapter);
+
+
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CategoryListItem childAt = (CategoryListItem) parent.getChildAt(position);
+                mRithtListAdapter.notifyDataSetChanged();
+            }
+        });
     }
+
+
+
+    public void setData(CategoryItemBean data) {
+        mData = data;
+        List<CategoryItemBean.CategoryBean> beanList = data.getCategory();
+        for (int i = 0; i < beanList.size(); i++) {
+            CategoryItemBean.CategoryBean bean = beanList.get(i);
+            if(bean.getParentId() == 0) {
+                mList.add(bean.getName());
+            }
+        }
+
+        mListAdapter.notifyDataSetChanged();
+    }
+
 }

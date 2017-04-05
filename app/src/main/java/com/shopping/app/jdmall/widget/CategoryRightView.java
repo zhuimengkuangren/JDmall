@@ -11,6 +11,10 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.bean.CategoryItemBean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +30,7 @@ public class CategoryRightView extends LinearLayout {
     TableLayout mTableLayout;
     private int mWidth;
     private static final String TAG = "CategoryRightView";
+    private List<String> listCategory = new ArrayList<>();
 
     public CategoryRightView(Context context) {
         this(context, null);
@@ -64,5 +69,9 @@ public class CategoryRightView extends LinearLayout {
             }
             mTableLayout.addView(tableRow);
         }
+    }
+
+    public void bindView(CategoryItemBean.CategoryBean bean) {
+        bean.getParentId();
     }
 }

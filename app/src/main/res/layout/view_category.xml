@@ -20,10 +20,13 @@
             android:layout_height="wrap_content">
         </ListView>
 
-        <com.shopping.app.jdmall.widget.CategoryRightView
-            android:id="@+id/right_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+       <ListView
+           android:id="@+id/list_view_right"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+       </ListView>
+
 
     </LinearLayout>
 

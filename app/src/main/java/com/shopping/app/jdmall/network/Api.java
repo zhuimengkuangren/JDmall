@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
  */
 
- interface Api {
+  public interface Api {
 
     @GET("newproduct")
     Call<FindBean> listFind(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);

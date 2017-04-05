@@ -4,17 +4,19 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
+
 import com.shopping.app.jdmall.R;
+
 /**
  * Created by user on 2017/4/5.
  */
 
-public class TitleFindFragmentView extends RelativeLayout {
-    public TitleFindFragmentView(Context context) {
+public class FindTitleView extends RelativeLayout {
+    public FindTitleView(Context context) {
         this(context,null);
     }
 
-    public TitleFindFragmentView(Context context, AttributeSet attrs) {
+    public FindTitleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }

@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Retrofit单例
  */
+/*zhuzl*/
 
 public class JDRetrofit {
 

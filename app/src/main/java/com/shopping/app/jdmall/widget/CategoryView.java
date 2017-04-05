@@ -71,6 +71,8 @@ public class CategoryView extends LinearLayout {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mHashMap.clear();
+                secondTitle.clear();
                 initSecondData(position);
             }
         });
@@ -80,8 +82,6 @@ public class CategoryView extends LinearLayout {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mHashMap.clear();
-                secondTitle.clear();
                 List<CategoryItemBean.CategoryBean> category = mData.getCategory();
                 for (int i = 0; i < category.size(); i++) {
                     CategoryItemBean.CategoryBean bean = category.get(i);
@@ -102,15 +102,14 @@ public class CategoryView extends LinearLayout {
                         }
                     }
                     mHashMap.put(bean.getName(),mDataList);
-                    post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mRithtListAdapter.setData(mHashMap);
-                            mRithtListAdapter.notifyDataSetChanged();
-                        }
-                    });
-
                 }
+                post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRithtListAdapter.setData(mHashMap);
+                        mRithtListAdapter.notifyDataSetChanged();
+                    }
+                });
             }
         }).start();
 

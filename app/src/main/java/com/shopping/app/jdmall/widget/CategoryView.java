@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -73,7 +72,6 @@ public class CategoryView extends LinearLayout {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 initSecondData(position);
-                mRithtListAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -92,16 +90,19 @@ public class CategoryView extends LinearLayout {
             while (iterator.hasNext()) {
                 CategoryItemBean.CategoryBean bean = iterator.next();
                 int parentId = bean.getId();
-                mDataList.clear();
+                mDataList = new ArrayList<>();
                 for (int j = 0; j < category.size(); j++) {
                     CategoryItemBean.CategoryBean categoryBean = category.get(j);
                     if(categoryBean.getParentId() == parentId) {
+
                         mDataList.add(categoryBean);
-                        Log.d(TAG, "initSecondData: =="+categoryBean.getName());
                     }
                 }
                 mHashMap.put(bean.getName(),mDataList);
+
              }
+        mRithtListAdapter.setData(mHashMap);
+        mRithtListAdapter.notifyDataSetChanged();
     }
 
 

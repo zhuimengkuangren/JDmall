@@ -8,12 +8,11 @@
     <ImageView
         android:id="@+id/iv_icon"
         android:src="@drawable/icon_member_area_deafult"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
 
     <TextView
-        android:gravity="center"
-        android:padding="@dimen/size_middle"
+        android:layout_marginTop="8dp"
         android:text="蜂蜜"
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"

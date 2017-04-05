@@ -40,6 +40,7 @@ public class CategoryItemView extends LinearLayout {
     }
 
     public void setData(CategoryItemBean.CategoryBean bean) {
+
         String name = bean.getName();
         String pic = bean.getPic();
         mTvName.setText(name);

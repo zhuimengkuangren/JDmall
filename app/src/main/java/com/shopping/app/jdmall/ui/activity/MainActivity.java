@@ -7,17 +7,25 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.event.FragmentEvent;
 import com.shopping.app.jdmall.ui.fragment.CarFragment;
 import com.shopping.app.jdmall.ui.fragment.CategoryFragment;
 import com.shopping.app.jdmall.ui.fragment.FindFragment;
 import com.shopping.app.jdmall.ui.fragment.HomeFragment;
 import com.shopping.app.jdmall.ui.fragment.MineFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
+
+    //wwh在mainactivity增加一个注解
 
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
@@ -26,12 +34,22 @@ public class MainActivity extends BaseActivity {
     public static final String carFragmentTag = "CarFragment";
     public static final String mineFragmentTag = "MineFragment";
 
+    //tabID
+    public static final int homeTagId = R.id.tab_home;
+    public static final int categoryTagId = R.id.tab_category;
+    public static final int findTagId = R.id.tab_find;
+    public static final int carTagId = R.id.tab_car;
+    public static final int mineTagId = R.id.tab_mine;
+
+
     @BindView(R.id.fragment_container)
     FrameLayout mFragmentContainer;
     @BindView(R.id.tab_container)
     RadioGroup mTabContainer;
 
     private FragmentManager mFragmentManager;
+    private long lastBackTime;//最后一次点击back的时间
+    private int currentTabId = homeTagId;//当前显示的tab ID,默认初始化为home
 
     @Override
     protected int getLayoutResId() {
@@ -55,6 +73,23 @@ public class MainActivity extends BaseActivity {
         //初始化监听器
         initListener();
 
+        //注册eventbus
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //注销eventbus
+        EventBus.getDefault().unregister(this);
+    }
+
+    /**
+     * 监听Fragment的事件
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFragmentEvent(FragmentEvent fragmentEvent) {
 
     }
 
@@ -73,9 +108,10 @@ public class MainActivity extends BaseActivity {
 
     /**
      * 切换tab
-     * @param checkedId
+     *
+     * @param tabId
      */
-    private void switchTab(int checkedId) {
+    private void switchTab(int tabId) {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
 
         //找出已经保存的fragment
@@ -103,8 +139,8 @@ public class MainActivity extends BaseActivity {
         }
 
         //显示点击的fragment
-        switch (checkedId) {
-            case R.id.tab_home:
+        switch (tabId) {
+            case homeTagId:
                 if (homeFragment == null) {
                     homeFragment = new HomeFragment();
                     ft.add(R.id.fragment_container, homeFragment, homeFragmentTag);//添加fragment和标记
@@ -112,7 +148,7 @@ public class MainActivity extends BaseActivity {
                     ft.show(homeFragment);//不会重新刷新,保留之前的页面状态
                 }
                 break;
-            case R.id.tab_category:
+            case categoryTagId:
                 if (categoryFragmen == null) {
                     categoryFragmen = new CategoryFragment();
                     ft.add(R.id.fragment_container, categoryFragmen, categoryFragmentTag);
@@ -120,7 +156,7 @@ public class MainActivity extends BaseActivity {
                     ft.show(categoryFragmen);
                 }
                 break;
-            case R.id.tab_find:
+            case findTagId:
                 if (findFragment == null) {
                     findFragment = new FindFragment();
                     ft.add(R.id.fragment_container, findFragment,
@@ -129,7 +165,7 @@ public class MainActivity extends BaseActivity {
                     ft.show(findFragment);
                 }
                 break;
-            case R.id.tab_car:
+            case carTagId:
                 if (carFragment == null) {
                     carFragment = new CarFragment();
                     ft.add(R.id.fragment_container, carFragment, carFragmentTag);
@@ -137,7 +173,7 @@ public class MainActivity extends BaseActivity {
                     ft.show(carFragment);
                 }
                 break;
-            case R.id.tab_mine:
+            case mineTagId:
                 if (mineFragment == null) {
                     mineFragment = new MineFragment();
                     ft.add(R.id.fragment_container, mineFragment, mineFragmentTag);
@@ -149,6 +185,63 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         ft.commit();
+        currentTabId = tabId;
+    }
+
+    /**
+     * 获得fragment对象,没有则创建和添加
+     */
+    public Fragment getFragment(String fragmentTab, int tagId) {
+
+        FragmentTransaction ft = mFragmentManager.beginTransaction();
+        Fragment fragment = mFragmentManager.findFragmentByTag(fragmentTab);
+        if (fragment != null) {
+            return fragment;
+        }
+
+        //创建并添加fragment
+        switch (tagId) {
+            case homeTagId:
+                fragment = new HomeFragment();
+                break;
+            case categoryTagId:
+                fragment = new CategoryFragment();
+                break;
+            case findTagId:
+                fragment = new FindFragment();
+                break;
+            case carTagId:
+                fragment = new CarFragment();
+                break;
+            case mineTagId:
+                fragment = new MineFragment();
+                break;
+        }
+        ft.add(R.id.fragment_container, fragment, fragmentTab);
+        ft.commit();
+        ft.hide(fragment);
+
+        return fragment;
+    }
+
+    /**
+     * back处理
+     */
+    public void onBackPressed() {
+        long currentBackTime = System.currentTimeMillis();
+
+        //如果当前tab不是home,则切换到home
+        if (currentTabId != R.id.tab_home) {
+            mTabContainer.check(R.id.tab_home);
+            return;
+        }
+        //当前tab是home,执行退出逻辑
+        if (currentBackTime - lastBackTime > 2000) {
+            Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+            lastBackTime = currentBackTime;
+        } else {
+            super.onBackPressed();
+        }
     }
 
 

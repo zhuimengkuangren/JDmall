@@ -7,7 +7,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 
 import butterknife.BindView;
@@ -38,8 +40,12 @@ public class CategoryItemView extends LinearLayout {
     }
 
     public void setData(CategoryItemBean.CategoryBean bean) {
+
         String name = bean.getName();
         String pic = bean.getPic();
         mTvName.setText(name);
+        String url = Constant.HOST + pic;
+        Glide.with(getContext()).load(url).into(mIvIcon);
+
     }
 }

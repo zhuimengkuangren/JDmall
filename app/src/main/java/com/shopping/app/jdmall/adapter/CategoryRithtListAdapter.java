@@ -29,11 +29,9 @@ public class CategoryRithtListAdapter extends BaseAdapter {
 
     public CategoryRithtListAdapter(Context context, HashMap<String, List<CategoryItemBean.CategoryBean>> map) {
         mContext = context;
+        mMap = map;
         Set<String> keySet = map.keySet();
-        Iterator<String> iterator = keySet.iterator();
-        while (iterator.hasNext()) {
-            mList.add(iterator.next());
-        }
+        Log.d(TAG, "CategoryRithtListAdapter: ==="+keySet.size());
     }
 
     @Override
@@ -68,4 +66,14 @@ public class CategoryRithtListAdapter extends BaseAdapter {
     }
 
 
+    public void setData(HashMap<String, List<CategoryItemBean.CategoryBean>> map) {
+        mList.clear();
+        mMap = map;
+        Set<String> keySet = mMap.keySet();
+        Log.d(TAG, "setData: ==="+keySet.size());
+        Iterator<String> iterator = keySet.iterator();
+        while (iterator.hasNext()) {
+            mList.add(0,iterator.next());
+        }
+    }
 }

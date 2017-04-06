@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,6 +19,8 @@ import butterknife.ButterKnife;
 public class CategoryListItem extends LinearLayout {
     @BindView(R.id.tv_categoty)
     TextView mTvCategoty;
+    @BindView(R.id.ll_container)
+    LinearLayout mLlContainer;
 
     public CategoryListItem(Context context) {
         this(context, null);
@@ -33,7 +36,24 @@ public class CategoryListItem extends LinearLayout {
         ButterKnife.bind(this);
     }
 
-    public void setData(String data) {
-        mTvCategoty.setText(data);
+    public void setData(String data, int position) {
+        if (position == 0) {
+            mTvCategoty.setText(data);
+            selected();
+        } else {
+            mTvCategoty.setText(data);
+            unSelected();
+        }
+
+    }
+
+    public void unSelected() {
+        mLlContainer.setBackgroundColor(Color.WHITE);
+        mTvCategoty.setTextColor(Color.BLACK);
+    }
+
+    public void selected() {
+        mLlContainer.setBackgroundColor(Color.GRAY);
+        mTvCategoty.setTextColor(Color.RED);
     }
 }

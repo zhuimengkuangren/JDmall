@@ -18,12 +18,12 @@
         android:layout_height="wrap_content">
 
     </com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView>
-<com.shopping.app.jdmall.widget.CategoryFindFragmentView
+<com.shopping.app.jdmall.widget.FindCategoryView
     android:id="@+id/category_find_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-</com.shopping.app.jdmall.widget.CategoryFindFragmentView>
+</com.shopping.app.jdmall.widget.FindCategoryView>
     <com.shopping.app.jdmall.widget.ListFindFragmentView
         android:id="@+id/list_find_fragment"
         android:layout_width="match_parent"

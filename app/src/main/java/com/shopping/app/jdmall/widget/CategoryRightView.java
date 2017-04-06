@@ -2,13 +2,14 @@ package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
@@ -56,26 +57,39 @@ public class CategoryRightView extends LinearLayout {
 
 
     public void setData(String category, List<CategoryItemBean.CategoryBean> list) {
-        mTvCategoty.setText(category);
-
         mTableLayout.removeAllViews();
-        TableRow tableRow = new TableRow(getContext());
-        TableRow.LayoutParams params = new TableRow.LayoutParams();
-        params.width = (mWidth - getPaddingLeft() - getPaddingRight()) / 3;
-        params.gravity = Gravity.CENTER;
-        for (int i = 0; i < list.size(); i++) {
-
-            CategoryItemView itemView = new CategoryItemView(getContext());
-            itemView.setData(list.get(i));
-            itemView.setLayoutParams(params);
-            tableRow.addView(itemView);
-            if ((i + 1) % 3 == 0) {
-                mTableLayout.addView(tableRow);
-                tableRow = new TableRow(getContext());
+        mTvCategoty.setText(category);
+        int end = list.size() / 3;
+        if(end != 0) {
+            end = end + 1;
+        }
+        for (int i = 0; i < end; i++) {
+            TableRow.LayoutParams params = new TableRow.LayoutParams();
+            TableRow tableRow = new TableRow(getContext());
+            //此处有个bug,无法获取到布局后的宽度,权益之际,写的,要改
+            params.width = 173;
+            int last = 0 ;
+            if(i == end - 1) {
+                last = list.size();
+            }else {
+                last = 3 * (i+1);
             }
-        }
-        if(tableRow.getChildCount() != 0) {
+            for (int j = 3 * i; j < last; j++) {
+                CategoryItemBean.CategoryBean bean = list.get(j);
+                CategoryItemView itemView = new CategoryItemView(getContext());
+                itemView.setData(bean);
+                itemView.setLayoutParams(params);
+                itemView.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getContext(),"执行了",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                tableRow.addView(itemView);
+            }
             mTableLayout.addView(tableRow);
+            Log.d(TAG, "setData: ==========================================================+执行了");
         }
+
     }
 }

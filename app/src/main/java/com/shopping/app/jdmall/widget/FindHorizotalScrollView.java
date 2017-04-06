@@ -12,15 +12,15 @@ import com.shopping.app.jdmall.R;
  * Created by user on 2017/4/5.
  */
 
-public class HorizotalScrollFindFragmentView extends RelativeLayout {
+public class FindHorizotalScrollView extends RelativeLayout {
 
     private LinearLayout mLinearLayout;
 
-    public HorizotalScrollFindFragmentView(Context context) {
+    public FindHorizotalScrollView(Context context) {
         this(context, null);
     }
 
-    public HorizotalScrollFindFragmentView(Context context, AttributeSet attrs) {
+    public FindHorizotalScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }

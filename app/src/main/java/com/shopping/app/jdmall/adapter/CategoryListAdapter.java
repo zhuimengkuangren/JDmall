@@ -27,6 +27,6 @@ public class CategoryListAdapter extends BaseListAdapter<String> {
     @Override
     protected void onBindView(int position, View convertView) {
         CategoryListItem view = (CategoryListItem) convertView;
-        view.setData(mList.get(position));
+        view.setData(mList.get(position),position);
     }
 }

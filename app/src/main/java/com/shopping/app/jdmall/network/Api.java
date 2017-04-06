@@ -1,7 +1,11 @@
 package com.shopping.app.jdmall.network;
 
 
+
+import com.shopping.app.jdmall.bean.BannerBean;
+
 import com.shopping.app.jdmall.bean.CargoBean;
+
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.FlashSaleBean;
@@ -17,7 +21,11 @@ import retrofit2.http.Query;
 
  */
 
-public interface Api {
+
+  public interface Api {
+     @GET("home")
+    Call<BannerBean> listHome();
+
 
     @GET("newproduct")
     Call<FindBean> listFind(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
@@ -36,5 +44,10 @@ public interface Api {
 
     @GET("limitbuy")
     Call<List<FlashSaleBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
+
+    //热门商品请求
+    @GET("hotproduct")
+    Call<FindBean> listHotProduct(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);
+
 
 }

@@ -1,6 +1,12 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
@@ -24,6 +30,8 @@ public class QueryCargoActivity extends BaseActivity {
     RadioGroup mTabContainer;
     @BindView(R.id.pull_fresh)
     pullToRefreshView mPullFresh;
+    @BindView(R.id.tool_bar)
+    Toolbar mToolBar;
 
     private List<CargoBean> mList = new ArrayList<>();
     private CargoBean mBean;
@@ -36,8 +44,34 @@ public class QueryCargoActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
+        initToolBar();
         startLoadData();
         mTabContainer.setOnCheckedChangeListener(mListener);
+        mTabContainer.check(R.id.tab_composite);
+    }
+
+    private void initToolBar() {
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("tag");
+        setSupportActionBar(mToolBar);
+        ActionBar actionBar = getSupportActionBar();
+        TextView textView = new TextView(this);
+        textView.setTextColor(Color.RED);
+        textView.setTextSize(18);
+        textView.setGravity(Gravity.CENTER);
+        textView.setText(title);
+        //设置显示返回按钮
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        //定义actionbar的位置
+        ActionBar.LayoutParams lp =new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER);
+        //设置显示customview
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(textView,lp);
     }
 
     private void startLoadData() {
@@ -68,4 +102,6 @@ public class QueryCargoActivity extends BaseActivity {
             }
         }
     };
+
+
 }

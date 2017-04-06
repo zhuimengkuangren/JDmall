@@ -96,7 +96,7 @@ public class CategoryRightView extends LinearLayout {
 
     private void navigateTo(Context context, Class aClass, CategoryItemBean.CategoryBean bean) {
         Intent intent = new Intent(context,aClass);
-        intent.putExtra("tag",bean.getTag());
+        intent.putExtra("tag",bean.getName());
         context.startActivity(intent);
     }
 }

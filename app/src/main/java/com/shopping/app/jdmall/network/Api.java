@@ -45,4 +45,9 @@ import retrofit2.http.Query;
     @GET("limitbuy")
     Call<List<FlashSaleBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
 
+    //热门商品请求
+    @GET("hotproduct")
+    Call<FindBean> listHotProduct(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);
+
+
 }

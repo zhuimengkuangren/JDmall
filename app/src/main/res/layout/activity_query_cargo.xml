@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.shopping.app.jdmall.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RadioGroup
+        android:padding="@dimen/size_middle"
+        android:id="@+id/tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_search"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/tab_composite"
+            style="@style/QueryTabStyle"
+            android:text="综合"/>
+
+        <RadioButton
+            android:id="@+id/tab_sale_volume"
+            style="@style/QueryTabStyle"
+            android:text="销量"/>
+
+        <RadioButton
+            android:id="@+id/tab_price"
+            style="@style/QueryTabStyle"
+            android:text="价格"/>
+
+        <RadioButton
+            android:id="@+id/tab_Query"
+            style="@style/QueryTabStyle"
+            android:text="查询"/>
+
+    </RadioGroup>
+
+    <com.shopping.app.jdmall.widget.pullToRefreshView
+        android:id="@+id/pull_fresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+
+</LinearLayout>

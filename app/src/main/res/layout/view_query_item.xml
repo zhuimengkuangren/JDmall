@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:padding="@dimen/size_middle"
+        android:id="@+id/iv_icon"
+        android:src="@drawable/girl7"
+        android:layout_width="100dp"
+        android:layout_height="150dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/size_middle"
+        android:layout_toRightOf="@id/iv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:padding="@dimen/size_middle"
+            android:id="@+id/tv_title"
+            android:text="情女装"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <TextView
+            android:padding="@dimen/size_middle"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/colorRed"
+            android:id="@+id/tv_price"
+            android:text="¥460.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:padding="@dimen/size_middle"
+               android:id="@+id/tv_commend"
+               android:text="1024条评论"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+
+           <TextView
+                android:padding="@dimen/size_middle"
+                android:layout_toRightOf="@id/tv_commend"
+                android:text="好评率 98%"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+
+           <ImageView
+               android:padding="@dimen/size_middle"
+               android:layout_alignParentRight="true"
+               android:src="@drawable/caidan_gouwuche"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+       </RelativeLayout>
+
+
+        
+    </LinearLayout>
+
+</RelativeLayout>

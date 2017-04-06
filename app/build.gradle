@@ -39,7 +39,12 @@ dependencies {
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
     compile 'org.greenrobot:eventbus:3.0.0'
 
+<<<<<<< HEAD
     compile 'com.sunfusheng:marqueeview:1.0.0'
     compile 'com.github.iwgang:countdownview:2.1.3'
 
+=======
+    compile 'com.github.open-android:PullToRefresh:v1.0'
+    compile 'com.github.uncleleonfan:funbanner:1.1.5'
+>>>>>>> c245f824a87cff867fbc9b192572a078207e3881
 }

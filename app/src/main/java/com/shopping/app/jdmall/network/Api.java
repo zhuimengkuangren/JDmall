@@ -1,11 +1,11 @@
 package com.shopping.app.jdmall.network;
 
 
-<<<<<<< HEAD
+
 import com.shopping.app.jdmall.bean.BannerBean;
-=======
+
 import com.shopping.app.jdmall.bean.CargoBean;
->>>>>>> c245f824a87cff867fbc9b192572a078207e3881
+
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.FlashSaleBean;
@@ -21,13 +21,11 @@ import retrofit2.http.Query;
 
  */
 
-<<<<<<< HEAD
+
   public interface Api {
      @GET("home")
-   Call<BannerBean> listHome();
-=======
-public interface Api {
->>>>>>> c245f824a87cff867fbc9b192572a078207e3881
+    Call<BannerBean> listHome();
+
 
     @GET("newproduct")
     Call<FindBean> listFind(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);

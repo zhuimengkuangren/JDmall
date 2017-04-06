@@ -20,12 +20,13 @@ public abstract class BaseNotLoadDataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(getResId(),null);
-        init();
         ButterKnife.bind(this,root);
+        init();
         return root;
     }
 
-    private void init() {
+    public void init() {
+
     }
 
     public abstract int getResId() ;

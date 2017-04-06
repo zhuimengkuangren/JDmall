@@ -1,10 +1,7 @@
-package com.shopping.app.jdmall.adapter;
+package com.shopping.app.jdmall.ui.activity;
 
 import android.view.View;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-
-import com.shopping.app.jdmall.ui.activity.BaseListActivity;
 
 /**
  * Created by Administrator on 2017/4/6.
@@ -12,17 +9,13 @@ import com.shopping.app.jdmall.ui.activity.BaseListActivity;
 
 public abstract class BaseGirdActivity extends BaseListActivity {
     private BaseAdapter mAdapter;
-    private GridView mGridView;
 
     @Override
     protected View onCreateContentView(){
-        mGridView = new GridView(this);
-        mGridView.setOnItemClickListener(mOnItemClickListener);
-        mAdapter = oncreateAdapter();//子类重写,创建adapter
-        mGridView.setAdapter(mAdapter);
-        initGridView();
-        return mGridView;
+        return null;
     }
+
+    protected abstract View onCreatHolderView();
 
     protected abstract void initGridView();
 

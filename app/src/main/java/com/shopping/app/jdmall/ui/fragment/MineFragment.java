@@ -1,7 +1,4 @@
-package com.shopping.app.jdmall.ui.fragment;
-
-
-import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.ui.fragment.BaseNotLoadDataFragment;
 
 /**
  * 我的fragment

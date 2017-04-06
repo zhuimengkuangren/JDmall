@@ -4,9 +4,16 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.shopping.app.jdmall.widget.SearchView
+    <android.support.v7.widget.Toolbar
+        android:background="@drawable/bg_search"
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="55dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/red"></View>
 
     <RadioGroup
         android:padding="@dimen/size_middle"

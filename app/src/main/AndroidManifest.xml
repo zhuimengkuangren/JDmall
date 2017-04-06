@@ -23,6 +23,9 @@
 
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>
+        <activity android:name=".ui.activity.SearchActivity"></activity>
+        <activity android:name=".ui.activity.FindRecommandActivity"></activity>
+
 
     </application>
 

@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"/>
 
     <RadioGroup
+        android:padding="@dimen/size_middle"
         android:id="@+id/tab_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,19 +25,25 @@
         <RadioButton
             android:id="@+id/tab_news_center"
             style="@style/QueryTabStyle"
-            android:text="新闻中心"/>
+            android:text="销量"/>
 
         <RadioButton
             android:id="@+id/tab_smart_service"
             style="@style/QueryTabStyle"
-            android:text="智慧服务"/>
+            android:text="价格"/>
 
         <RadioButton
             android:id="@+id/tab_gov_affairs"
             style="@style/QueryTabStyle"
-            android:text="政务"/>
+            android:text="查询"/>
 
     </RadioGroup>
+
+    <com.shopping.app.jdmall.widget.pullToRefreshView
+        android:id="@+id/pull_fresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 
 </LinearLayout>

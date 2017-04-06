@@ -4,6 +4,7 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
+ * 热门单品
  */
 
 public class HotItemActivity extends BaseListLoadMoreActivity {

@@ -4,6 +4,7 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
+ * 促销快报
  */
 
 public class PromotionLettersActivity extends BaseListLoadMoreActivity {

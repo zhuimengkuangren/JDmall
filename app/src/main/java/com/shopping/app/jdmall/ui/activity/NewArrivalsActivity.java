@@ -4,6 +4,7 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
+ * 新品上架
  */
 
 public class NewArrivalsActivity extends BaseListLoadMoreActivity {

@@ -53,9 +53,18 @@
                android:layout_height="wrap_content"/>
 
            <ImageView
+               android:id="@+id/buy_car"
                android:padding="@dimen/size_middle"
                android:layout_alignParentRight="true"
                android:src="@drawable/caidan_gouwuche"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"/>
+
+           <ImageView
+               android:id="@+id/iv_fav"
+               android:layout_centerInParent="true"
+               android:layout_toLeftOf="@id/buy_car"
+               android:src="@drawable/aic"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"/>
        </RelativeLayout>

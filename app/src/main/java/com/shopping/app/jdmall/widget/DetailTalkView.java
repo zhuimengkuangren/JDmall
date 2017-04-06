@@ -11,12 +11,12 @@ import com.shopping.app.jdmall.R;
  * Created by user on 2017/4/6.
  */
 
-public class FindDetailTalkView extends RelativeLayout {
-    public FindDetailTalkView(Context context) {
+public class DetailTalkView extends RelativeLayout {
+    public DetailTalkView(Context context) {
         this(context,null);
     }
 
-    public FindDetailTalkView(Context context, AttributeSet attrs) {
+    public DetailTalkView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }

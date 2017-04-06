@@ -29,7 +29,6 @@ public class DetailListItemActivity extends AppCompatActivity {
         FragmentTransaction tr = supportManager.beginTransaction();
         tr.replace(R.id.fl_find_listitem,itemFragment);
         tr.commit();
-
     }
 
 

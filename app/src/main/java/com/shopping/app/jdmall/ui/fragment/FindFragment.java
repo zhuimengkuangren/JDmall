@@ -14,5 +14,4 @@ public class FindFragment extends BaseNotLoadDataFragment {
         return R.layout.fragment_find;
     }
 
-
 }

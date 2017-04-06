@@ -10,7 +10,7 @@ import android.widget.ListView;
  */
 
 public abstract class BaseListFragment extends BaseFragment {
-
+    private static final String TAG = "BaseListFragment";
     private ListView mListview;
     private BaseAdapter mAdapter;
 

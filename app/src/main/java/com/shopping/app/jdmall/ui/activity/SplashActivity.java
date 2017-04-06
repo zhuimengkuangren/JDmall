@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
         alphaAnimation.setDuration(SPLASH_TIME);
         mImageView.setAnimation(alphaAnimation);
+        mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         alphaAnimation.setAnimationListener(mAnimationListener);
     }
     private Animation.AnimationListener mAnimationListener = new Animation.AnimationListener() {

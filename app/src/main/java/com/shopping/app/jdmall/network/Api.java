@@ -44,4 +44,5 @@ import retrofit2.http.Query;
 
     @GET("limitbuy")
     Call<List<LimitBuyBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
+
 }

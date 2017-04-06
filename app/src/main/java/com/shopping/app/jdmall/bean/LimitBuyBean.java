@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Administrator on 2017/4/6.
  */
 
-public class FlashSaleBean {
+public class LimitBuyBean {
 
     /**
      * listCount : 10

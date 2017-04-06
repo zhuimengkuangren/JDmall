@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
  * 新品上架
  */
 
-public class NewArrivalsActivity extends BaseListLoadMoreActivity {
+public class NewProductActivity extends BaseListLoadMoreActivity {
     @Override
     protected void startLoadMoreData() {
 

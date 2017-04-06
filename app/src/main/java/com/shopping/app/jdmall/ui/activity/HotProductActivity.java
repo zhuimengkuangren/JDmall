@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
  * 热门单品
  */
 
-public class HotItemActivity extends BaseListLoadMoreActivity {
+public class HotProductActivity extends BaseListLoadMoreActivity {
     @Override
     protected void startLoadMoreData() {
 

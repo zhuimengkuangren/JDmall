@@ -8,7 +8,7 @@ import com.shopping.app.jdmall.bean.CargoBean;
 
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
-import com.shopping.app.jdmall.bean.FlashSaleBean;
+import com.shopping.app.jdmall.bean.LimitBuyBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 
 import java.util.List;
@@ -43,6 +43,5 @@ import retrofit2.http.Query;
     Call<HomeTopicbean.HomeTopicBean> listHome(int size);
 
     @GET("limitbuy")
-    Call<List<FlashSaleBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
-
+    Call<List<LimitBuyBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
 }

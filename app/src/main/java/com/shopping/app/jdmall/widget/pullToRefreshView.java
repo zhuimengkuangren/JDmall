@@ -42,12 +42,13 @@ public class pullToRefreshView extends PullToRefreshListView {
         setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                navigateTo(getContext(),DetailListItemActivity.class);
+                navigateTo(getContext(),DetailListItemActivity.class,mList.get(position));
             }
         });
     }
 
-    private void navigateTo(Context context, Class aClass) {
+    private void navigateTo(Context context, Class aClass, CargoBean.ProductListBean bean) {
+        String url = bean.getPic();
         Intent intent = new Intent(context,aClass);
         context.startActivity(intent);
     }

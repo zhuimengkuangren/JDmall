@@ -57,7 +57,6 @@ public abstract class BaseListFragment extends BaseFragment {
 
     protected void onListItemClick(int position) {
 
-
     }
 
 

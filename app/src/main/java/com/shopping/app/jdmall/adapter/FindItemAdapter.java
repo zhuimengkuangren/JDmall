@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class FindItemAdapter extends BaseListAdapter {
-
+    private static final String TAG = "FindItemAdapter";
     private List<FindBean.ProductListBean> mList;
 
     public FindItemAdapter(Context context, List<FindBean.ProductListBean> list) {
@@ -23,7 +23,6 @@ public class FindItemAdapter extends BaseListAdapter {
     @Override//这是每个条目的bean,
     protected View onCreateView(int position) {
         mList = getList();
-
         FindListItemView itemView = new FindListItemView(getContext());
         return itemView;
     }

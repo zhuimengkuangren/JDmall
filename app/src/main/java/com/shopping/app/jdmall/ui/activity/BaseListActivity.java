@@ -37,7 +37,7 @@ public abstract class BaseListActivity extends Base2Activity {
 
     protected abstract BaseAdapter oncreateAdapter();
 
-    private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
+    protected AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             onListItemClick(position);

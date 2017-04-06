@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.TutorialActivity"/>
-        <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.LimitBuyActivity"/>
 
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>

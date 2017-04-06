@@ -46,7 +46,7 @@ public class LimitBuyView extends RelativeLayout {
     }
 
     private void initData() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_flash_sale, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_limit_buy, this);
     }
 
     public void bindView(LimitBuyBean flashSaleBean) {

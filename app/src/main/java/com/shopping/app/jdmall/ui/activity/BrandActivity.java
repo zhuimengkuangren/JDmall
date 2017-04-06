@@ -4,13 +4,13 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
- * 促销快报
+ * 推荐品牌
  */
 
-public class PromotionLettersActivity extends BaseListLoadMoreActivity {
+public class BrandActivity extends BaseListLoadMoreActivity {
     @Override
     protected void startLoadMoreData() {
-
+        
     }
 
     @Override

@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".ui.activity.TutorialActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.FlashSaleActivity"/>
+        <activity android:name=".ui.activity.LimitBuyActivity"/>
 
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>

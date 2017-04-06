@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
-import com.shopping.app.jdmall.bean.FlashSaleBean;
+import com.shopping.app.jdmall.bean.LimitBuyBean;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * FlashSaleAdapter中使用的内容填充模块
  */
 
-public class FlashSaleView extends RelativeLayout {
+public class LimitBuyView extends RelativeLayout {
     @BindView(R.id.commodity_name)
     TextView mCommodityName;
     @BindView(R.id.end_time)
@@ -36,11 +36,11 @@ public class FlashSaleView extends RelativeLayout {
     @BindView(R.id.image_view)
     ImageView mImageView;
 
-    public FlashSaleView(Context context) {
+    public LimitBuyView(Context context) {
         this(context, null);
     }
 
-    public FlashSaleView(Context context, AttributeSet attrs) {
+    public LimitBuyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initData();
     }
@@ -49,11 +49,11 @@ public class FlashSaleView extends RelativeLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.view_flash_sale, this);
     }
 
-    public void bindView(FlashSaleBean flashSaleBean) {
-        List<FlashSaleBean.ProductListBean> productList =
+    public void bindView(LimitBuyBean flashSaleBean) {
+        List<LimitBuyBean.ProductListBean> productList =
                 flashSaleBean.getProductList();
         for (int i = 0; i < productList.size(); i++) {
-            FlashSaleBean.ProductListBean productListBean = productList.get(i);
+            LimitBuyBean.ProductListBean productListBean = productList.get(i);
             String name = productListBean.getName();
             mCommodityName.setText(name);
             mEndTime.setText(productListBean.getLeftTime());

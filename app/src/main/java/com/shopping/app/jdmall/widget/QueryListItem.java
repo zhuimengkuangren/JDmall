@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
-import com.shopping.app.jdmall.bean.CargoBean;
+import com.shopping.app.jdmall.bean.FindBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,14 +51,14 @@ public class QueryListItem extends RelativeLayout {
 
     }
 
-    public void setData(CargoBean.ProductListBean bean) {
+    public void setData(FindBean.ProductListBean bean) {
         String url = Constant.HOST + bean.getPic();
         Glide.with(getContext()).load(url).into(mIvIcon);
 
 
         mTvTitle.setText(bean.getName());
         mTvPrice.setText("¥" + bean.getPrice());
-        mTvCommend.setText("精彩评论" + bean.getCommentCount() + "条");
+        mTvCommend.setText("精彩评论1098条");
     }
 
     @OnClick({R.id.buy_car, R.id.iv_fav})

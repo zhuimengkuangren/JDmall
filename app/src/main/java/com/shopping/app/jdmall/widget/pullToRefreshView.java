@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 
 import com.itheima.pulltorefreshlib.PullToRefreshListView;
 import com.shopping.app.jdmall.bean.CargoBean;
+import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.ui.activity.DetailListItemActivity;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class pullToRefreshView extends PullToRefreshListView {
 
-    List<CargoBean.ProductListBean> mList;
+    List<FindBean.ProductListBean> mList;
     private PullToRreshAdapter mAdapter;
     private CargoBean mCargoBean;
 
@@ -47,9 +48,9 @@ public class pullToRefreshView extends PullToRefreshListView {
         });
     }
 
-    private void navigateTo(Context context, Class aClass, CargoBean.ProductListBean bean) {
-        String url = bean.getPic();
+    private void navigateTo(Context context, Class aClass,  FindBean.ProductListBean bean) {
         Intent intent = new Intent(context,aClass);
+        intent.putExtra("values",bean);
         context.startActivity(intent);
     }
 
@@ -88,7 +89,7 @@ public class pullToRefreshView extends PullToRefreshListView {
                 convertView = new QueryListItem(getContext());
             }
             QueryListItem itemView = (QueryListItem) convertView;
-            CargoBean.ProductListBean bean = mList.get(position);
+            FindBean.ProductListBean bean = mList.get(position);
             itemView.setData(bean);
             return itemView;
 //            return new QueryListItem(getContext());

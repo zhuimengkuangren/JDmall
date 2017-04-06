@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.bean.FindBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,19 +16,20 @@ import butterknife.ButterKnife;
  * Created by user on 2017/4/6.
  */
 
-public class FindDetailInfoView extends RelativeLayout {
+public class DetailInfoView extends RelativeLayout {
+    private static final String TAG = "DetailInfoView";
     @BindView(R.id.tv_detail_name_find)
-    TextView mTvDetailNameFind;
+    TextView mName;
     @BindView(R.id.tv_detail_realprice_find)
-    TextView mTvDetailRealpriceFind;
+    TextView mRealprice;
     @BindView(R.id.tv_detail_originprice_find)
-    TextView mTvDetailOriginpriceFind;
+    TextView mOriginprice;
 
-    public FindDetailInfoView(Context context) {
+    public DetailInfoView(Context context) {
         this(context, null);
     }
 
-    public FindDetailInfoView(Context context, AttributeSet attrs) {
+    public DetailInfoView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -36,7 +38,9 @@ public class FindDetailInfoView extends RelativeLayout {
         View view = View.inflate(getContext(), R.layout.view_find_detail_info, this);
         ButterKnife.bind(this, this);
     }
-    public void bindView(){
-
+    public void bindView(FindBean.ProductListBean mBean){
+        mName.setText(mBean.getName());
+        mOriginprice.setText("￥ "+ mBean.getMarketPrice());
+        mRealprice.setText(mBean.getPrice()+"");
     }
 }

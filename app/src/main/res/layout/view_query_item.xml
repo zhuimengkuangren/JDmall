@@ -8,8 +8,8 @@
         android:padding="@dimen/size_middle"
         android:id="@+id/iv_icon"
         android:src="@drawable/girl7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="100dp"
+        android:layout_height="150dp"/>
 
     <LinearLayout
         android:orientation="vertical"

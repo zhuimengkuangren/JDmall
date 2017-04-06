@@ -18,22 +18,22 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/tab_home"
+            android:id="@+id/tab_composite"
             style="@style/QueryTabStyle"
             android:text="综合"/>
 
         <RadioButton
-            android:id="@+id/tab_news_center"
+            android:id="@+id/tab_sale_volume"
             style="@style/QueryTabStyle"
             android:text="销量"/>
 
         <RadioButton
-            android:id="@+id/tab_smart_service"
+            android:id="@+id/tab_price"
             style="@style/QueryTabStyle"
             android:text="价格"/>
 
         <RadioButton
-            android:id="@+id/tab_gov_affairs"
+            android:id="@+id/tab_Query"
             style="@style/QueryTabStyle"
             android:text="查询"/>
 
@@ -42,7 +42,7 @@
     <com.shopping.app.jdmall.widget.pullToRefreshView
         android:id="@+id/pull_fresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
 
 

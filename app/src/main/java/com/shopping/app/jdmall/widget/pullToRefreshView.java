@@ -1,15 +1,17 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import com.itheima.pulltorefreshlib.PullToRefreshListView;
 import com.shopping.app.jdmall.bean.CargoBean;
+import com.shopping.app.jdmall.ui.activity.DetailListItemActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,11 +20,12 @@ import java.util.List;
 
 public class pullToRefreshView extends PullToRefreshListView {
 
-    List<CargoBean> mList = new ArrayList<>();
+    List<CargoBean.ProductListBean> mList;
     private PullToRreshAdapter mAdapter;
+    private CargoBean mCargoBean;
 
     public pullToRefreshView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public pullToRefreshView(Context context, AttributeSet attrs) {
@@ -31,12 +34,27 @@ public class pullToRefreshView extends PullToRefreshListView {
     }
 
     private void init() {
-        mAdapter = new PullToRreshAdapter(getContext(),mList);
+        //设置既能上啦也能下拉
+        setMode(Mode.BOTH);
+        //设置适配器
+        mAdapter = new PullToRreshAdapter();
         setAdapter(mAdapter);
+        setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                navigateTo(getContext(),DetailListItemActivity.class);
+            }
+        });
     }
 
-    public void setData(List<CargoBean> list) {
-        mList = list;
+    private void navigateTo(Context context, Class aClass) {
+        Intent intent = new Intent(context,aClass);
+        context.startActivity(intent);
+    }
+
+    public void setData(CargoBean cargoBean) {
+        mCargoBean = cargoBean;
+        mList = mCargoBean.getProductList();
         mAdapter.notifyDataSetChanged();
     }
 
@@ -44,13 +62,13 @@ public class pullToRefreshView extends PullToRefreshListView {
     class PullToRreshAdapter extends BaseAdapter {
 
 
-        public PullToRreshAdapter(Context context, List<CargoBean> list) {
-
-        }
-
         @Override
         public int getCount() {
-            return 30;
+            if (mList != null) {
+                return mList.size();
+            }
+            return 0;
+
         }
 
         @Override
@@ -65,7 +83,14 @@ public class pullToRefreshView extends PullToRefreshListView {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return new QueryListItem(getContext());
+            if(convertView == null) {
+                convertView = new QueryListItem(getContext());
+            }
+            QueryListItem itemView = (QueryListItem) convertView;
+            CargoBean.ProductListBean bean = mList.get(position);
+            itemView.setData(bean);
+            return itemView;
+//            return new QueryListItem(getContext());
         }
     }
 }

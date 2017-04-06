@@ -18,7 +18,7 @@ import java.util.List;
  */
 
 public class FindListView extends LinearLayout {
-
+    private static final String TAG = "FindListView";
     private ListView mLvList;
 
     public FindListView(Context context) {

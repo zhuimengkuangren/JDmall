@@ -22,6 +22,7 @@ import butterknife.OnClick;
  */
 
 public class FindListItemView extends RelativeLayout {
+    private static final String TAG = "FindListItemView";
     @BindView(R.id.tv_name_findfragment)
     TextView mName;
     @BindView(R.id.tv_market_price_findfragment)
@@ -60,9 +61,10 @@ public class FindListItemView extends RelativeLayout {
 
     public void bindView(FindBean.ProductListBean productListBean) {
         mName.setText(productListBean.getName());
-        mMarketPrice.setText(productListBean.getMarketPrice());
-        mActualPrice.setText(productListBean.getPrice());
+        mMarketPrice.setText("市场价￥ "+productListBean.getMarketPrice()+"");
+        mActualPrice.setText("现价 "+productListBean.getPrice()+"");
         String url= Constant.HOST+productListBean.getPic();
-        Glide.with(getContext()).load(url).override(80,160).into(mIcon);
+        mIcon.measure(0,0);
+        Glide.with(getContext()).load(url).override(200,350).into(mIcon);
     }
 }

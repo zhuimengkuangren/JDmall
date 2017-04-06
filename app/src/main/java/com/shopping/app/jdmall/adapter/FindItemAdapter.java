@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import com.shopping.app.jdmall.bean.FindBean;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 public class FindItemAdapter extends BaseListAdapter {
-
+    private static final String TAG = "FindItemAdapter";
     private List<FindBean.ProductListBean> mList;
 
     public FindItemAdapter(Context context, List<FindBean.ProductListBean> list) {
@@ -23,7 +24,7 @@ public class FindItemAdapter extends BaseListAdapter {
     @Override//这是每个条目的bean,
     protected View onCreateView(int position) {
         mList = getList();
-
+        Log.d(TAG, "onCreateView: 8888");
         FindListItemView itemView = new FindListItemView(getContext());
         return itemView;
     }

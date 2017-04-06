@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.network;
 
 
+import com.shopping.app.jdmall.bean.BannerBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 
@@ -14,6 +15,8 @@ import retrofit2.http.Query;
  */
 
   public interface Api {
+     @GET("home")
+   Call<BannerBean> listHome();
 
     @GET("newproduct")
     Call<FindBean> listFind(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);

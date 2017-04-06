@@ -25,4 +25,8 @@ public class FlashSaleView extends RelativeLayout {
     private void initData() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_flash_sale,this);
     }
+
+    public void bindView(Object object) {
+
+    }
 }

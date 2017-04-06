@@ -19,7 +19,7 @@ public class FlashSaleAdapter extends BaseLoadMoreAdapter {
 
     @Override
     protected void onBindNormalViewHolder(ViewHolder viewHolder, int position) {
-
+        ((FlashSaleView)viewHolder.mView).bindView(getList().get(position));
     }
 
     @Override

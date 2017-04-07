@@ -26,8 +26,7 @@
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>
         <activity android:name=".ui.activity.SearchActivity"></activity>
         <activity android:name=".ui.activity.FindRecommandActivity"></activity>
-
-
+        <activity android:name=".ui.activity.HomeMsgActivity"></activity>
     </application>
 
 </manifest>

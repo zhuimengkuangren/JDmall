@@ -1,123 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-    >
+              android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <LinearLayout
+        android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="6dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_centerVertical="true"
-            android:id="@+id/ll_container1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品名称"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品价格"/>
-
-        </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image1"
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image1"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@mipmap/recommend_brand_3"
-            android:layout_toRightOf="@id/ll_container1"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
+            android:src="@mipmap/recommend_brand_3"/>
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
 
-    <RelativeLayout
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="6dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_centerVertical="true"
-            android:id="@+id/ll_container2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品名称"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品价格"/>
-
-        </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image2"
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image2"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@mipmap/recommend_brand_3"
-            android:layout_toRightOf="@id/ll_container2"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
-    </RelativeLayout>
+            android:src="@mipmap/recommend_brand_3"/>
 
-    <RelativeLayout
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="6dp">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_centerVertical="true"
-            android:id="@+id/ll_container3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品名称"/>
-
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="商品价格"/>
-
-        </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image3"
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image3"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@mipmap/recommend_brand_3"
-            android:layout_toRightOf="@id/ll_container3"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FF000000"/>
-    </RelativeLayout>
+            android:src="@mipmap/recommend_brand_3"/>
 
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image4"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/recommend_brand_3"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
 
 </LinearLayout>

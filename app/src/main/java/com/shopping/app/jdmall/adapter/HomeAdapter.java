@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.widget.HomeListItemView;
 import com.shopping.app.jdmall.widget.PanBannerView;
 import com.shopping.app.jdmall.widget.PanCategroyView;
@@ -31,13 +32,9 @@ public class HomeAdapter extends BaseListLoadAdapter {
 
     private BannerBean mBean;
     private Context mContext;
-    private List mList;
+    private List<List<CategoryItemBean.CategoryBean>> mList;
 
-    public HomeAdapter(Context context, List list) {
-        super(context, list);
-    }
-
-    public HomeAdapter(Context context, List list, BannerBean bean) {
+    public HomeAdapter(Context context, List<List<CategoryItemBean.CategoryBean>> list, BannerBean bean) {
         super(context, list);
         mContext = context;
         mList = list;
@@ -63,13 +60,13 @@ public class HomeAdapter extends BaseListLoadAdapter {
             return ITEM_TYPE_CATEGROY;
         } else if (position == 1) {
             return ITEM_TYPE_MARQUEE;
-        } else if (position == 2) {
-            return ITEM_TYPE_SCOENDKILL;
-        } else if (position == 3) {
-            return ITEM_TYPE_RecommendScrollView;
         } else if (position == 4) {
+            return ITEM_TYPE_SCOENDKILL;
+        } else if (position == 5) {
+            return ITEM_TYPE_RecommendScrollView;
+        } else if (position == 6) {
             return ITEM_TYPE_BANNER02;
-        }else if (position == 5){
+        }else if (position == 7){
             return ITEM_TYPE_IMAGE;
         }
         return ITEM_TYPE_NORMAL;
@@ -97,19 +94,24 @@ public class HomeAdapter extends BaseListLoadAdapter {
 
     @Override
     protected View oncreateNormalView() {
-
         return new HomeListItemView(getContext());
     }
 
+    //需要减1 ,不然报越界异常
     @Override
     protected void onBindView(int position, View convertView) {
         if (getItemViewType(position) == ITEM_TYPE_NORMAL) {
+            position = position - 1;
             onBindNormalView(position, convertView);
         }
     }
 
     @Override
     protected void onBindNormalView(int position, View convertView) {
+        HomeListItemView homeListItemView = (HomeListItemView) convertView;
+        List<CategoryItemBean.CategoryBean> categoryBeen = mList.get(position);
+        homeListItemView.bindView(categoryBeen);
+
 
     }
 }

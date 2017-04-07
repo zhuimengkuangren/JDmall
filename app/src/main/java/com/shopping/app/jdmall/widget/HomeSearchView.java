@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -10,10 +11,9 @@ import android.widget.RelativeLayout;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.event.CameraEvent;
+import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,10 +30,10 @@ public class HomeSearchView extends RelativeLayout {
     EditText mEtText;
     @BindView(R.id.message)
     ImageView mMessage;
+    @BindView(R.id.search)
+    ImageView mSearch;
     @BindView(R.id.ll_container)
     LinearLayout mLlContainer;
-    private File file;
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 
     public HomeSearchView(Context context) {
         this(context, null);
@@ -51,22 +51,30 @@ public class HomeSearchView extends RelativeLayout {
 
     }
 
-    @OnClick({R.id.camera, R.id.et_text, R.id.message, R.id.ll_container})
+
+    @OnClick({R.id.camera, R.id.et_text, R.id.search, R.id.message})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.camera:
-                startPhoto();   //开始拍照
+                startPhoto();//拍照
                 break;
             case R.id.et_text:
                 break;
-            case R.id.message:
+            case R.id.search:
                 break;
-            case R.id.ll_container:
+            case R.id.message:
+                openMsg();
                 break;
         }
     }
 
+
+    //通过EvenBus发送一个消息给mainActivity,让mainActivity去实现打开相机功能
     private void startPhoto() {
         EventBus.getDefault().post(new CameraEvent());
+    }
+
+    private void openMsg() {
+        getContext().startActivity(new Intent(getContext(),HomeMsgActivity.class));
     }
 }

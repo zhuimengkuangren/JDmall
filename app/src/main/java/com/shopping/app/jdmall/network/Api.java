@@ -2,6 +2,7 @@ package com.shopping.app.jdmall.network;
 
 
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.bean.BrandRenBean;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
@@ -46,8 +47,11 @@ public interface Api {
     @GET("hotproduct")
     Call<FindBean> listHotProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
 
-    //热门商品请求
+    //新品上架请求
     @GET("topic")
     Call<TopicRenBean> listTopicRen(@Query("page") int page, @Query("pageNum") int pageNum);
+
+    @GET("brand")
+    Call<BrandRenBean> listBrandRen();
 
 }

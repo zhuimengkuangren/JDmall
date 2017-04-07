@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 /**
  * Created by Administrator on 2017/4/6.
- * 新品上架
+ * 新品上架    跟wuweihua的做重复了  名为 findRecommandActivaty
  */
 
 public class NewProductActivity extends BaseListLoadMoreActivity {

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.ui.activity.LoginPageActivity;
+import com.shopping.app.jdmall.ui.activity.SettingActivity;
 import com.shopping.app.jdmall.ui.activity.UserSettingActivity;
 import com.shopping.app.jdmall.utils.SPUtils;
 
@@ -66,7 +67,8 @@ public class MineFragment extends BaseNotLoadDataFragment {
                 }
                 break;
             case R.id.setting_icon:
-
+                Intent intent = new Intent(getContext(),SettingActivity.class);
+                startActivity(intent);
                 break;
         }
     }

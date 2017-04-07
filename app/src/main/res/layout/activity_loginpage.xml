@@ -129,7 +129,7 @@
 
         </RelativeLayout>
 
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
@@ -169,7 +169,7 @@
 
         </RelativeLayout>
 
-        <view
+        <View
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"/>

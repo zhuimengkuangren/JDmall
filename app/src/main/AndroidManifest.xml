@@ -27,6 +27,8 @@
         <activity android:name=".ui.activity.SearchActivity"></activity>
         <activity android:name=".ui.activity.FindRecommandActivity"></activity>
         <activity android:name=".ui.activity.UserSettingActivity"/>
+        <activity android:name=".ui.activity.SettingActivity"/>
+        <activity android:name=".ui.activity.LoginPageActivity"/>
 
 
     </application>

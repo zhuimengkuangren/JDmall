@@ -30,6 +30,7 @@
         <activity android:name=".ui.activity.UserSettingActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity"/>
 
 
     </application>

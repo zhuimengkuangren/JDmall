@@ -7,8 +7,13 @@ import com.itheima.pulltorefreshlib.PullToRefreshBase;
 import com.itheima.pulltorefreshlib.PullToRefreshListView;
 import com.shopping.app.jdmall.adapter.HomeAdapter;
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.network.JDRetrofit;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by panpan on 2017/4/7.
@@ -17,27 +22,47 @@ import java.util.List;
 public class HomePullToRefreshList extends PullToRefreshListView {
 
     private List mList;
-    private BannerBean mBean;
+    private BannerBean mBannerBean;
+    private HomeHeadBanner mHomeHeadBanner;
 
     public HomePullToRefreshList(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public HomePullToRefreshList(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public HomePullToRefreshList(Context context,List list,BannerBean bean){
+    public HomePullToRefreshList(Context context, List list, int flag) {
         super(context);
         mList = list;
-        mBean = bean;
-        init();
+        loadDatas();
+    }
+
+    private void loadDatas() {
+        Call<BannerBean> listHome = JDRetrofit.getInstance().getApi().listHome();
+        listHome.enqueue(new Callback<BannerBean>() {
+            @Override
+            public void onResponse(Call<BannerBean> call, Response<BannerBean> response) {
+                mBannerBean = response.body();
+                getRefreshableView().removeHeaderView(mHomeHeadBanner);
+                init();
+            }
+
+            @Override
+            public void onFailure(Call<BannerBean> call, Throwable t) {
+
+            }
+        });
     }
 
     private void init() {
-        setAdapter(new HomeAdapter(getContext(),mList,mBean));
+        setAdapter(new HomeAdapter(getContext(), mList, mBannerBean));
         setMode(Mode.BOTH); //设置技能下拉刷新,又能上拉加载更多
         setOnRefreshListener(mOnRefreshListener2);
+        mHomeHeadBanner = new HomeHeadBanner(getContext());
+        mHomeHeadBanner.bindView(mBannerBean);
+        getRefreshableView().addHeaderView(mHomeHeadBanner);
     }
 
 
@@ -45,6 +70,7 @@ public class HomePullToRefreshList extends PullToRefreshListView {
         @Override
         public void onPullDownToRefresh(PullToRefreshBase pullToRefreshBase) {
 
+            loadDatas();
             post(new Runnable() {
                 @Override
                 public void run() {
@@ -64,10 +90,4 @@ public class HomePullToRefreshList extends PullToRefreshListView {
 
         }
     };
-
-  /*  //加载初始化需要的数据
-    public void setDatas(List arr, BannerBean bannerBean) {
-        mArr = arr;
-        mBannerBean = bannerBean;
-    }*/
 }

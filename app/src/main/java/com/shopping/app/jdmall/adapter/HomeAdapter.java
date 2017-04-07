@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.bean.BannerBean;
-import com.shopping.app.jdmall.widget.HomeHeadBanner;
 import com.shopping.app.jdmall.widget.PanBannerView;
 import com.shopping.app.jdmall.widget.PanCategroy;
 import com.shopping.app.jdmall.widget.PanImageView;
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class HomeAdapter extends BaseListLoadAdapter {
 
-    private static final int ITEM_TYPE_BANNER01 = 0;
+    private static final int ITEM_TYPE_FIRST = 0;
     private static final int ITEM_TYPE_CATEGROY = 1;
     private static final int ITEM_TYPE_MARQUEE = 2;
     private static final int ITEM_TYPE_SCOENDKILL = 3;
@@ -31,6 +30,7 @@ public class HomeAdapter extends BaseListLoadAdapter {
     private static final int ITEM_TYPE_BANNER02 = 7;
     private static final int ITEM_TYPE_NORMAL = 9;
     private BannerBean mBean;
+    private Context mContext;
     private List mList;
 
     public HomeAdapter(Context context, List list) {
@@ -39,6 +39,7 @@ public class HomeAdapter extends BaseListLoadAdapter {
 
     public HomeAdapter(Context context, List list, BannerBean bean) {
         super(context, list);
+        mContext = context;
         mList = list;
         mBean = bean;
     }
@@ -53,14 +54,14 @@ public class HomeAdapter extends BaseListLoadAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 9;
+        return 10;
     }
 
     @Override
     public int getItemViewType(int position) {
 
         if (position == 0) {
-            return ITEM_TYPE_BANNER01; //第0个item为轮播图
+            return ITEM_TYPE_FIRST;
         } else if (position == 1) {
             return ITEM_TYPE_CATEGROY;
         } else if (position == 2) {
@@ -79,13 +80,11 @@ public class HomeAdapter extends BaseListLoadAdapter {
         return ITEM_TYPE_NORMAL;
     }
 
-
-
     @Override
     protected View onCreateView(int position) {
 
-        if (getItemViewType(position) == ITEM_TYPE_BANNER01) {
-            return new HomeHeadBanner(getContext());    //创建轮播图
+        if (getItemViewType(position) == ITEM_TYPE_FIRST) {
+            return new TextView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_CATEGROY) {
             return new PanCategroy(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_MARQUEE) {
@@ -117,10 +116,6 @@ public class HomeAdapter extends BaseListLoadAdapter {
     protected void onBindView(int position, View convertView) {
         if (getItemViewType(position) == ITEM_TYPE_NORMAL) {
             onBindNormalView(position, convertView);
-        }
-        if (getItemViewType(position) == ITEM_TYPE_BANNER01) {
-            HomeHeadBanner homeHeadBanner = (HomeHeadBanner) convertView;
-            homeHeadBanner.bindView(mBean);
         }
     }
 

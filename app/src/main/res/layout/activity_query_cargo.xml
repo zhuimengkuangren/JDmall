@@ -1,70 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
-
-    <android.support.v7.widget.Toolbar
-        android:background="@drawable/bg_search"
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/red"></View>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_container"
-        android:background="@drawable/bg_search"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:textColor="@color/colorRed"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_search"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/red"></View>
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_search"
             android:gravity="center"
-            android:id="@+id/tab_composite"
-            android:text="销量"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/tab_sale_volume"
-            android:text="价格上升"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tab_composite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="销量"
+                android:textColor="@color/colorRed"/>
 
-        <TextView
+            <TextView
+                android:id="@+id/tab_sale_volume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="价格上升"/>
 
-            android:drawableLeft="@drawable/filter_price_up_press"
-            android:gravity="center"
-            android:id="@+id/tab_price"
-            android:text="价格下降"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            <TextView
 
-        <TextView
-            android:drawableLeft="@drawable/filter_price_down_press"
-            android:gravity="center"
-            android:id="@+id/tab_Query"
-            android:text="最新上架"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+                android:id="@+id/tab_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/filter_price_up_press"
+                android:gravity="center"
+                android:text="价格下降"/>
+
+            <TextView
+                android:id="@+id/tab_Query"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/filter_price_down_press"
+                android:gravity="center"
+                android:text="最新上架"/>
+        </LinearLayout>
+
+        <com.shopping.app.jdmall.widget.pullToRefreshView
+            android:id="@+id/pull_fresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
     </LinearLayout>
 
-    <com.shopping.app.jdmall.widget.pullToRefreshView
-        android:id="@+id/pull_fresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+
+    <com.shopping.app.jdmall.widget.BuyBottomView
+        android:padding="@dimen/size_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 
 
-
-</LinearLayout>
+</RelativeLayout>

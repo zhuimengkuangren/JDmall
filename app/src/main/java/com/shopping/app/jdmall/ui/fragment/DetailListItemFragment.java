@@ -1,6 +1,5 @@
 package com.shopping.app.jdmall.ui.fragment;
 
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.leon.loopviewpagerlib.CirclePageIndicator;
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.adapter.ImageViewActivity;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.widget.DetailBottomView;
@@ -87,9 +85,27 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     View.OnClickListener listerner = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(getContext(), ImageViewActivity.class);
+            /*Intent intent = new Intent(getContext(), ImageViewActivity.class);
             intent.putExtra("imageurl", mUrl);
-            getContext().startActivity(intent);
+            getContext().startActivity(intent);*/
+            View convertView = View.inflate(getContext(), R.layout.view_image, null);
+            ImageView largeIcon = (ImageView) convertView.findViewById(R.id.img);
+            largeIcon.setScaleType(ImageView.ScaleType.FIT_XY);
+            Glide.with(getContext()).load(mUrl).into(largeIcon);
+            mWindow = new PopupWindow(convertView,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mWindow.dismiss();
+                }
+            });
+            mWindow.setFocusable(true);
+            //设置动画样式
+            mWindow.setAnimationStyle(R.style.pop_anim);
+            mWindow.showAtLocation(convertView, Gravity.CENTER, 0, 0);//显示在指定位置,在0,0的位置
+
         }
     };
 

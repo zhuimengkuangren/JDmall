@@ -140,7 +140,7 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
                     color="红色";
                     break;
                 case R.id.green_color:
-                    color="蓝色";
+                    color="绿色";
                     break;
 
             }

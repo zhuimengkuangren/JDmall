@@ -46,5 +46,5 @@ dependencies {
 
     compile 'com.github.open-android:PullToRefresh:v1.0'
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
-
+    compile 'com.bm.photoview:library:1.4.1'
 }

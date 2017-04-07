@@ -3,9 +3,10 @@ package com.shopping.app.jdmall.ui.fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -56,28 +57,61 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         mViewPager.setAdapter(adapter);
         mIndicator.setViewPager(mViewPager);
         mViewPagerBottom.setAdapter(bottomAdapter);
-        //mViewPager.setOnClickListener(listerner);
+        mViewPager.setOnClickListener(new listenrers());
     }
-    View.OnClickListener listerner=new View.OnClickListener() {
+    public class listenrers implements View.OnClickListener {
+
         @Override
         public void onClick(View v) {
             Log.d(TAG, "onClick: dddd");
             View contentView = View.inflate(getContext(), R.layout.view_image, null);
             ButterKnife.bind(this,contentView);
-            /*contentView.measure(0,0);
-            int width = contentView.getMeasuredWidth();
-            int left = contentView.getLeft();
-            int right = contentView.getRight() - contentView.getWidth();
-            int top = contentView.getTop();
-            int bottom=contentView.getBottom();*/
-            ImageView largeIcon = (ImageView) contentView.findViewById(R.id.iv_image);
-            largeIcon.setScaleType(ImageView.ScaleType.FIT_XY);
-            int widthPixels = getResources().getDisplayMetrics().widthPixels/*+left+right*/;
+
+            ImageView photoView = (ImageView) contentView.findViewById(R.id.img);
+            int widthPixels = getResources().getDisplayMetrics().widthPixels;
             int heightPixels = getResources().getDisplayMetrics().heightPixels;
-            /*RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) largeIcon.getLayoutParams( );
+            Glide.with(getContext()).load(mUrl).override(widthPixels,heightPixels).into(photoView);
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1.0f, 0, 1.0f,
+                    Animation.RELATIVE_TO_PARENT, 0.5f, Animation.RELATIVE_TO_PARENT, 0.5f);
+            scaleAnimation.setDuration(2000);
+            //引用第三方
+            photoView.startAnimation(scaleAnimation);
+            scaleAnimation.start();
+        }
+    }
+    View.OnClickListener listerner=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            // 启用图片缩放功能
+            /*  photoView.enable();
+            // 获取图片信息
+            Info info = photoView.getInfo();
+            // 从一张图片信息变化到现在的图片，用于图片点击后放大浏览，具体使用可以参照 demo 的使用
+            photoView.animaFrom(info);
+            // 从现在的图片变化到所给定的图片信息，用于图片放大后点击缩小到原来的位置，具体使用可以参照 demo 的使用
+            photoView.animaTo(info,new Runnable() {
+                @Override
+                public void run() {
+                    //动画完成监听
+                }
+            });
+            // 获取/设置 动画持续时间
+            photoView.setAnimaDuring(2000);
+            // 获取/设置 最大缩放倍数
+            photoView.setMaxScale(2.0f);
+            float maxScale = photoView.getMaxScale();
+            // 设置动画的插入器
+            photoView.setInterpolator(new OvershootInterpolator());*/
+
+
+            /*largeIcon.setScaleType(ImageView.ScaleType.FIT_XY);
+            int widthPixels = getResources().getDisplayMetrics().widthPixels*//*+left+right*//*;
+            int heightPixels = getResources().getDisplayMetrics().heightPixels;
+            *//*RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) largeIcon.getLayoutParams( );
             layoutParams.height=heightPixels;
             layoutParams.width=widthPixels;
-            largeIcon.setLayoutParams(layoutParams);*/
+            largeIcon.setLayoutParams(layoutParams);*//*
             //Log.d(TAG, "onClick: "+"左边距离"+left+"，右边距离"+right+""+"，顶部距离："+top+"控件宽度"+width+"，屏幕宽度："+widthPixels);
             Glide.with(getContext()).load(mUrl).override(widthPixels,heightPixels).into(largeIcon);
             mWindow = new PopupWindow(contentView,
@@ -94,7 +128,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
             //设置动画样式
             mWindow.setAnimationStyle(R.style.pop_anim);
             mWindow.showAtLocation(mViewPager, Gravity.CENTER, 0, 0);//显示在指定位置
-
+*/
         }
     };
 
@@ -125,7 +159,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     PagerAdapter adapter = new PagerAdapter() {
         @Override
         public int getCount() {
-            return 3;//直接写死数量，每张图片一样的
+            return 3;
         }
 
         @Override

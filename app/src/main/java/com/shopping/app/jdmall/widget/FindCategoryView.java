@@ -105,7 +105,6 @@ public class FindCategoryView extends RelativeLayout {
                         }
                         switch (position){
                             case 0:
-
                                 break;
                             case 1:
                                 break;

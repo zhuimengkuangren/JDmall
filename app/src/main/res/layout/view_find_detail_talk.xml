@@ -22,7 +22,7 @@
             android:layout_toRightOf="@id/tv_user_talk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="评论数"
+            android:text="（2）"
             />
         <LinearLayout
             android:layout_alignParentRight="true"

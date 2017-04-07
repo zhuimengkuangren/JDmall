@@ -25,6 +25,7 @@ public class SPUtils {
         edit.commit();
     }
 
+
     public static String getString(Context context,String key,String value){
         SharedPreferences sharePreferences = getSharePreferences(context);
         return  sharePreferences.getString(key,value);
@@ -35,5 +36,6 @@ public class SPUtils {
         sharePreferences.edit().putString(key,value).apply();
 
     }
+
 
 }

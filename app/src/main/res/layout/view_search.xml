@@ -20,6 +20,7 @@
             android:layout_height="20dp"/>
 
         <EditText
+            android:background="@drawable/bg_search"
             android:padding="@dimen/size_smaller"
             android:textSize="12sp"
             android:id="@+id/et_search"

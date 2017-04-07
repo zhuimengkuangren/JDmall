@@ -16,7 +16,8 @@ public class CarInfoBean implements Serializable{
      * prodNum : 3
      * product : {"buyLimit":10,"id":1,"name":"韩版时尚蕾丝裙","number":"100","pic":"/images/product/detail/c3.jpg","price":350,"productProperty":[{"id":1,"k":"颜色","v":"红色"},{"id":2,"k":"颜色","v":"绿色"},{"id":3,"k":"尺码","v":"M"},{"id":4,"k":"尺码","v":"XXL"}]}
      */
-
+    //是否勾选
+    private boolean isCheck;
     //至少一个
     private int prodNum = 1;
     /**
@@ -46,6 +47,15 @@ public class CarInfoBean implements Serializable{
     public void setProduct(ProductBean product) {
         this.product = product;
     }
+
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+    }
+
 
     public static class ProductBean {
         private int buyLimit;
@@ -110,6 +120,8 @@ public class CarInfoBean implements Serializable{
             this.price = price;
         }
 
+
+
         public List<ProductPropertyBean> getProductProperty() {
             return productProperty;
         }
@@ -146,6 +158,15 @@ public class CarInfoBean implements Serializable{
             public void setV(String v) {
                 this.v = v;
             }
+
+            @Override
+            public String toString() {
+                return "ProductPropertyBean{" +
+                        "id=" + id +
+                        ", k='" + k + '\'' +
+                        ", v='" + v + '\'' +
+                        '}';
+            }
         }
 
         @Override
@@ -165,7 +186,8 @@ public class CarInfoBean implements Serializable{
     @Override
     public String toString() {
         return "CarInfoBean{" +
-                "prodNum=" + prodNum +
+                "isCheck=" + isCheck +
+                ", prodNum=" + prodNum +
                 ", product=" + product +
                 '}';
     }

@@ -25,7 +25,6 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    //wwh在mainactivity增加一个注解
 
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
@@ -67,7 +66,7 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState == null) {
             Fragment fragment = new HomeFragment();
             mFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment, homeFragmentTag).commit();//replace会重新刷新
+                    .replace(R.id.fragment_container, fragment, homeFragmentTag).commit();//replace会重新刷新view视图
         }
 
         //初始化监听器
@@ -145,7 +144,7 @@ public class MainActivity extends BaseActivity {
                     homeFragment = new HomeFragment();
                     ft.add(R.id.fragment_container, homeFragment, homeFragmentTag);//添加fragment和标记
                 } else {
-                    ft.show(homeFragment);//不会重新刷新,保留之前的页面状态
+                    ft.show(homeFragment);//不会重新刷新view视图,保留之前的页面状态
                 }
                 break;
             case categoryTagId:

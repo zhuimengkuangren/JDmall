@@ -24,6 +24,9 @@
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>
+<<<<<<< HEAD
+        <activity android:name=".ui.activity.CommentActivity"/>
+=======
         <activity android:name=".ui.activity.SearchActivity"></activity>
         <activity android:name=".ui.activity.FindRecommandActivity"></activity>
         <activity android:name=".ui.activity.UserSettingActivity"/>
@@ -31,6 +34,7 @@
         <activity android:name=".ui.activity.LoginPageActivity"/>
 
 
+>>>>>>> 6f16ff374bff3a83c85948158297662bfe3898d6
     </application>
 
 </manifest>

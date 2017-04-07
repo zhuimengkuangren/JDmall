@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="8dp"
+              android:background="@android:color/white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -40,6 +41,13 @@
                 android:text="100%"
                 android:textColor="#ff0000"
                 />
+            <ImageView
+                android:id="@+id/iv_arrow_detail"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </RelativeLayout>
     <TextView
@@ -47,8 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minLines="6"
+        android:maxLines="6"
         android:text="暂无评论精华"
         android:gravity="center"
         />
+
 
 </LinearLayout>

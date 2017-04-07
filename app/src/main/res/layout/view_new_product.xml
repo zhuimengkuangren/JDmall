@@ -23,6 +23,7 @@
                 android:src="@mipmap/b87"/>
 
             <TextView
+                android:id="@+id/left_name"
                 android:text="韩版外套"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -34,17 +35,20 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/left_xian_chang_jia"
                 android:text="现场价￥160"
                 android:textColor="@color/colorRed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/left_shi_chang_jia"
                 android:text="市场价￥160"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/left_image"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:src="@mipmap/girl2"
@@ -70,6 +74,7 @@
                 android:src="@mipmap/b87"/>
 
             <TextView
+                android:id="@+id/right_name"
                 android:text="女士外套"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -81,17 +86,20 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/right_xian_chang_jia"
                 android:text="现场价￥160"
                 android:textColor="@color/colorRed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/right_shi_chang_jia"
                 android:text="市场价￥160"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/right_image"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:scaleType="fitXY"

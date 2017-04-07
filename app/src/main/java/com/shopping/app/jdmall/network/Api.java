@@ -7,6 +7,7 @@ import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+import com.shopping.app.jdmall.bean.TopicRenBean;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -44,5 +45,9 @@ public interface Api {
     //热门商品请求
     @GET("hotproduct")
     Call<FindBean> listHotProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
+
+    //热门商品请求
+    @GET("topic")
+    Call<TopicRenBean> listTopicRen(@Query("page") int page, @Query("pageNum") int pageNum);
 
 }

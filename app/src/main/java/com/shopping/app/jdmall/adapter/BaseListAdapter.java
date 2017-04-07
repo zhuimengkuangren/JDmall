@@ -1,9 +1,12 @@
 package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
+
 import java.util.List;
 
 /**
@@ -12,7 +15,7 @@ import java.util.List;
  */
 
 public abstract class BaseListAdapter<T> extends BaseAdapter {
-
+    private static final String TAG = "BaseListAdapter";
     private Context mContext;
     private List<T> mList;
 
@@ -51,8 +54,10 @@ public abstract class BaseListAdapter<T> extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
+            Log.d(TAG, "getView: bug");
             convertView = onCreateView(position);//创建自定义Item的视图
         }
+        Toast.makeText(mContext, "test", Toast.LENGTH_SHORT).show();
         onBindView(position,convertView);//绑定item的视图
 
         return convertView;

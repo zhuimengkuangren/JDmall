@@ -1,12 +1,10 @@
 package com.shopping.app.jdmall.network;
 
 
-
 import com.shopping.app.jdmall.bean.BannerBean;
-
 import com.shopping.app.jdmall.bean.CargoBean;
-
 import com.shopping.app.jdmall.bean.CategoryItemBean;
+import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.FlashSaleBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
@@ -22,8 +20,8 @@ import retrofit2.http.Query;
  */
 
 
-  public interface Api {
-     @GET("home")
+public interface Api {
+    @GET("home")
     Call<BannerBean> listHome();
 
 
@@ -34,15 +32,16 @@ import retrofit2.http.Query;
     Call<CategoryItemBean> listCategory();
 
     @GET("productlist")
-    Call<CargoBean> listProductlist(@Query("page") int page,
-                                 @Query("pageNum") int pageNum,
-                                 @Query("cId") int cId,
-                                 @Query("orderby") String orderby);
+    Call<CargoBean> listProductlist(@Query("page") int page, @Query("pageNum") int pageNum, @Query("cId") int cId, @Query("orderby") String orderby);
 
 
     Call<HomeTopicbean.HomeTopicBean> listHome(int size);
 
     @GET("limitbuy")
-    Call<List<FlashSaleBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
+    Call<List<FlashSaleBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum);
+
+
+    @GET("product/comment")
+    Call<CommentBeans> listCommet(@Query("pId") int pld, @Query("page") int page, @Query("pageNum") int pageNum);
 
 }

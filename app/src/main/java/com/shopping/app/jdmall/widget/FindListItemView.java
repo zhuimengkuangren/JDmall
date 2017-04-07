@@ -55,15 +55,18 @@ public class FindListItemView extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_item_list_find:
-                Intent intent = new Intent(getContext(), DetailListItemActivity.class);
-                /*CharSequence[] values={bean.getName(),bean.getPic(),bean.getMarketPrice()+"",bean.getPrice()+""};
-                intent.putExtra("values",values);*/
-                intent.putExtra("values",bean);
-                getContext().startActivity(intent);
+                startDetailActivity();
                 break;
             case R.id.iv_item_findfragmen:
+                startDetailActivity();
                 break;
         }
+    }
+
+    private void startDetailActivity() {
+        Intent intent = new Intent(getContext(), DetailListItemActivity.class);
+        intent.putExtra("values",bean);
+        getContext().startActivity(intent);
     }
 
     public void bindView(FindBean.ProductListBean productListBean) {

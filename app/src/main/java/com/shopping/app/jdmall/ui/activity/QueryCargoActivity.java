@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -84,6 +85,18 @@ public class QueryCargoActivity extends BaseActivity {
         actionBar.setCustomView(textView, lp);
     }
 
+    //设置toolbar的返回回调
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
     private void startLoadData() {
         JDRetrofit.getInstance().getApi().listProductlist(1, 10, 125, "saleDown").enqueue(new Callback<CargoBean>() {
             @Override
@@ -119,16 +132,10 @@ public class QueryCargoActivity extends BaseActivity {
             case R.id.tab_sale_volume:
                 mTabSaleVolume.setTextColor(Color.RED);
                 currentPosition = 1;
-                olderby = "saleDown";
+                olderby = "priceUp";
                 break;
             case R.id.tab_price:
-                isPriceUp = !isPriceUp;
-
-                if(isPriceUp) {
-                    olderby = "priceUp";
-                }else {
-                    olderby = "priceDown";
-                }
+                olderby = "priceDown";
                 mTabPrice.setTextColor(Color.RED);
                 currentPosition = 2;
                 break;

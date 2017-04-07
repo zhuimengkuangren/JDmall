@@ -27,7 +27,7 @@
             android:textColor="@color/colorRed"
             android:gravity="center"
             android:id="@+id/tab_composite"
-            android:text="综合"
+            android:text="销量"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -35,7 +35,17 @@
         <TextView
             android:gravity="center"
             android:id="@+id/tab_sale_volume"
-            android:text="销量"
+            android:text="价格上升"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+
+            android:drawableLeft="@drawable/filter_price_up_press"
+            android:gravity="center"
+            android:id="@+id/tab_price"
+            android:text="价格下降"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
@@ -43,16 +53,8 @@
         <TextView
             android:drawableLeft="@drawable/filter_price_down_press"
             android:gravity="center"
-            android:id="@+id/tab_price"
-            android:text="价格"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:gravity="center"
             android:id="@+id/tab_Query"
-            android:text="查询"
+            android:text="最新上架"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>

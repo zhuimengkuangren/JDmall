@@ -58,7 +58,7 @@ public class QueryListItem extends RelativeLayout {
 
         mTvTitle.setText(bean.getName());
         mTvPrice.setText("¥" + bean.getPrice());
-        mTvCommend.setText("评论1098条");
+        mTvCommend.setText("精彩评论:"+bean.getCommentCount()+"条");
     }
 
     @OnClick({R.id.buy_car, R.id.iv_fav})

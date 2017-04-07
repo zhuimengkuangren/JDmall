@@ -6,13 +6,7 @@ import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
-
 import com.shopping.app.jdmall.bean.LimitBuyBean;
-
-import com.shopping.app.jdmall.bean.LogoutBean;
-
-
-
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -57,9 +51,13 @@ public interface Api {
 @FormUrlEncoded
   @POST("login")
   Call<ResponseBody> login(@Field("username") String username, @Field("password") String password);
+//
+//  @GET("logout")
+//  Call<LogoutBean> logout(@Query("userid") String userid);
 
-  @GET("logout")
-  Call<LogoutBean> logout(@Query("userid") String userid);
+    @FormUrlEncoded
+    @POST("register")
+    Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
 
 
 }

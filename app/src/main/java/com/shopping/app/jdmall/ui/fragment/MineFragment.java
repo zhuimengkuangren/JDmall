@@ -88,8 +88,11 @@ public class MineFragment extends BaseNotLoadDataFragment {
         switch (requestCode) {
             case REQUEST_CODE_LOGIN:
                 String username = data.getStringExtra("user_name");
-                //刷新ui
-                loginUser.setText("欢迎，用户" + username);
+                if(username!=null){
+                    //刷新ui
+                    loginUser.setText("欢迎，用户" + username);
+                }
+
 
                 Log.d(TAG, "onActivityResult: " + username + "===============");
 

@@ -1,11 +1,13 @@
 package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.shopping.app.jdmall.utils.SPUtils;
 import java.io.IOException;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,6 +56,8 @@ public class LoginPageActivity extends BaseActivity {
     TextView tvPassward;
     @BindView(R.id.fast_register)
     TextView fastRegister;
+    @BindView(R.id.back)
+    ImageView back;
     private String mUserId;
 
 
@@ -67,24 +72,32 @@ public class LoginPageActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.login,R.id.fast_register})
+    @OnClick({R.id.login, R.id.fast_register,R.id.back})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login:
-            String userName = etNumber.getText().toString().trim();
-            String pwd = etPassword.getText().toString().trim();
-            Log.d(TAG, "loginRequest: " + userName + pwd);
-            if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(pwd)) {
-                Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            //post请求
-            loginRequest(userName, pwd);
+                String userName = etNumber.getText().toString().trim();
+                String pwd = etPassword.getText().toString().trim();
+                Log.d(TAG, "loginRequest: " + userName + pwd);
+                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(pwd)) {
+                    Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //post请求
+                loginRequest(userName, pwd);
+                break;
+            case R.id.fast_register:
+                //快速注册
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.back:
+                finish();
                 break;
         }
 
     }
-
 
     private void loginRequest(final String username, final String pwd) {
         Call<ResponseBody> call = JDRetrofit.getInstance().getApi().login(username, pwd);
@@ -137,4 +150,10 @@ public class LoginPageActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

@@ -1,7 +1,9 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -41,8 +43,6 @@ public class LoginPageActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.login)
     Button login;
-    @BindView(R.id.fast_register)
-    TextView fastRegister;
     @BindView(R.id.forget_passward)
     TextView forgetPassward;
     @BindView(R.id.rl)
@@ -51,6 +51,8 @@ public class LoginPageActivity extends BaseActivity {
     TextView tvNumber;
     @BindView(R.id.tv_passward)
     TextView tvPassward;
+    @BindView(R.id.fast_register)
+    TextView fastRegister;
     private String mUserId;
 
 
@@ -65,21 +67,23 @@ public class LoginPageActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.login)
-    public void onViewClicked() {
-        String userName = etNumber.getText().toString().trim();
-        String pwd = etPassword.getText().toString().trim();
-        Log.d(TAG, "loginRequest: " + userName + pwd);
-        if(TextUtils.isEmpty(userName)||TextUtils.isEmpty(pwd)){
-            Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
-            return;
+    @OnClick({R.id.login,R.id.fast_register})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.login:
+            String userName = etNumber.getText().toString().trim();
+            String pwd = etPassword.getText().toString().trim();
+            Log.d(TAG, "loginRequest: " + userName + pwd);
+            if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(pwd)) {
+                Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            //post请求
+            loginRequest(userName, pwd);
+                break;
         }
-        //post请求
-        loginRequest(userName,pwd);
-
 
     }
-
 
 
     private void loginRequest(final String username, final String pwd) {
@@ -96,30 +100,29 @@ public class LoginPageActivity extends BaseActivity {
                 Gson gson = new Gson();
                 LoginBean loginBean = gson.fromJson(str, LoginBean.class);
 
-                if("error".equals(loginBean.getResponse())){
+                if ("error".equals(loginBean.getResponse())) {
 
                     Toast.makeText(LoginPageActivity.this, loginBean.getError(), Toast.LENGTH_SHORT).show();
 
 
                 }
-                if("login".equals(loginBean.getResponse())){
+                if ("login".equals(loginBean.getResponse())) {
 
 
                     //用户名密码匹配成功
                     //保存用户名
-                    SPUtils.setString(LoginPageActivity.this,Constant.USER_NAME,username);
+                    SPUtils.setString(LoginPageActivity.this, Constant.USER_NAME, username);
+                    Intent data = new Intent();
+                    data.putExtra("user_name", username);
+                    setResult(RESULT_OK, data);
                     //保存当前登录用户信息
                     //持久化存储
-                    SPUtils.setString(LoginPageActivity.this, Constant.LOGIN_USERID,loginBean.getUserInfo().getUserid());
+                    SPUtils.setString(LoginPageActivity.this, Constant.LOGIN_USERID, loginBean.getUserInfo().getUserid());
                     //存进公共数据类
                     UserData.getInstance().setUserid(loginBean.getUserInfo().getUserid());
                     Toast.makeText(LoginPageActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-
-
-
-
 
 
             }
@@ -130,23 +133,8 @@ public class LoginPageActivity extends BaseActivity {
             }
         });
 
-//        Call<LoginBean> call = JDRetrofit.getInstance().getApi().login(username, pwd);
-//        call.enqueue(new Callback<LoginBean>() {
-//            @Override
-//            public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
-//                // Log.d(TAG, "onResponse: " + userBean.getUserInfo().getUserid());
-//                mUserId = response.body().getUserInfo().getUserid();
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<LoginBean> call, Throwable t) {
-//                Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
-//            }
-//        });
 
     }
+
 
 }

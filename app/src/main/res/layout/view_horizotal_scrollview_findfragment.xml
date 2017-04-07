@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:background="@android:color/white"
-            android:scrollbars="none">
-<LinearLayout
-    android:padding="8dp"
-    android:id="@+id/ll_horizotal_find_fragment"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_collect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_groupbuy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_life_journey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_lottery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_promotion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <ImageView
-        android:layout_marginRight="20dp"
-        android:src="@mipmap/shortcuts_icon_recharge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
-</ScrollView>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:id="@+id/hs_find_fragment"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:background="@android:color/white"
+                      android:orientation="horizontal"
+                      android:padding="8dp"
+                      android:scrollbars="none"
+                      android:clickable="false">
+
+    <LinearLayout
+        android:id="@+id/ll_horizotal_find_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:clickable="false"
+        >
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:onClick="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_collect"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_groupbuy"/>
+
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_history"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_life_journey"/>
+
+        <ImageView
+            android:id="@+id/iv_lottery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_lottery"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_order"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_promotion"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/shortcuts_icon_recharge"/>
+    </LinearLayout>
+</HorizontalScrollView>

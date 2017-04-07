@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="8dp"
+              android:background="@android:color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_user_talk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户评论"
+        android:layout_marginRight="5dp"
+        />
+        <TextView
+            android:id="@+id/tv_user_talkcounts"
+            android:layout_toRightOf="@id/tv_user_talk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="（2）"
+            />
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="好评度"
+                />
+            <TextView
+                android:id="@+id/tv_detail_good_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100%"
+                android:textColor="#ff0000"
+                />
+            <ImageView
+                android:id="@+id/iv_arrow_detail"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_detail_talkarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="6"
+        android:maxLines="6"
+        android:text="暂无评论精华"
+        android:gravity="center"
+        />
+
+
+</LinearLayout>

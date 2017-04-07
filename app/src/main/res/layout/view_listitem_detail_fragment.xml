@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/ll_find_listitem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_find"
+                android:layout_width="match_parent"
+                android:layout_height="160dp">
+
+            </android.support.v4.view.ViewPager>
+
+            <com.leon.loopviewpagerlib.CirclePageIndicator
+                android:id="@+id/indicator_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                app:fillColor="@android:color/holo_red_light"/>
+
+            <com.shopping.app.jdmall.widget.DetailInfoView
+                android:id="@+id/info_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+            </com.shopping.app.jdmall.widget.DetailInfoView>
+
+            <com.shopping.app.jdmall.widget.DetailTalkView
+                android:id="@+id/talk_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+            </com.shopping.app.jdmall.widget.DetailTalkView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="小二推荐"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp">
+
+            </android.support.v4.view.ViewPager>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/shortcuts_icon_collect"
+                />
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:text="收藏"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <TextView
+            android:text="加入购物车"
+            android:gravity="center"
+            android:drawableLeft="@mipmap/car"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:padding="14dp"
+            android:gravity="center"
+            android:text="立即购买"
+            android:background="#ff0000"
+            android:textColor="@android:color/white"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

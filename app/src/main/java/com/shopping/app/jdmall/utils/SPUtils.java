@@ -25,15 +25,15 @@ public class SPUtils {
         edit.commit();
     }
 
-    public static String getString(Context context,String key){
+    public static String getString(Context context,String key,String value){
         SharedPreferences sharePreferences = getSharePreferences(context);
-        return sharePreferences.getString(key, "");
+        return  sharePreferences.getString(key,value);
     }
 
-    public static void setString (Context context,String key, String values) {
+    public static void setString(Context context,String key,String value){
         SharedPreferences sharePreferences = getSharePreferences(context);
-        SharedPreferences.Editor edit = sharePreferences.edit();
-        edit.putString(key, values);
-        edit.apply();
+        sharePreferences.edit().putString(key,value).apply();
+
     }
+
 }

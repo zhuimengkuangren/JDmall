@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:padding="8dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/iv_comment_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="5dp"
+        android:src="@mipmap/head"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_comment_icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:id="@+id/tv_name_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名字"/>
+
+        <RatingBar
+            android:layout_marginBottom="5dp"
+            android:id="@+id/ratingbar_comment"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="3.5"
+            />
+
+        <TextView
+            android:layout_marginBottom="5dp"
+            android:id="@+id/tv_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评论"/>
+
+        <TextView
+            android:id="@+id/time_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间"/>
+    </LinearLayout>
+</RelativeLayout>

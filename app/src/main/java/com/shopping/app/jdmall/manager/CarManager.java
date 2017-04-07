@@ -66,7 +66,7 @@ public class CarManager {
     public List<CarInfoBean> getAllData() {
         ArrayList<CarInfoBean> carInfoBeanList = new ArrayList<>();
 
-        String json = SPUtils.getString(mContext, CAR_DATA);
+        String json = SPUtils.getString(mContext, CAR_DATA,"");
         //如果缓存存在,则转换为list
         if (!TextUtils.isEmpty(json)) {
             carInfoBeanList = new Gson().fromJson(json, new TypeToken<List<CarInfoBean>>() {

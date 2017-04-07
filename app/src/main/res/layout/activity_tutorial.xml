@@ -19,8 +19,9 @@
         android:layout_alignParentBottom="true"
         android:padding="10dp"
         app:fillColor="@android:color/holo_red_dark"
-        app:pageColor="#ff888888"
-        app:radius="5dp"/>
+        app:pageColor="#F4A460"
+        app:radius="5dp"
+        app:strokeWidth="0dp"/>
 
     <Button
         android:id="@+id/start"

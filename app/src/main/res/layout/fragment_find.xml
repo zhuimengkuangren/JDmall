@@ -5,29 +5,31 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.shopping.app.jdmall.widget.TitleFindFragmentView
+    <com.shopping.app.jdmall.widget.FindTitleView
         android:id="@+id/title_find_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.shopping.app.jdmall.widget.TitleFindFragmentView>
+    </com.shopping.app.jdmall.widget.FindTitleView>
 
-    <com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView
+    <com.shopping.app.jdmall.widget.FindHorizotalScrollView
         android:id="@+id/horizotal_find_frament"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
 
-    </com.shopping.app.jdmall.widget.HorizotalScrollFindFragmentView>
-<com.shopping.app.jdmall.widget.FindCategoryView
-    android:id="@+id/category_find_view"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    </com.shopping.app.jdmall.widget.FindHorizotalScrollView>
 
-</com.shopping.app.jdmall.widget.FindCategoryView>
-    <com.shopping.app.jdmall.widget.ListFindFragmentView
-        android:id="@+id/list_find_fragment"
+    <com.shopping.app.jdmall.widget.FindCategoryView
+        android:id="@+id/category_find_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.shopping.app.jdmall.widget.ListFindFragmentView>
+    </com.shopping.app.jdmall.widget.FindCategoryView>
+ <fragment
+     class="com.shopping.app.jdmall.ui.fragment.FindListFragment"
+     android:id="@+id/fg_find_listview"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+
+ </fragment>
 </LinearLayout>

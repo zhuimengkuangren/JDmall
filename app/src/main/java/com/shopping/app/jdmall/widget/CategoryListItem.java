@@ -53,7 +53,7 @@ public class CategoryListItem extends LinearLayout {
     }
 
     public void selected() {
-        mLlContainer.setBackgroundColor(Color.GRAY);
         mTvCategoty.setTextColor(Color.RED);
+        mLlContainer.setBackgroundColor(getResources().getColor(R.color.colorGray));
     }
 }

@@ -31,8 +31,8 @@
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
-
-
+        <activity android:name=".adapter.ImageViewActivity"/>
+        <activity android:name=".ui.activity.SalesActivity"/>
     </application>
 
 </manifest>

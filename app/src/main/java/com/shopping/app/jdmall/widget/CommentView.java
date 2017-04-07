@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.CommentAdapter;
@@ -55,7 +54,6 @@ public class CommentView extends RelativeLayout {
 
             @Override
             public void onFailure(Call<CommentBeans> call, Throwable t) {
-                Toast.makeText(getContext(), "fsadfas", Toast.LENGTH_SHORT).show();
             }
         });
 

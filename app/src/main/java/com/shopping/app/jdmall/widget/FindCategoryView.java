@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.ui.activity.FindRecommandActivity;
+import com.shopping.app.jdmall.ui.activity.SalesActivity;
 import com.shopping.app.jdmall.utils.AnimationUtils;
 
 /**
@@ -130,10 +131,13 @@ public class FindCategoryView extends RelativeLayout {
                             case 5:
                             case 8:
                             case 11:
-                                Toast.makeText(getContext(),"条目被点击2",Toast.LENGTH_SHORT).show();
+                                Intent intent3 = new Intent(getContext(), SalesActivity.class);
+                                getContext().startActivity(intent3);
                                 break;
                             case 12:
                             case 13:
+                                Intent intent4 = new Intent(getContext(), SalesActivity.class);
+                                getContext().startActivity(intent4);
                                 break;
                         }
                     }

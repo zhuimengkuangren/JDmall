@@ -2,15 +2,14 @@ package com.shopping.app.jdmall.network;
 
 
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.bean.BuyCarBean;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
-
-
-
+import com.shopping.app.jdmall.bean.SaleBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -73,7 +72,11 @@ public interface Api {
     @FormUrlEncoded
     @POST("register")
     Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
+    @GET("topic")
+    Call<SaleBean> listSale(@Query("page") int page, @Query("pageNum") int pageNum);
 
+    @GET("product")
+    Call<BuyCarBean> listBuyCar(@Query("pId") int pld);
 
 
 }

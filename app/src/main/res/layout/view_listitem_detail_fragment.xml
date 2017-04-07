@@ -25,25 +25,31 @@
                 android:layout_height="160dp">
 
             </android.support.v4.view.ViewPager>
+            <com.leon.loopviewpagerlib.CirclePageIndicator
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/indicator_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-            <com.shopping.app.jdmall.widget.FindDetailInfoView
+            <com.shopping.app.jdmall.widget.DetailInfoView
                 android:id="@+id/info_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.shopping.app.jdmall.widget.FindDetailInfoView>
+            </com.shopping.app.jdmall.widget.DetailInfoView>
 
-            <com.shopping.app.jdmall.widget.FindDetailTalkView
+            <com.shopping.app.jdmall.widget.DetailTalkView
                 android:id="@+id/talk_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </com.shopping.app.jdmall.widget.FindDetailTalkView>
+            </com.shopping.app.jdmall.widget.DetailTalkView>
 
             <android.support.v4.view.ViewPager
+                android:layout_gravity="center_horizontal"
                 android:id="@+id/view_pager_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="200dp">
 
             </android.support.v4.view.ViewPager>
 

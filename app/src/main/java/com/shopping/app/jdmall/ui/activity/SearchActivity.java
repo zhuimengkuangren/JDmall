@@ -4,11 +4,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.bean.CargoBean;
-import com.shopping.app.jdmall.widget.pullToRefreshView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -23,9 +18,6 @@ public class SearchActivity extends BaseActivity {
     ImageView mIvVoice;
     @BindView(R.id.et_search)
     EditText mEtSearch;
-    @BindView(R.id.fresh_view)
-    pullToRefreshView mFreshView;
-    List<CargoBean> mList = new ArrayList<>();
 
     @Override
     protected int getLayoutResId() {
@@ -35,13 +27,8 @@ public class SearchActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
-        mFreshView.setData(mList);
-        startLoadData();
     }
 
-    private void startLoadData() {
-
-    }
 
 
 }

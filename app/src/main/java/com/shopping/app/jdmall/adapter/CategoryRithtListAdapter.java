@@ -31,7 +31,6 @@ public class CategoryRithtListAdapter extends BaseAdapter {
         mContext = context;
         mMap = map;
         Set<String> keySet = map.keySet();
-        Log.d(TAG, "CategoryRithtListAdapter: ==="+keySet.size());
     }
 
     @Override
@@ -58,9 +57,6 @@ public class CategoryRithtListAdapter extends BaseAdapter {
         String category = mList.get(position);
         List<CategoryItemBean.CategoryBean> beanList = mMap.get(category);
         rightView.setData(category, beanList);
-        for (int i = 0; i < beanList.size(); i++) {
-            Log.d(TAG, "getView: =======================" + beanList.get(i).getName());
-        }
         return rightView;
 
     }

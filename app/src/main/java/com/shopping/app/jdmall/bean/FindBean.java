@@ -1,5 +1,6 @@
 package com.shopping.app.jdmall.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class FindBean {
         this.productList = productList;
     }
 
-    public static class ProductListBean {
+    public static class ProductListBean implements Serializable{
         private int id;
         private int marketPrice;
         private String name;

@@ -69,7 +69,7 @@ public class FindListFragment extends BaseListLoadMoreFragment {
 
     @Override
     protected void onListItemClick(int position) {
-        Log.d(TAG, "onListItemClick: ddddd");//这一步点击条目没反应不走
+        Log.d(TAG, "onListItemClick: ddddd"); //这一步点击条目没反应不走
         Intent intent = new Intent(getContext(), DetailListItemActivity.class);
         startActivity(intent);
     }

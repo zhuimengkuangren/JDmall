@@ -1,6 +1,11 @@
 package com.shopping.app.jdmall.network;
 
 
+
+import com.shopping.app.jdmall.bean.BannerBean;
+
+import com.shopping.app.jdmall.bean.CargoBean;
+
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
@@ -15,7 +20,12 @@ import retrofit2.http.Query;
 /**
 
  */
-public interface Api {
+
+
+  public interface Api {
+     @GET("home")
+    Call<BannerBean> listHome();
+
 
     @GET("newproduct")
     Call<FindBean> listFind(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
@@ -23,9 +33,20 @@ public interface Api {
     @GET("category")
     Call<CategoryItemBean> listCategory();
 
+    @GET("productlist")
+    Call<CargoBean> listProductlist(@Query("page") int page,
+                                 @Query("pageNum") int pageNum,
+                                 @Query("cId") int cId,
+                                 @Query("orderby") String orderby);
+
+
     Call<HomeTopicbean.HomeTopicBean> listHome(int size);
 
     @GET("limitbuy")
     Call<List<LimitBuyBean>> listLimitBuy(@Query("page") int page, @Query("page") int pageNum );
+
+    //热门商品请求
+    @GET("hotproduct")
+    Call<FindBean> listHotProduct(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);
 
 }

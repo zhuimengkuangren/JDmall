@@ -4,10 +4,10 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
- * 促销快报
+ * 热门单品
  */
 
-public class PromotionLettersActivity extends BaseListLoadMoreActivity {
+public class HotProductActivity extends BaseListLoadMoreActivity {
     @Override
     protected void startLoadMoreData() {
 

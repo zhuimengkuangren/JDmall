@@ -29,15 +29,24 @@ public abstract class BaseListActivity extends Base2Activity {
         mListView.setOnItemClickListener(mOnItemClickListener);
         mAdapter = oncreateAdapter();//子类重写,创建adapter
         mListView.setAdapter(mAdapter);
+        mListView.setDivider(null);
+        View holder = onCreatHolderView();
+        if(holder != null) {
+            mListView.addHeaderView(holder);
+        }
         initListView();
         return mListView;
+    }
+
+    protected View onCreatHolderView(){
+        return null;
     }
 
     protected void initListView(){}
 
     protected abstract BaseAdapter oncreateAdapter();
 
-    private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
+    protected AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             onListItemClick(position);

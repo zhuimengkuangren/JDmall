@@ -1,6 +1,13 @@
 package com.shopping.app.jdmall.ui.activity;
 
-import android.widget.RadioGroup;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
@@ -12,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,10 +28,22 @@ import retrofit2.Response;
  * Created by 龚浩 on 2017/4/6.
  */
 public class QueryCargoActivity extends BaseActivity {
-    @BindView(R.id.tab_container)
-    RadioGroup mTabContainer;
     @BindView(R.id.pull_fresh)
     pullToRefreshView mPullFresh;
+    @BindView(R.id.tool_bar)
+    Toolbar mToolBar;
+    @BindView(R.id.tab_composite)
+    TextView mTabComposite;
+    @BindView(R.id.tab_sale_volume)
+    TextView mTabSaleVolume;
+    @BindView(R.id.tab_price)
+    TextView mTabPrice;
+    @BindView(R.id.tab_Query)
+    TextView mTabQuery;
+    @BindView(R.id.ll_container)
+    LinearLayout mLlContainer;
+    private int currentPosition = 0;
+    private boolean isPriceUp = false;
 
     private List<CargoBean> mList = new ArrayList<>();
     private CargoBean mBean;
@@ -36,8 +56,32 @@ public class QueryCargoActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
+        initToolBar();
         startLoadData();
-        mTabContainer.setOnCheckedChangeListener(mListener);
+    }
+
+    private void initToolBar() {
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("tag");
+        setSupportActionBar(mToolBar);
+        ActionBar actionBar = getSupportActionBar();
+        TextView textView = new TextView(this);
+        textView.setTextColor(Color.RED);
+        textView.setTextSize(18);
+        textView.setGravity(Gravity.CENTER);
+        textView.setText(title);
+        //设置显示返回按钮
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        //定义actionbar的位置
+        ActionBar.LayoutParams lp = new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER);
+        //设置显示customview
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(textView, lp);
     }
 
     private void startLoadData() {
@@ -51,7 +95,7 @@ public class QueryCargoActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<CargoBean> call, Throwable t) {
-                Toast.makeText(QueryCargoActivity.this, "请求失败了", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QueryCargoActivity.this, "抱歉,网络不怎么好!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -60,12 +104,58 @@ public class QueryCargoActivity extends BaseActivity {
 
     }
 
-    private RadioGroup.OnCheckedChangeListener mListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            if (mBean != null) {
+
+    @OnClick({R.id.tab_composite, R.id.tab_sale_volume, R.id.tab_price, R.id.tab_Query})
+    public void onClick(View view) {
+        TextView textView = (TextView) mLlContainer.getChildAt(currentPosition);
+        textView.setTextColor(Color.BLACK);
+        String olderby = "saleDown";
+        switch (view.getId()) {
+            case R.id.tab_composite:
+                mTabComposite.setTextColor(Color.RED);
+                currentPosition = 0;
+                olderby = "saleDown";
+                break;
+            case R.id.tab_sale_volume:
+                mTabSaleVolume.setTextColor(Color.RED);
+                currentPosition = 1;
+                olderby = "saleDown";
+                break;
+            case R.id.tab_price:
+                isPriceUp = !isPriceUp;
+
+                if(isPriceUp) {
+                    olderby = "priceUp";
+                }else {
+                    olderby = "priceDown";
+                }
+                mTabPrice.setTextColor(Color.RED);
+                currentPosition = 2;
+                break;
+            case R.id.tab_Query:
+                mTabQuery.setTextColor(Color.RED);
+                currentPosition = 3;
+                olderby = "shelvesDown";
+                break;
+        }
+
+        loadData(1, 10, 125, olderby);
+    }
+
+    private void loadData(int page, int pageNum, int cid, String olderby) {
+        Call<CargoBean> beanCall = JDRetrofit.getInstance().getApi().listProductlist(page, pageNum, cid, olderby);
+        beanCall.enqueue(new Callback<CargoBean>() {
+            @Override
+            public void onResponse(Call<CargoBean> call, Response<CargoBean> response) {
+                mBean = response.body();
                 mPullFresh.setData(mBean);
             }
-        }
-    };
+
+            @Override
+            public void onFailure(Call<CargoBean> call, Throwable t) {
+                Toast.makeText(QueryCargoActivity.this, "抱歉,网络不怎么好!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

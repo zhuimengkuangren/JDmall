@@ -4,40 +4,59 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.shopping.app.jdmall.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <RadioGroup
-        android:padding="@dimen/size_middle"
-        android:id="@+id/tab_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <android.support.v7.widget.Toolbar
         android:background="@drawable/bg_search"
-        android:orientation="horizontal">
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"/>
 
-        <RadioButton
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/red"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:background="@drawable/bg_search"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:textColor="@color/colorRed"
+            android:gravity="center"
             android:id="@+id/tab_composite"
-            style="@style/QueryTabStyle"
-            android:text="综合"/>
+            android:text="综合"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
-        <RadioButton
+        <TextView
+            android:gravity="center"
             android:id="@+id/tab_sale_volume"
-            style="@style/QueryTabStyle"
-            android:text="销量"/>
+            android:text="销量"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
-        <RadioButton
+        <TextView
+            android:drawableLeft="@drawable/filter_price_down_press"
+            android:gravity="center"
             android:id="@+id/tab_price"
-            style="@style/QueryTabStyle"
-            android:text="价格"/>
+            android:text="价格"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
-        <RadioButton
+        <TextView
+            android:gravity="center"
             android:id="@+id/tab_Query"
-            style="@style/QueryTabStyle"
-            android:text="查询"/>
-
-    </RadioGroup>
+            android:text="查询"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <com.shopping.app.jdmall.widget.pullToRefreshView
         android:id="@+id/pull_fresh"

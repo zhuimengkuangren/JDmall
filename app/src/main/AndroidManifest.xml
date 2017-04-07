@@ -20,12 +20,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.TutorialActivity"/>
+        <activity android:name=".ui.activity.LimitBuyActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.FlashSaleActivity"/>
-
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>
+<<<<<<< HEAD
         <activity android:name=".ui.activity.CommentActivity"/>
+=======
+        <activity android:name=".ui.activity.SearchActivity"></activity>
+        <activity android:name=".ui.activity.FindRecommandActivity"></activity>
+
+
+>>>>>>> 6f16ff374bff3a83c85948158297662bfe3898d6
     </application>
 
 </manifest>

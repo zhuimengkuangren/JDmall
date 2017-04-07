@@ -29,7 +29,6 @@ public abstract class BaseNotLoadDataFragment extends Fragment {
 
 
     protected void init() {
-
     }
 
     public abstract int getResId() ;

@@ -7,10 +7,9 @@ import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
-
 import com.shopping.app.jdmall.bean.LimitBuyBean;
 
-import com.shopping.app.jdmall.bean.LogoutBean;
+
 
 
 import okhttp3.ResponseBody;
@@ -52,14 +51,12 @@ public interface Api {
 
     //热门商品请求
     @GET("hotproduct")
+
     Call<FindBean> listHotProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
 
     @FormUrlEncoded
     @POST("login")
     Call<ResponseBody> login(@Field("username") String username, @Field("password") String password);
-
-    @GET("logout")
-    Call<LogoutBean> logout(@Query("userid") String userid);
 
 
     //http://localhost:8080/market/newproduct?page=1&pageNum=10&orderby=saleDown
@@ -67,6 +64,15 @@ public interface Api {
     //新品上架请求
     @GET("newproduct")
     Call<FindBean> listNewProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
+
+
+//
+//  @GET("logout")
+//  Call<LogoutBean> logout(@Query("userid") String userid);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
 
 
 

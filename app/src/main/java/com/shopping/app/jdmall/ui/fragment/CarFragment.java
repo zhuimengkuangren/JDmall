@@ -69,7 +69,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
         initListener();
     }

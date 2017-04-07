@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.LoginBean;
+import com.shopping.app.jdmall.bean.UserData;
 import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.utils.SPUtils;
 
@@ -102,11 +103,16 @@ public class LoginPageActivity extends BaseActivity {
 
                 }
                 if("login".equals(loginBean.getResponse())){
+
+
                     //用户名密码匹配成功
                     //保存用户名
                     SPUtils.setString(LoginPageActivity.this,Constant.USER_NAME,username);
                     //保存当前登录用户信息
+                    //持久化存储
                     SPUtils.setString(LoginPageActivity.this, Constant.LOGIN_USERID,loginBean.getUserInfo().getUserid());
+                    //存进公共数据类
+                    UserData.getInstance().setUserid(loginBean.getUserInfo().getUserid());
                     Toast.makeText(LoginPageActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     finish();
                 }

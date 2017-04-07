@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.ui.activity.LoginPageActivity;
+import com.shopping.app.jdmall.ui.activity.UserSettingActivity;
 import com.shopping.app.jdmall.utils.SPUtils;
 
 import butterknife.BindView;
@@ -53,11 +54,19 @@ public class MineFragment extends BaseNotLoadDataFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.user_icon:
-                Intent intent = new Intent(getContext(), LoginPageActivity.class);
-                //  startActivityForResult(intent, REQUEST_CODE_LOGIN);
-                startActivity(intent);
+                //判断上一次登录状态
+                String s = SPUtils.getString(getContext(), Constant.LOGIN_USERID, null);
+                if(s!=null){//如果是已登录状态，跳转到设置个人信息界面
+                    Intent intent = new Intent(getContext(),UserSettingActivity.class);
+                    startActivity(intent);
+                }else {//否则跳转到登录界面
+                    Intent intent = new Intent(getContext(), LoginPageActivity.class);
+                    //  startActivityForResult(intent, REQUEST_CODE_LOGIN);
+                    startActivity(intent);
+                }
                 break;
             case R.id.setting_icon:
+
                 break;
         }
     }

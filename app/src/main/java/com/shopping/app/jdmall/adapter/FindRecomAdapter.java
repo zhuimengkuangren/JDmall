@@ -15,16 +15,13 @@ import java.util.List;
 public class FindRecomAdapter extends BaseListLoadAdapter {
 
     private List mList;
+    private String mType;  //上架类型:热门商品、新品上市等
 
     //创建该适配器
-    public FindRecomAdapter(Context context, List list) {
+    public FindRecomAdapter(Context context, List list, String type) {
         super(context, list);
         mList = list;
-        //getList().addAll(mList);
-
-
-        //Log.d(TAG, "FindRecomAdapter: ++++++++++"+getList().size());
-
+        mType = type;
 
     }
 
@@ -38,7 +35,7 @@ public class FindRecomAdapter extends BaseListLoadAdapter {
     @Override
     protected void onBindNormalView(int position, View convertView) {
 
-        ((FindRecomItemView)convertView).bindView((FindBean.ProductListBean) mList.get(position));
+        ((FindRecomItemView)convertView).bindView((FindBean.ProductListBean) mList.get(position),mType);
 
     }
 }

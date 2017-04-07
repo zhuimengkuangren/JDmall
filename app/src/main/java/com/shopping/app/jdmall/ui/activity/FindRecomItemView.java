@@ -1,4 +1,4 @@
-package com.shopping.app.jdmall.widget;
+package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Context;
 import android.graphics.Color;

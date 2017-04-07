@@ -18,6 +18,7 @@ import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.FindRecomAdapter;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
+import com.shopping.app.jdmall.widget.FindHorizotalScrollView;
 
 import java.util.List;
 
@@ -32,7 +33,6 @@ public class FindRecommandActivity extends BaseActivity {
     private static final String TAG = "FindRecommandActivity";
     @BindView(R.id.gv_recommand)
     GridView mGvRecommand;
-
     public int mPageCount = 1;
     @BindView(R.id.progress_bar)
     ImageView mProgressBar;
@@ -44,9 +44,12 @@ public class FindRecommandActivity extends BaseActivity {
     TextView mTvTitle;
     private List<FindBean.ProductListBean> mProductList;
     private FindRecomAdapter mFindRecomAdapter;
-
     private static final int ANIMATION_DURATION = 300;
+    private String mStringExtra;
 
+
+
+    //填充视图
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_recommand;
@@ -58,16 +61,31 @@ public class FindRecommandActivity extends BaseActivity {
     //复写初始化
     @Override
     protected void init() {
-        //需要intent附加信息，然后设置标题栏
-        String stringExtra = getIntent().getStringExtra("hotproduct");
-        mTvTitle.setText(stringExtra);
+        //需要intent附加信息，然后设置标题栏,直接用的是调用界面的常量FindHorizotalScrollView.PRODUCT
+        mStringExtra = getIntent().getStringExtra(FindHorizotalScrollView.PRODUCT);
+        mTvTitle.setText(mStringExtra);
+
+
 
         //进度条动画开启
         AnimationDrawable drawable = (AnimationDrawable) mProgressBar.getDrawable();
         drawable.start();
 
         //进行网络请求
-        netWorkRequest();
+        switch (mStringExtra){
+            case "热门商品":
+                mHeadImage.setImageResource(R.mipmap.juxing);
+                HotProductFirstRequest();
+                break;
+
+            case "新品上架":
+                mHeadImage.setImageResource(R.mipmap.hot);
+                NewProductFirstRequest();
+                break;
+        }
+
+
+
 
 
         mGvRecommand.setOnScrollListener(mScrollListener);
@@ -151,7 +169,15 @@ public class FindRecommandActivity extends BaseActivity {
                 if (view.getLastVisiblePosition() == mFindRecomAdapter.getCount() - 1) {
 
                     //当获取数据的最后一个的时候，加载更多,再次进行网络访问
-                    loadMoreData();
+                    switch (mStringExtra){
+                        case "热门商品":
+                            loadMoreHotProductData();
+                            break;
+
+                        case "新品上架":
+                            loadMoreNewProductData();
+                            break;
+                    }
 
 
                 }
@@ -166,8 +192,8 @@ public class FindRecommandActivity extends BaseActivity {
         }
     };
 
-    //再次访问网络数据进行加载
-    private void loadMoreData() {
+    //热门商品再次访问网络数据进行加载,
+    private void loadMoreHotProductData() {
 
         mPageCount++;
 
@@ -183,10 +209,6 @@ public class FindRecommandActivity extends BaseActivity {
 
                 mFindRecomAdapter.notifyDataSetChanged();
 
-
-                //Log.d(TAG, "onResponse: ++++++++++" + mProductList.size());
-
-                //Log.d(TAG, "onResponse: +++++++++++++" + listCount + "-----" + productList.get(0).getName());
             }
 
             @Override
@@ -197,10 +219,11 @@ public class FindRecommandActivity extends BaseActivity {
 
     }
 
-    //首次访问网络
-    private void netWorkRequest() {
+    //热门商品首次访问网络
+    private void HotProductFirstRequest() {
         //http://localhost:8080/market/hotproduct?page=1&pageNum=10&orderby=saleDown
         //String hotProduct =  Constant.HOST+"hotproduct?page="+mPageCount+"&pageNum=10&orderby=saleDown";
+
 
         Call<FindBean> listHotProduct = JDRetrofit.getInstance().getApi().listHotProduct(mPageCount, 10, "saleDown");
 
@@ -211,7 +234,7 @@ public class FindRecommandActivity extends BaseActivity {
                 mProductList = response.body().getProductList();
 
 
-                mFindRecomAdapter = new FindRecomAdapter(FindRecommandActivity.this, mProductList);
+                mFindRecomAdapter = new FindRecomAdapter(FindRecommandActivity.this, mProductList,mStringExtra);
 
                 mGvRecommand.setAdapter(mFindRecomAdapter);
 
@@ -235,5 +258,71 @@ public class FindRecommandActivity extends BaseActivity {
         });
     }
 
+    //新品上架首次访问网络
+    private void NewProductFirstRequest() {
+        //http://localhost:8080/market/hotproduct?page=1&pageNum=10&orderby=saleDown
+        //String hotProduct =  Constant.HOST+"hotproduct?page="+mPageCount+"&pageNum=10&orderby=saleDown";
 
+
+        Call<FindBean> listNewProduct = JDRetrofit.getInstance().getApi().listNewProduct(mPageCount, 10, "saleDown");
+
+        listNewProduct.enqueue(new Callback<FindBean>() {
+            @Override
+            public void onResponse(Call<FindBean> call, Response<FindBean> response) {
+
+                mProductList = response.body().getProductList();
+
+
+                mFindRecomAdapter = new FindRecomAdapter(FindRecommandActivity.this, mProductList, mStringExtra);
+
+                mGvRecommand.setAdapter(mFindRecomAdapter);
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mProgressBar.setVisibility(View.GONE);
+
+                        mGvRecommand.setVisibility(View.VISIBLE);
+                    }
+                }, 800);
+
+            }
+
+            @Override
+            public void onFailure(Call<FindBean> call, Throwable t) {
+                Toast.makeText(FindRecommandActivity.this, "网络访问失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //新品上架再次访问网络数据进行加载
+    private void loadMoreNewProductData() {
+
+        mPageCount++;
+
+        Call<FindBean> listNewProduct = JDRetrofit.getInstance().getApi().listNewProduct(mPageCount, 10, "saleDown");
+
+        listNewProduct.enqueue(new Callback<FindBean>() {
+            @Override
+            public void onResponse(Call<FindBean> call, Response<FindBean> response) {
+
+                List<FindBean.ProductListBean> productList = response.body().getProductList();
+
+                mProductList.addAll(productList);
+
+                mFindRecomAdapter.notifyDataSetChanged();
+
+
+                //Log.d(TAG, "onResponse: ++++++++++" + mProductList.size());
+
+                //Log.d(TAG, "onResponse: +++++++++++++" + listCount + "-----" + productList.get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Call<FindBean> call, Throwable t) {
+                Toast.makeText(FindRecommandActivity.this, "网络访问失败", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 }

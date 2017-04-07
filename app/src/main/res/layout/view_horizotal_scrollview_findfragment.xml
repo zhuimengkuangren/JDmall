@@ -6,17 +6,21 @@
                       android:background="@android:color/white"
                       android:orientation="horizontal"
                       android:padding="8dp"
-                      android:scrollbars="none">
+                      android:scrollbars="none"
+                      android:clickable="false">
 
     <LinearLayout
         android:id="@+id/ll_horizotal_find_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:clickable="false"
+        >
 
         <ImageView
-            android:id="@+id/iv_star"
+            android:id="@+id/iv_collect"
+            android:onClick="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
@@ -29,6 +33,7 @@
             android:src="@mipmap/shortcuts_icon_groupbuy"/>
 
         <ImageView
+            android:id="@+id/iv_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
@@ -41,6 +46,7 @@
             android:src="@mipmap/shortcuts_icon_life_journey"/>
 
         <ImageView
+            android:id="@+id/iv_lottery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"

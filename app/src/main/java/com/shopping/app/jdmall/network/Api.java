@@ -49,5 +49,4 @@ import retrofit2.http.Query;
     @GET("hotproduct")
     Call<FindBean> listHotProduct(@Query("page")int page, @Query("pageNum")int pageNum, @Query("orderby")String orderby);
 
-
 }

@@ -2,11 +2,13 @@ package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.widget.HomeListItemView;
 import com.shopping.app.jdmall.widget.PanBannerView;
-import com.shopping.app.jdmall.widget.PanCategroy;
+import com.shopping.app.jdmall.widget.PanCategroyView;
 import com.shopping.app.jdmall.widget.PanMarqueeView;
 import com.shopping.app.jdmall.widget.RecommendScrollView;
 import com.shopping.app.jdmall.widget.SecondKill;
@@ -25,6 +27,8 @@ public class HomeAdapter extends BaseListLoadAdapter {
     private static final int ITEM_TYPE_RecommendScrollView = 3;
     private static final int ITEM_TYPE_BANNER02 = 4;
     private static final int ITEM_TYPE_NORMAL = 5;
+    private static final int ITEM_TYPE_IMAGE = 6;
+
     private BannerBean mBean;
     private Context mContext;
     private List mList;
@@ -50,7 +54,7 @@ public class HomeAdapter extends BaseListLoadAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -65,6 +69,8 @@ public class HomeAdapter extends BaseListLoadAdapter {
             return ITEM_TYPE_RecommendScrollView;
         } else if (position == 4) {
             return ITEM_TYPE_BANNER02;
+        }else if (position == 5){
+            return ITEM_TYPE_IMAGE;
         }
         return ITEM_TYPE_NORMAL;
     }
@@ -72,7 +78,7 @@ public class HomeAdapter extends BaseListLoadAdapter {
     @Override
     protected View onCreateView(int position) {
         if (getItemViewType(position) == ITEM_TYPE_CATEGROY) {
-            return new PanCategroy(getContext());
+            return new PanCategroyView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_MARQUEE) {
             return new PanMarqueeView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_SCOENDKILL) {
@@ -81,15 +87,18 @@ public class HomeAdapter extends BaseListLoadAdapter {
             return new RecommendScrollView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_BANNER02) {
             return new PanBannerView(getContext());
+        }else if(getItemViewType(position) == ITEM_TYPE_IMAGE){
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageResource(R.mipmap.avg);
+            return imageView;
         }
         return oncreateNormalView();
     }
 
     @Override
     protected View oncreateNormalView() {
-        TextView textView = new TextView(getContext());
-        textView.setText("嘿嘿");
-        return textView;
+
+        return new HomeListItemView(getContext());
     }
 
     @Override

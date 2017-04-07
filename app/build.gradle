@@ -47,4 +47,6 @@ dependencies {
     compile 'com.github.open-android:PullToRefresh:v1.0'
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
 
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
 }

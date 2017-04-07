@@ -2,6 +2,8 @@ package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.itheima.pulltorefreshlib.PullToRefreshBase;
 import com.itheima.pulltorefreshlib.PullToRefreshListView;
@@ -63,6 +65,8 @@ public class HomePullToRefreshList extends PullToRefreshListView {
         mHomeHeadBanner = new HomeHeadBanner(getContext());
         mHomeHeadBanner.bindView(mBannerBean);
         getRefreshableView().addHeaderView(mHomeHeadBanner);
+        //设置条目点击事件
+       // setOnItemClickListener(mOnItemClickListener);
     }
 
 
@@ -87,6 +91,13 @@ public class HomePullToRefreshList extends PullToRefreshListView {
                     onRefreshComplete();
                 }
             });
+        }
+    };
+
+    private AdapterView.OnItemClickListener mOnItemClickListener  = new AdapterView.OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         }
     };

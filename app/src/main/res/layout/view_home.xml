@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"/>
 
         <!--这是分类搜索按钮-->
-        <com.shopping.app.jdmall.widget.PanCategroy
+        <com.shopping.app.jdmall.widget.PanCategroyView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"/>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
-import com.shopping.app.jdmall.bean.FindBean;
+import com.shopping.app.jdmall.bean.CargoBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +51,7 @@ public class QueryListItem extends RelativeLayout {
 
     }
 
-    public void setData(FindBean.ProductListBean bean) {
+    public void setData(CargoBean.ProductListBean bean) {
         String url = Constant.HOST + bean.getPic();
         Glide.with(getContext()).load(url).into(mIvIcon);
 

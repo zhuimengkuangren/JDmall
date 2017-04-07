@@ -139,7 +139,7 @@ public class QueryCargoActivity extends BaseActivity {
                 break;
         }
 
-        loadData(1, 10, 125, olderby);
+        loadData(1, 20, 125, olderby);
     }
 
     private void loadData(int page, int pageNum, int cid, String olderby) {

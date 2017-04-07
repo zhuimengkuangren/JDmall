@@ -21,7 +21,7 @@ import java.util.List;
 
 public class pullToRefreshView extends PullToRefreshListView {
 
-    List<FindBean.ProductListBean> mList;
+    List<CargoBean.ProductListBean> mList;
     private PullToRreshAdapter mAdapter;
     private CargoBean mCargoBean;
 
@@ -48,9 +48,16 @@ public class pullToRefreshView extends PullToRefreshListView {
         });
     }
 
-    private void navigateTo(Context context, Class aClass,  FindBean.ProductListBean bean) {
+    private void navigateTo(Context context, Class aClass,  CargoBean.ProductListBean bean) {
         Intent intent = new Intent(context,aClass);
-        intent.putExtra("values",bean);
+
+        FindBean.ProductListBean findBean = new FindBean.ProductListBean();
+        findBean.setId(bean.getId());
+        findBean.setMarketPrice(bean.getMarketPrice());
+        findBean.setName(bean.getName());
+        findBean.setPic(bean.getPic());
+        findBean.setPrice(bean.getPrice());
+        intent.putExtra("values",findBean);
         context.startActivity(intent);
     }
 
@@ -89,7 +96,7 @@ public class pullToRefreshView extends PullToRefreshListView {
                 convertView = new QueryListItem(getContext());
             }
             QueryListItem itemView = (QueryListItem) convertView;
-            FindBean.ProductListBean bean = mList.get(position);
+            CargoBean.ProductListBean bean = mList.get(position);
             itemView.setData(bean);
             return itemView;
 //            return new QueryListItem(getContext());

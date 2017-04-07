@@ -38,7 +38,7 @@ public class HomeFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<CategoryItemBean> call, Throwable t) {
-
+                onDataLoadedFailed();
             }
         });
 

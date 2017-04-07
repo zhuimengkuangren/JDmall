@@ -2,6 +2,8 @@ package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
 
+import com.shopping.app.jdmall.widget.NewProductView;
+
 import java.util.List;
 
 /**
@@ -20,6 +22,6 @@ public class NewProductAdapter extends BaseLoadMoreAdapter {
 
     @Override
     protected ViewHolder onCreateNormalViewHolder() {
-        return null;
+        return new ViewHolder(new NewProductView(getContext()));
     }
 }

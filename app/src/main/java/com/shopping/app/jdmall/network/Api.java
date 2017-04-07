@@ -61,11 +61,13 @@ public interface Api {
     @GET("logout")
     Call<LogoutBean> logout(@Query("userid") String userid);
 
+
     //http://localhost:8080/market/newproduct?page=1&pageNum=10&orderby=saleDown
 
     //新品上架请求
     @GET("newproduct")
     Call<FindBean> listNewProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
+
 
 
 }

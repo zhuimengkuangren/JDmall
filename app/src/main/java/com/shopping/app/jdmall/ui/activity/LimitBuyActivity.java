@@ -2,11 +2,8 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.widget.BaseAdapter;
 
-import com.shopping.app.jdmall.adapter.LimitBuyAdapter;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,20 +16,20 @@ import retrofit2.Response;
 
 public class LimitBuyActivity extends BaseListLoadMoreActivity {
 
-    private List<LimitBuyBean> mDataList;
+    private LimitBuyBean mDataList;
     int count = 0;
     @Override
     protected void startLoadMoreData() {
-        Call<List<LimitBuyBean>> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(++count, 10);
-        listCall.enqueue(new Callback<List<LimitBuyBean>>() {
+        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(++count, 10);
+        listCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
-            public void onResponse(Call<List<LimitBuyBean>> call, Response<List<LimitBuyBean>> response) {
+            public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
                 mDataList = response.body();
                 onDataLoadedSuccess();
             }
 
             @Override
-            public void onFailure(Call<List<LimitBuyBean>> call, Throwable t) {
+            public void onFailure(Call<LimitBuyBean> call, Throwable t) {
                 onDataLoadedFailed();
             }
         });
@@ -40,21 +37,21 @@ public class LimitBuyActivity extends BaseListLoadMoreActivity {
 
     @Override
     protected BaseAdapter oncreateAdapter() {
-        return new LimitBuyAdapter(LimitBuyActivity.this,mDataList);
+        return null;
     }
 
     @Override
     protected void startLoadData() {
-        Call<List<LimitBuyBean>> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(0, 10);
-        listCall.enqueue(new Callback<List<LimitBuyBean>>() {
+        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(0, 10);
+        listCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
-            public void onResponse(Call<List<LimitBuyBean>> call, Response<List<LimitBuyBean>> response) {
+            public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
                 mDataList = response.body();
                 onDataLoadedSuccess();
             }
 
             @Override
-            public void onFailure(Call<List<LimitBuyBean>> call, Throwable t) {
+            public void onFailure(Call<LimitBuyBean> call, Throwable t) {
                 onDataLoadedFailed();
             }
         });

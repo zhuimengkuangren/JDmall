@@ -56,6 +56,26 @@
         <item name="android:textColor">@color/text_rg_selector</item>
         <item name="android:button">@null</item>
     </style>
+    <style name="pop_anim" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit</item>
+    </style>
+    <style name="pop_buycar" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/pop_buycar_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_buycar_exit</item>
+    </style>
+    <!--尺码选择样式android:layout_margin="8dp" -->
+    <style name="size_press_tab">
+        <item name="android:layout_width" >wrap_content</item>
+        <item name="android:layout_height" >match_parent</item>
+        <item name="android:textColor">@color/size_tab_textcolor_selector</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/size_buycar_selector</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
 
     <!--订单详情界面textview样式-->
     <style name="redio_button"></style>

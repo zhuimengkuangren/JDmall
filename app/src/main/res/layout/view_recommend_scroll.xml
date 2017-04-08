@@ -11,6 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/one"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
@@ -18,30 +19,35 @@
             android:src="@mipmap/recommend_brand_1"/>
 
         <ImageView
+            android:id="@+id/two"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginRight="10dp"
             android:src="@mipmap/recommend_brand_2"/>
 
         <ImageView
+            android:id="@+id/three"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginRight="10dp"
             android:src="@mipmap/recommend_brand_3"/>
 
         <ImageView
+            android:id="@+id/four"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginRight="10dp"
             android:src="@mipmap/recommend_brand_4"/>
 
         <ImageView
+            android:id="@+id/five"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginRight="10dp"
             android:src="@mipmap/recommend_brand_5"/>
 
         <ImageView
+            android:id="@+id/six"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:layout_marginRight="10dp"

@@ -2,8 +2,11 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.widget.BaseAdapter;
 
+import com.shopping.app.jdmall.adapter.LimitBuyAdapter;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,16 +19,15 @@ import retrofit2.Response;
 
 public class LimitBuyActivity extends BaseListLoadMoreActivity {
 
-    private LimitBuyBean mDataList;
-    int count = 0;
+    private List<LimitBuyBean.ProductListBean> mDataList;
     @Override
     protected void startLoadMoreData() {
-        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(++count, 10);
+        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(mDataList.size(), 10);
         listCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
             public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
-                mDataList = response.body();
-                onDataLoadedSuccess();
+                mDataList.addAll(response.body().getProductList());
+                getAdapter().notifyDataSetChanged();
             }
 
             @Override
@@ -37,22 +39,22 @@ public class LimitBuyActivity extends BaseListLoadMoreActivity {
 
     @Override
     protected BaseAdapter oncreateAdapter() {
-        return null;
+        return new LimitBuyAdapter(this,mDataList);
     }
 
     @Override
     protected void startLoadData() {
-        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(0, 10);
-        listCall.enqueue(new Callback<LimitBuyBean>() {
+        Call<LimitBuyBean> limitBuyBeanCall = JDRetrofit.getInstance().getApi().listLimitBuy(0, 10);
+        limitBuyBeanCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
             public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
-                mDataList = response.body();
+                mDataList = response.body().getProductList();
                 onDataLoadedSuccess();
             }
 
             @Override
             public void onFailure(Call<LimitBuyBean> call, Throwable t) {
-                onDataLoadedFailed();
+
             }
         });
     }

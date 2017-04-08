@@ -69,7 +69,8 @@ public class HomeHeadBanner extends RelativeLayout {
         mViewPage.addOnPageChangeListener(mOnPageChangeListener);
 
         //设置viewpager初始化页面的位置
-        mViewPage.setCurrentItem(0);//触发mOnPageChangeListene
+        int index = Integer.MAX_VALUE / 2;
+        mViewPage.setCurrentItem(index);//触发mOnPageChangeListene
     }
 
 

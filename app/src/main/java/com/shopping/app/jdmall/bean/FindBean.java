@@ -52,12 +52,21 @@ public class FindBean {
     }
 
     public static class ProductListBean implements Serializable{
+
+
+        private int numbers;
         private int id;
         private int marketPrice;
         private String name;
         private String pic;
         private int price;
+        public int getNumbers() {
+            return numbers;
+        }
 
+        public void setNumbers(int numbers) {
+            this.numbers = numbers;
+        }
         public int getId() {
             return id;
         }

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:background="@android:color/white"
+              android:layout_width="match_parent"
+              android:layout_height="400dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/icon_view_popup"
+                android:src="@drawable/default_image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/icon_view_popup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/name_view_popup"
+                        android:layout_marginRight="6dp"
+                        android:text="名字"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/price_buycar"
+                        android:textColor="#ff0000"
+                        android:text="价格"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/number_buycar"
+                    android:text="库存还有9999件"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/select_size_color"
+                    android:text="选择 尺码 颜色分类"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <ImageView
+                android:clickable="true"
+                android:id="@+id/iv_icon_buycar"
+                android:layout_margin="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_close"
+                />
+        </RelativeLayout>
+        <include layout="@layout/view_line"/>
+
+        <TextView
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="尺码分类"
+            />
+        <RadioGroup
+            android:id="@+id/rg_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/m_size"
+                style="@style/size_press_tab"
+                android:text="M"/>
+            <RadioButton
+                android:id="@+id/xxl_size"
+                style="@style/size_press_tab"
+                android:text="XXL"/>
+            <RadioButton
+                android:id="@+id/xxxl_size"
+                style="@style/size_press_tab"
+                android:text="XXXL"/>
+        </RadioGroup>
+
+        <include layout="@layout/view_line"/>
+        <TextView
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="颜色分类"
+            />
+        <RadioGroup
+            android:id="@+id/rg_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/red_color"
+                style="@style/size_press_tab"
+                android:text="红色"/>
+            <RadioButton
+                android:id="@+id/green_color"
+                style="@style/size_press_tab"
+                android:text="绿色"/>
+
+        </RadioGroup>
+
+
+        <include layout="@layout/view_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_buy_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="购买数量"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/decrease_buy"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="#33000000"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/actual_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/increase_buy"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="#33000000"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/ensure_buy"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:background="#ff0000"
+            android:textSize="16sp"
+            android:text="确定"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</RelativeLayout>

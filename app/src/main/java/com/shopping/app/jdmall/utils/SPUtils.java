@@ -24,4 +24,15 @@ public class SPUtils {
         edit.putBoolean(key, values);
         edit.commit();
     }
+
+    public static String getString(Context context,String key,String value){
+        SharedPreferences sharePreferences = getSharePreferences(context);
+        return  sharePreferences.getString(key,value);
+    }
+
+    public static void setString(Context context,String key,String value){
+        SharedPreferences sharePreferences = getSharePreferences(context);
+        sharePreferences.edit().putString(key,value).apply();
+
+    }
 }

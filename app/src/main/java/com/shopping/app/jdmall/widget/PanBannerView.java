@@ -30,12 +30,17 @@ public class PanBannerView extends RelativeLayout {
         super(context, attrs);
         inflate(getContext(), R.layout.view_pan_banner, this);
         ButterKnife.bind(this, this);
+
+        int index = Integer.MAX_VALUE / 2;
+        mViewSecondPager.setCurrentItem(index);
+
         AutoLoopUtils autoLoopUtils = new AutoLoopUtils(this, mViewSecondPager);
         autoLoopUtils.startLoop();
         initSecondBanner();//初始化第二个轮播图
     }
 
     private void initSecondBanner() {
+
         SecondBannerPagerAdapter adapter = new SecondBannerPagerAdapter(getContext(),arr);
         mViewSecondPager.setAdapter(adapter);
     }

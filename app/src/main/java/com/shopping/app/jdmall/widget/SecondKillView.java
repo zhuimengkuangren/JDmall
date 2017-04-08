@@ -14,15 +14,15 @@ import cn.iwgang.countdownview.CountdownView;
  * Created by panpan on 2017/4/6.
  */
 
-public class SecondKill extends RelativeLayout {
+public class SecondKillView extends RelativeLayout {
     @BindView(R.id.cv_countdownViewTest1)
     CountdownView mCvCountdownViewTest1;
 
-    public SecondKill(Context context) {
+    public SecondKillView(Context context) {
         this(context, null);
     }
 
-    public SecondKill(Context context, AttributeSet attrs) {
+    public SecondKillView(Context context, AttributeSet attrs) {
         super(context, attrs);
         inflate(getContext(), R.layout.view_second_kill, this);
         ButterKnife.bind(this, this);

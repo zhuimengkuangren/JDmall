@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.IdentCargoAdapter;
+import com.shopping.app.jdmall.adapter.SumbitCargoTypeAdapter;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.LocationBean;
@@ -57,7 +58,7 @@ public class IdentActivity extends BaseActivity {
     AddressView mAddress;
     @BindView(R.id.head_view)
     LinearLayout mHeadView;
-    private IdentCargoAdapter mAdapter;
+    private SumbitCargoTypeAdapter mAdapter;
     private List<FindBean.ProductListBean> mListData = new ArrayList<>();
 
     Context mContext = this;
@@ -128,7 +129,7 @@ public class IdentActivity extends BaseActivity {
     }
 
     private void initListView() {
-        mAdapter = new IdentCargoAdapter(this, mListData);
+        mAdapter = new SumbitCargoTypeAdapter(this, mListData);
         mListView.setAdapter(mAdapter);
     }
 

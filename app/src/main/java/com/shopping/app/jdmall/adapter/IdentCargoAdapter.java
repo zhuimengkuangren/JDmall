@@ -38,6 +38,16 @@ public class IdentCargoAdapter extends BaseListAdapter<FindBean.ProductListBean>
         view.setData(mList.get(position));
     }
 
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     public void setData(ArrayList<Parcelable> list) {
 
     }

@@ -81,7 +81,7 @@ public class CarManager {
     /**
      * 用于添加购物车
      */
-    public void add(CarInfoBean carInfoBean) {
+    public boolean add(CarInfoBean carInfoBean) {
         int key = getBeanKey(carInfoBean);
 
         CarInfoBean tempData = mSparseArray.get(key);
@@ -104,6 +104,8 @@ public class CarManager {
 
         //同步到本地
         saveLocal();
+
+        return true;
     }
 
 

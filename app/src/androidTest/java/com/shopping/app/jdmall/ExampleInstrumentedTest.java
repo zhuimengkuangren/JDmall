@@ -7,7 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -23,5 +23,6 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.shopping.app.jdmall", appContext.getPackageName());
     }
+
 
 }

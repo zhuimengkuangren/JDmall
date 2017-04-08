@@ -247,7 +247,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         holder.mTvTitle.setText(carInfoBean.getProduct().getName());
 
         //限购个数
-        holder.mTvLimit.setText(String.format(holder.mTvLimit.getText().toString(), carInfoBean.getProduct().getBuyLimit()));
+        holder.mTvLimit.setText("每个ID限购: " + carInfoBean.getProduct().getBuyLimit());
 
 
         //颜色和尺寸
@@ -255,24 +255,24 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         for (int i = 0; i < productProperty.size(); i++) {
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = productProperty.get(i);
             if ("颜色".equals(productPropertyBean.getK())) {
-                holder.mTvColor.setText(String.format(holder.mTvColor.getText().toString(), productPropertyBean.getV()));
-                if ("红色".equals(productPropertyBean.getV())) {
+                String ColorStr = productPropertyBean.getV();
+                if("红色".equals(ColorStr)){
                     holder.mTvColor.setTextColor(Color.RED);
-                } else {
+                }else{
                     holder.mTvColor.setTextColor(Color.GREEN);
                 }
-
+                holder.mTvColor.setText("颜色: " + ColorStr);
             } else if ("尺码".equals(productPropertyBean.getK())) {
-                holder.mTvSize.setText(String.format(holder.mTvSize.getText().toString(), productPropertyBean.getV()));
+                holder.mTvSize.setText("尺码: " + productPropertyBean.getV());
             }
         }
 
         //库存数量
-        holder.mTvSoh.setText(String.format(holder.mTvSoh.getText().toString(), carInfoBean.getProduct().getNumber()));
+        holder.mTvSoh.setText("库存数量: " + carInfoBean.getProduct().getNumber());
 
         //单价
         int singlePrice = carInfoBean.getProduct().getPrice();
-        holder.mTvSingle.setText(String.format(holder.mTvSingle.getText().toString(), singlePrice));
+        holder.mTvSingle.setText("单价: " + singlePrice);
 
         //购买数量
         int prodNum = carInfoBean.getProdNum();

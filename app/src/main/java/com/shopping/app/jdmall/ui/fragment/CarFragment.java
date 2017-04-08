@@ -133,7 +133,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     private void initData() {
         //模拟点击购物车
-        updateData();
+       updateData();
         showData();
 
     }
@@ -143,9 +143,9 @@ public class CarFragment extends BaseNotLoadDataFragment {
         for (int i = 1; i < 3; i++) {
 
             CarInfoBean carInfoBean1 = new CarInfoBean();
-            carInfoBean1.setProdNum(10);
+            carInfoBean1.setProdNum(9);
             CarInfoBean.ProductBean productBean = new CarInfoBean.ProductBean();
-            productBean.setId(i);
+            productBean.setId(1);
             productBean.setBuyLimit(10);
             productBean.setName("黑丝");
             productBean.setPrice(100);
@@ -235,9 +235,11 @@ public class CarFragment extends BaseNotLoadDataFragment {
     @OnClick({R.id.btn_check_out, R.id.btn_delete, R.id.btn_collection, R.id.tv_empty_car_tobuy})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_check_out:
+            case R.id.btn_check_out://去结算
+                Toast.makeText(getContext(), "去结算!", Toast.LENGTH_SHORT).show();
+
                 break;
-            case R.id.btn_delete:
+            case R.id.btn_delete://删除
                 //删除选中
                 mCarAdapter.deleteData();
                 //校验状态
@@ -248,9 +250,8 @@ public class CarFragment extends BaseNotLoadDataFragment {
                     mTvCarEdit.setVisibility(View.GONE);
                     mLlDelete.setVisibility(View.GONE);
                 }
-
                 break;
-            case R.id.btn_collection:
+            case R.id.btn_collection://收藏
                 break;
             case R.id.tv_empty_car_tobuy:
                 Toast.makeText(getContext(), "去逛逛", Toast.LENGTH_SHORT).show();

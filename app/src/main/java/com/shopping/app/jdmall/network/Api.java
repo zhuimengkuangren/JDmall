@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.network;
 
 
+import com.shopping.app.jdmall.bean.AddressBean;
 import com.shopping.app.jdmall.bean.BannerBean;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
@@ -63,4 +64,9 @@ public interface Api {
     @GET("orderlist")
     Call<ResponseBody> getOrderList(@Header("userid") String userid,@Query("type") int type, @Query("page") int page, @Query("pageNum") int pageNum);
 
+//    @GET("addresslist")
+//    Call<ResponseBody> getAddressList(@Header("userid") String userid);
+
+    @GET("addresslist")
+    Call<AddressBean> getAddressList(@Header("userid") String userid);
 }

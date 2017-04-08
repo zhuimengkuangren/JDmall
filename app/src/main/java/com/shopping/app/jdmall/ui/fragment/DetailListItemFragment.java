@@ -176,6 +176,8 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 startPopupWindow();
                 break;
             case R.id.buy_now:
+                //将数据传给
+
                 break;
         }
     }

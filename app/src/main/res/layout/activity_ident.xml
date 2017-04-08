@@ -1,26 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"/>
+        android:layout_height="55dp"
+        android:background="@drawable/bg_search"/>
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:id="@+id/info_bottom"
+        android:layout_below="@id/tool_bar"
+        android:id="@+id/head_view"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:padding="@dimen/size_middle"
+        <com.shopping.app.jdmall.widget.AddressView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            style="@style/textViewStyle"
             android:background="@drawable/amk"
+            android:drawableLeft="@drawable/kjt"
+            android:drawablePadding="@dimen/size_middle"
+            android:gravity="center_vertical"
+            android:padding="@dimen/size_middle"
+            android:text="大兄弟,你这是要上天啊!!!"
+            android:textSize="14sp"/>
+
+
+        <TextView
+            style="@style/textViewStyle"
+            android:background="@drawable/amk"
+            android:drawableLeft="@drawable/to_receive"
+            android:drawablePadding="@dimen/size_middle"
+            android:gravity="center_vertical"
+            android:padding="@dimen/size_middle"
+            android:text="乖,已经发货了"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/info_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/amk"
+            android:padding="@dimen/size_middle"
             >
 
             <TextView
@@ -39,37 +76,37 @@
 
 
         <TextView
-            android:gravity="center"
-            android:background="@drawable/amk"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:background="@drawable/amk"
+            android:gravity="center"
             android:text="提交订单则表示您同意进口服务授权和进口服务协议"
             android:textSize="14sp"/>
 
 
         <RelativeLayout
-            android:background="@drawable/amk"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="55dp">
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/amk"
+            android:orientation="horizontal">
 
             <Button
-                android:background="@drawable/bg_search"
                 android:id="@+id/btn_commit"
-                android:layout_alignParentRight="true"
-                android:text="提交订单"
                 android:layout_width="wrap_content"
-                android:layout_height="55dp"/>
+                android:layout_height="55dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_search"
+                android:text="提交订单"/>
 
             <TextView
-                android:padding="@dimen/size_middle"
-                android:textSize="20sp"
-                android:layout_centerVertical="true"
-                android:text="合计: ¥ 22.7"
-                android:layout_toLeftOf="@id/btn_commit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/btn_commit"
+                android:padding="@dimen/size_middle"
+                android:text="合计: ¥ 22.7"
+                android:textSize="20sp"/>
 
         </RelativeLayout>
 
@@ -77,16 +114,12 @@
     </LinearLayout>
 
 
-
     <ListView
         android:id="@+id/list_view"
-        android:layout_above="@id/info_bottom"
-        android:layout_below="@id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
-
+        android:layout_height="wrap_content"
+        android:layout_above="@id/info_bottom"
+        android:layout_below="@id/head_view"/>
 
 
 </RelativeLayout>

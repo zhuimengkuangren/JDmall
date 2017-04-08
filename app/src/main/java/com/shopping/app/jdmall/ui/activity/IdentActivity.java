@@ -1,30 +1,43 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.IdentCargoAdapter;
+import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
+import com.shopping.app.jdmall.bean.LocationBean;
+import com.shopping.app.jdmall.network.JDRetrofit;
+import com.shopping.app.jdmall.utils.SPUtils;
+import com.shopping.app.jdmall.widget.AddressView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by 龚浩 on 2017/4/8.
  */
 
 public class IdentActivity extends BaseActivity {
-
+    private static final String TAG = "IdentActivity";
 
     @BindView(R.id.tool_bar)
     Toolbar mToolBar;
@@ -38,8 +51,13 @@ public class IdentActivity extends BaseActivity {
     LinearLayout mInfoBottom;
     @BindView(R.id.list_view)
     ListView mListView;
+    @BindView(R.id.address)
+    AddressView mAddress;
     private IdentCargoAdapter mAdapter;
     private List<FindBean.ProductListBean> mListData = new ArrayList<>();
+
+    Context mContext = this;
+    private ArrayList<Parcelable> mDataList;
 
     @Override
     protected int getLayoutResId() {
@@ -51,6 +69,48 @@ public class IdentActivity extends BaseActivity {
         super.init();
         initListView();
         initToolBar();
+        initData();
+    }
+
+    private void initData() {
+        //获取对应userId的地址信息
+        initLocation();
+        //获取购物车里的信息
+        initBuyCargo();
+    }
+
+    private void initBuyCargo() {
+        Intent intent = getIntent();
+        mDataList = intent.getParcelableArrayListExtra("values");
+        mAdapter.setData(mDataList);
+    }
+
+    private void initLocation() {
+        String userId = SPUtils.getString(this, Constant.LOGIN_USERID, null);
+        if (userId == null) {
+            navigateTo(LoginPageActivity.class);
+        } else {
+            //通过网络请求获取网络地址信息
+            startLoadLocationData("20428");
+        }
+    }
+
+    private void startLoadLocationData(String userId) {
+        Toast.makeText(this, "fsadfas", Toast.LENGTH_SHORT).show();
+        JDRetrofit.getInstance().getApi().listLocation(userId).enqueue(new Callback<LocationBean>() {
+            @Override
+            public void onResponse(Call<LocationBean> call, Response<LocationBean> response) {
+                Log.d(TAG, "onResponse: " + response.body().getResponse());
+                List<LocationBean.AddressListBean> list = response.body().getAddressList();
+                LocationBean.AddressListBean addressListBean = list.get(1);
+                mAddress.setData(addressListBean);
+            }
+
+            @Override
+            public void onFailure(Call<LocationBean> call, Throwable t) {
+                Toast.makeText(mContext, "请求失败了", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initListView() {
@@ -80,5 +140,6 @@ public class IdentActivity extends BaseActivity {
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setCustomView(textView, lp);
     }
+
 
 }

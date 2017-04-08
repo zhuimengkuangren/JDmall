@@ -21,6 +21,7 @@ import com.shopping.app.jdmall.manager.CarManager;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -64,6 +65,8 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
     String color="";
     private String mUrl;
     private FindBean.ProductListBean mBean;
+    private CarInfoBean.ProductBean mProductBean;
+    private List<CarInfoBean.ProductBean.ProductPropertyBean> mProductProperty;
 
     public PopupView(Context context) {
         this(context, null);
@@ -115,22 +118,22 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         int i = Integer.parseInt(s);
         if (mRgSize.getCheckedRadioButtonId() != -1 && mRgColor.getCheckedRadioButtonId() != -1) {
             //已经选择
-            findBeanToCarInfoBean(mBean);
+            findBeanToCarInfoBean();
             EventBus.getDefault().post("animationcompleted");
         } else {
             Toast.makeText(getContext(), "请选择颜色和尺寸", Toast.LENGTH_SHORT).show();
         }
     }
-    private void findBeanToCarInfoBean(FindBean.ProductListBean bean) {
+    private void findBeanToCarInfoBean() {
         CarInfoBean carInfoBean = new CarInfoBean();
-        CarInfoBean.ProductBean productBean = new CarInfoBean.ProductBean();
-        productBean.setName(bean.getName());
-        productBean.setBuyLimit(10);
-        productBean.setPic(bean.getPic());
+        mProductBean.setName(mBean.getName());
+        mProductBean.setBuyLimit(10);
+        mProductBean.setPic(mBean.getPic());
+        mProductBean.setProductProperty(mProductProperty);
         Random random = new Random();
         int i = random.nextInt(90);
-        productBean.setNumber(i+"");
-        carInfoBean.setProduct(productBean);
+        mProductBean.setNumber(i+"");
+        carInfoBean.setProduct(mProductBean);
         CarManager.getInstance().add(carInfoBean);
     }
 
@@ -174,6 +177,18 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             //已经选择
             mName.setVisibility(GONE);
             mSelectSizeColor.setText("已选："+size+" "+color);
+            mProductBean = new CarInfoBean.ProductBean();
+            mProductProperty = mProductBean.getProductProperty();//为什么为null
+            CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = new CarInfoBean.ProductBean.ProductPropertyBean();
+            productPropertyBean.setK("颜色");
+            productPropertyBean.setV(color);
+            mProductProperty.add(productPropertyBean);
+
+            CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean2 = new CarInfoBean.ProductBean.ProductPropertyBean();
+            productPropertyBean2.setK("尺码");
+            productPropertyBean2.setV(size);
+            mProductProperty.add(productPropertyBean2);
+            Toast.makeText(getContext(), ""+ mProductProperty.size(), Toast.LENGTH_SHORT).show();
         }
     }
 }

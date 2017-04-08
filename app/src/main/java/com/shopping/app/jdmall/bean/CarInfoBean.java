@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,7 +72,7 @@ public class CarInfoBean implements Serializable{
          * v : 红色
          */
 
-        private List<ProductPropertyBean> productProperty;
+        private List<ProductPropertyBean> productProperty = new ArrayList<>();
 
         public int getBuyLimit() {
             return buyLimit;

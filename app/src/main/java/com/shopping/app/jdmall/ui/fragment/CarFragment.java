@@ -133,7 +133,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     private void initData() {
         //模拟点击购物车
-       updateData();
+       //updateData();
         showData();
 
     }

@@ -4,8 +4,14 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.shopping.app.jdmall.bean.SkuBean;
+import com.shopping.app.jdmall.utils.SkuTransferUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,5 +30,18 @@ public class ExampleInstrumentedTest {
         assertEquals("com.shopping.app.jdmall", appContext.getPackageName());
     }
 
+    @Test
+    public void test(){
+        SkuBean skuBean = new SkuBean();
+        skuBean.setId(1);
+        skuBean.setAttrs(new int[]{1,3});
+        skuBean.setNum(3);
+        List<SkuBean> skuBeen = new ArrayList<>();
+        skuBeen.add(skuBean);
+        skuBeen.add(skuBean);
+        String s = SkuTransferUtils.BeanToString(skuBeen);
+       System.out.println(s);
+
+    }
 
 }

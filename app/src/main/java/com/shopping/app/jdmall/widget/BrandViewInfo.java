@@ -10,37 +10,34 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
-import com.shopping.app.jdmall.bean.TopicRenBean;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2017/4/6.
+ * Created by Administrator on 2017/4/7.
  */
 
-public class TopicView extends LinearLayout {
+public class BrandViewInfo extends LinearLayout {
     @BindView(R.id.image_view)
     ImageView mImageView;
     @BindView(R.id.text_view)
     TextView mTextView;
 
-    public TopicView(Context context) {
+    public BrandViewInfo(Context context) {
         this(context, null);
     }
 
-    public TopicView(Context context, AttributeSet attrs) {
+    public BrandViewInfo(Context context, AttributeSet attrs) {
         super(context, attrs);
         initData();
     }
 
     private void initData() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_topic, this);
-        ButterKnife.bind(this,this);
+        LayoutInflater.from(getContext()).inflate(R.layout.view_brand_info, this);
     }
 
-    public void bindView(TopicRenBean.TopicBean topicBean) {
-        mTextView.setText(topicBean.getName());
-        Glide.with(getContext()).load(Constant.HOST + topicBean.getPic()).into(mImageView);
+    public void bindView(String name, String pic) {
+        Glide.with(getContext()).load(Constant.HOST + pic).into(mImageView);
+        mTextView.setText(name);
     }
 }

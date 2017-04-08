@@ -2,12 +2,14 @@ package com.shopping.app.jdmall.network;
 
 
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.bean.BrandRenBean;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+import com.shopping.app.jdmall.bean.TopicRenBean;
 
 
 
@@ -66,7 +68,6 @@ public interface Api {
     Call<FindBean> listNewProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
 
 
-//
 //  @GET("logout")
 //  Call<LogoutBean> logout(@Query("userid") String userid);
 
@@ -74,6 +75,12 @@ public interface Api {
     @POST("register")
     Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
 
+    //新品上架请求
+    @GET("topic")
+    Call<TopicRenBean> listTopicRen(@Query("page") int page, @Query("pageNum") int pageNum);
+
+    @GET("brand")
+    Call<BrandRenBean> listBrandRen();
 
 
 }

@@ -11,14 +11,14 @@ import java.util.List;
  * Created by Administrator on 2017/4/6.
  */
 
-public class NewProductAdapter extends BaseLoadMoreAdapter<FindBean> {
-    public NewProductAdapter(Context context, List list) {
+public class NewProductAdapter extends BaseLoadMoreAdapter<FindBean.ProductListBean> {
+    public NewProductAdapter(Context context, List<FindBean.ProductListBean> list) {
         super(context, list);
     }
 
     @Override
     protected void onBindNormalViewHolder(ViewHolder viewHolder, int position) {
-
+        ((NewProductView)viewHolder.mView).bindView(getList().get(position));
     }
 
     @Override

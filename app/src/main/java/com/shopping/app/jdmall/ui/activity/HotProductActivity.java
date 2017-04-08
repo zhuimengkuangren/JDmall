@@ -4,7 +4,7 @@ import android.widget.BaseAdapter;
 
 /**
  * Created by Administrator on 2017/4/6.
- * 热门单品
+ * 热门单品  跟  wuweihua的做重复了
  */
 
 public class HotProductActivity extends BaseListLoadMoreActivity {

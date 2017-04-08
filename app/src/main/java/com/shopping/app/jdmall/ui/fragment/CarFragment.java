@@ -4,6 +4,8 @@ package com.shopping.app.jdmall.ui.fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -14,7 +16,11 @@ import android.widget.Toast;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.CarAdapter;
 import com.shopping.app.jdmall.bean.CarInfoBean;
+import com.shopping.app.jdmall.event.FragmentEvent;
 import com.shopping.app.jdmall.manager.CarManager;
+import com.shopping.app.jdmall.ui.activity.MainActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +79,21 @@ public class CarFragment extends BaseNotLoadDataFragment {
     public void init() {
         initData();
         initListener();
+        initAnimation();
+    }
+
+    private void initAnimation() {
+
+        AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
+
+        animation.setDuration(2000);
+
+        animation.setRepeatCount(Animation.INFINITE);
+
+        animation.setRepeatMode(Animation.REVERSE);
+
+        mIvEmpty.startAnimation(animation);
+
     }
 
     private void initListener() {
@@ -133,7 +154,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     private void initData() {
         //模拟点击购物车
-       //updateData();
+        //updateData();
         showData();
 
     }
@@ -255,6 +276,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
                 break;
             case R.id.tv_empty_car_tobuy:
                 Toast.makeText(getContext(), "去逛逛", Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(new FragmentEvent(MainActivity.findTagId, MainActivity.findFragmentTag));
                 break;
 
 

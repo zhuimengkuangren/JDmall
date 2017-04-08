@@ -15,7 +15,6 @@ public class FragmentEvent {
         mTab = tab;
     }
 
-    //测试
     public int getFragmentId() {
         return mId;
     }

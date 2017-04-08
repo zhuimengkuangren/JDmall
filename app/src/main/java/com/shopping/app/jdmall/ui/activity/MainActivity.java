@@ -94,10 +94,14 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 监听Fragment的事件
+     * 监听Fragment的跳转事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onFragmentEvent(FragmentEvent fragmentEvent) {
+    public void onFragmentSwitchEvent(FragmentEvent fragmentEvent) {
+        int fragmentId = fragmentEvent.getFragmentId();
+        String fragmentTab = fragmentEvent.getFragmentTab();
+        //switchTab(fragmentId);
+        mTabContainer.check(fragmentId);
 
     }
 

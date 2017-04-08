@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:padding="@dimen/size_middle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:src="@drawable/aff"
+        android:padding="@dimen/size_large"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/size_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="收货人: 关庄"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="18007926495"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/size_middle"
+            android:text="收货地址: 广东深圳家里见"
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textColor="#ff00ff"
+            android:layout_marginTop="@dimen/size_middle"
+            android:text="(收货不方便时,可选择免费代收服务)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

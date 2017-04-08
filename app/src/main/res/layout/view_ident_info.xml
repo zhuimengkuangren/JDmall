@@ -9,8 +9,20 @@
         android:layout_height="wrap_content">
 
 
+        <com.shopping.app.jdmall.widget.AddressView
+            android:background="@drawable/bg_search"
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
+        <View
+            android:background="@drawable/amy"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
 
+        <com.shopping.app.jdmall.widget.CargoInfoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

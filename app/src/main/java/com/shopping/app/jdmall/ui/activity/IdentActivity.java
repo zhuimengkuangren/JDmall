@@ -1,7 +1,6 @@
 package com.shopping.app.jdmall.ui.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.shopping.app.jdmall.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by 龚浩 on 2017/4/8.
@@ -59,10 +57,4 @@ public class IdentActivity extends BaseActivity {
         actionBar.setCustomView(textView, lp);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

@@ -83,6 +83,7 @@ public class QueryCargoActivity extends BaseActivity {
                         break;
                     case R.id.iv_buy:
                         //跳转到商品购买界面
+                        navigateTo(IdentActivity.class);
                         break;
                     case R.id.iv_buy_car:
                         //跳转到购物车界面

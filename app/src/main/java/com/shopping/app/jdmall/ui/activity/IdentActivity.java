@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.adapter.IdentCargoAdapter;
 import com.shopping.app.jdmall.adapter.SumbitCargoTypeAdapter;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
@@ -75,6 +75,7 @@ public class IdentActivity extends BaseActivity {
         initListView();
         initToolBar();
         initData();
+
     }
 
     private void initData() {
@@ -131,6 +132,33 @@ public class IdentActivity extends BaseActivity {
     private void initListView() {
         mAdapter = new SumbitCargoTypeAdapter(this, mListData);
         mListView.setAdapter(mAdapter);
+        Log.d(TAG, "onItemClick: =="+mDataList);
+        mDataList = new ArrayList<>();
+        Log.d(TAG, "onItemClick: =="+mDataList);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: =="+mDataList);
+                int subItemPos = position - 0;
+                switch (subItemPos) {
+                    case 0:
+                       Toast.makeText(IdentActivity.this,""+subItemPos,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(IdentActivity.this,""+subItemPos,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(IdentActivity.this,""+subItemPos,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(IdentActivity.this,""+subItemPos,Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(IdentActivity.this,""+subItemPos,Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
 

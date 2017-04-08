@@ -23,5 +23,6 @@ public class IdentInfoView extends ScrollView {
     }
 
     private void init() {
+
     }
 }

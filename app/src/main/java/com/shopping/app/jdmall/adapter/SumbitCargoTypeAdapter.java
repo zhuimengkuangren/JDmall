@@ -33,18 +33,26 @@ public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
     @Override
     public int getCount() {
         if(mDataList != null) {
-            return mDataList.size() + 5;
+//            return mDataList.size() + 5;
+            return 5;
         }
         return 5;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(position <= getCount() - 5) {
+        if(position < getCount() - 5) {
             convertView = new CargoInfoView(mContext);
         }else {
             convertView = new SubmitItem(mContext);
         }
+        if(position < getCount() - 5) {
+            CargoInfoView infoView = (CargoInfoView) convertView;
+        }else {
+            SubmitItem sumbitIetm = (SubmitItem) convertView;
+            sumbitIetm.setData(getCount() - position);
+        }
+
         return convertView;
     }
 

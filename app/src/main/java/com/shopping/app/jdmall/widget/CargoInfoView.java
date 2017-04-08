@@ -21,4 +21,6 @@ public class CargoInfoView extends LinearLayout {
         super(context, attrs);
         View.inflate(getContext(), R.layout.view_cargo_info,this);
     }
+
+
 }

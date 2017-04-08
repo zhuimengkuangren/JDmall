@@ -173,13 +173,14 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 Toast.makeText(getContext(), "已添加到购物车", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_buy_car:
-                //弹出popupwindow
                 startPopupWindow();
                 break;
             case R.id.buy_now:
                 break;
         }
     }
+
+
 
     private void startPopupWindow() {
         PopupView popupView = new PopupView(getContext());

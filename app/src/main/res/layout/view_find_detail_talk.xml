@@ -35,19 +35,14 @@
                 android:text="好评度"
                 />
             <TextView
+                android:drawablePadding="6dp"
                 android:id="@+id/tv_detail_good_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100%"
                 android:textColor="#ff0000"
+                android:drawableRight="@mipmap/arrow"
                 />
-            <ImageView
-                android:id="@+id/iv_arrow_detail"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:src="@mipmap/arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
     </RelativeLayout>
     <TextView

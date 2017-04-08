@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -26,7 +25,6 @@ public class BrandView extends LinearLayout {
     TextView mTitleTextView;
     @BindView(R.id.table_layout)
     TableLayout mTableLayout;
-    private TableRow mTableRow;
     private static final String TAG = "BrandView";
 
     public BrandView(Context context) {
@@ -47,19 +45,21 @@ public class BrandView extends LinearLayout {
         List<BrandRenBean.BrandBean.ValueBean> value = brandBean.getValue();
         mTitleTextView.setText(brandBean.getKey());
         mTableLayout.removeAllViews();
+        TableRow mTableRow = null;
         for (int i = 0; i < value.size(); i++) {
-
-            mTableRow = new TableRow(getContext());
-            BrandRenBean.BrandBean.ValueBean valueBean = value.get(i);
+            if (i % 3 == 0) {
+                mTableRow = new TableRow(getContext());
+                mTableLayout.addView(mTableRow);
+            }
             int widthPixels = getResources().getDisplayMetrics().widthPixels - mTableLayout.getPaddingLeft() - mTableLayout.getPaddingRight();
             TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(getContext(), null);
-            layoutParams.width = widthPixels / 3;
-            Log.d(TAG, "bindView: +++++++++++++++"+layoutParams.width);
-                BrandViewInfo brandViewInfo = new BrandViewInfo(getContext());
-                brandViewInfo.setLayoutParams(layoutParams);
-                brandViewInfo.bindView(valueBean.getName(),valueBean.getPic());
-                mTableRow.addView(brandViewInfo);
-            mTableLayout.addView(mTableRow);
+            layoutParams.width = (int) (widthPixels / 3.0f);
+            BrandRenBean.BrandBean.ValueBean valueBean = value.get(i);
+            BrandViewInfo brandViewInfo = new BrandViewInfo(getContext());
+            brandViewInfo.setLayoutParams(layoutParams);
+            brandViewInfo.bindView(valueBean.getName(), valueBean.getPic());
+            mTableRow.addView(brandViewInfo);
+
         }
     }
 }

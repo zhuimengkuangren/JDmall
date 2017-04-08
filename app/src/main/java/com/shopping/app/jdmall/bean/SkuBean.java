@@ -1,5 +1,7 @@
 package com.shopping.app.jdmall.bean;
 
+import java.util.Arrays;
+
 /**
  * Created by lzl on 2017/4/8.
  */
@@ -31,5 +33,14 @@ public class SkuBean {
 
     public void setAttrs(int[] attrs) {
         this.attrs = attrs;
+    }
+
+    @Override
+    public String toString() {
+        return "SkuBean{" +
+                "id=" + id +
+                ", num=" + num +
+                ", attrs=" + Arrays.toString(attrs) +
+                '}';
     }
 }

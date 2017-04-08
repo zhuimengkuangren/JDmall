@@ -15,9 +15,13 @@ import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.BuyCarBean;
+import com.shopping.app.jdmall.bean.CarInfoBean;
 import com.shopping.app.jdmall.bean.FindBean;
+import com.shopping.app.jdmall.manager.CarManager;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +63,7 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
     String size="";
     String color="";
     private String mUrl;
+    private FindBean.ProductListBean mBean;
 
     public PopupView(Context context) {
         this(context, null);
@@ -110,15 +115,28 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         int i = Integer.parseInt(s);
         if (mRgSize.getCheckedRadioButtonId() != -1 && mRgColor.getCheckedRadioButtonId() != -1) {
             //已经选择
+            findBeanToCarInfoBean(mBean);
             EventBus.getDefault().post("animationcompleted");
         } else {
             Toast.makeText(getContext(), "请选择颜色和尺寸", Toast.LENGTH_SHORT).show();
         }
     }
-
+    private void findBeanToCarInfoBean(FindBean.ProductListBean bean) {
+        CarInfoBean carInfoBean = new CarInfoBean();
+        CarInfoBean.ProductBean productBean = new CarInfoBean.ProductBean();
+        productBean.setName(bean.getName());
+        productBean.setBuyLimit(10);
+        productBean.setPic(bean.getPic());
+        Random random = new Random();
+        int i = random.nextInt(90);
+        productBean.setNumber(i+"");
+        carInfoBean.setProduct(productBean);
+        CarManager.getInstance().add(carInfoBean);
+    }
 
 
     public void bindView(FindBean.ProductListBean bean) {
+        mBean=bean;
         mPrice.setText("￥" + bean.getPrice());
         mUrl = Constant.HOST + bean.getPic();
         Log.d(TAG, "bindView: "+ mUrl);

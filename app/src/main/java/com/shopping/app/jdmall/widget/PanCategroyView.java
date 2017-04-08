@@ -6,10 +6,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.ui.activity.BrandActivity;
 import com.shopping.app.jdmall.ui.activity.FindRecommandActivity;
+import com.shopping.app.jdmall.ui.activity.LimitBuyActivity;
+import com.shopping.app.jdmall.ui.activity.TopicActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,18 +53,23 @@ public class PanCategroyView extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buy:
-                Toast.makeText(getContext(), "点击了吗", Toast.LENGTH_SHORT).show();
+                getContext().startActivity(new Intent(getContext(), LimitBuyActivity.class));
                 break;
             case R.id.sell:
+                getContext().startActivity(new Intent(getContext(), TopicActivity.class));
                 break;
             case R.id.news:
+                Intent intent1 = new Intent(getContext(), FindRecommandActivity.class);
+                intent1.putExtra("product","新品上架");
+                getContext().startActivity(intent1);
                 break;
             case R.id.hot:
-                Intent intent = new Intent(getContext(), FindRecommandActivity.class);
-                intent.putExtra("product", "热门商品");
-                getContext().startActivity(intent);
+                Intent intent2 = new Intent(getContext(), FindRecommandActivity.class);
+                intent2.putExtra("product", "热门商品");
+                getContext().startActivity(intent2);
                 break;
             case R.id.recommend:
+                getContext().startActivity(new Intent(getContext(), BrandActivity.class));
                 break;
         }
     }

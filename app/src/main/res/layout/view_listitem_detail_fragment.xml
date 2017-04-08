@@ -85,6 +85,7 @@
                 android:src="@mipmap/shortcuts_icon_collect"
                 />
             <TextView
+                android:id="@+id/tv_collect"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -92,6 +93,7 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <TextView
+            android:id="@+id/tv_buy_car"
             android:text="加入购物车"
             android:gravity="center"
             android:drawableLeft="@mipmap/car"
@@ -99,6 +101,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:id="@+id/buy_now"
             android:padding="14dp"
             android:gravity="center"
             android:text="立即购买"

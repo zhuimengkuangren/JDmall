@@ -7,6 +7,7 @@ import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+import com.shopping.app.jdmall.bean.OrderListsBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -59,5 +60,7 @@ public interface Api {
     @POST("register")
     Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
 
+    @GET("orderlist")
+    Call<OrderListsBean> getOrderList(@Query("type") int type,@Query("page") int page,@Query("pageNum") int pageNum);
 
 }

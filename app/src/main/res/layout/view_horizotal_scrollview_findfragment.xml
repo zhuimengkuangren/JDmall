@@ -27,6 +27,7 @@
             android:src="@mipmap/shortcuts_icon_collect"/>
 
         <ImageView
+            android:id="@+id/iv_groupbuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
@@ -40,6 +41,7 @@
             android:src="@mipmap/shortcuts_icon_history"/>
 
         <ImageView
+            android:id="@+id/life_journey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
@@ -53,18 +55,21 @@
             android:src="@mipmap/shortcuts_icon_lottery"/>
 
         <ImageView
+            android:id="@+id/iv_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:src="@mipmap/shortcuts_icon_order"/>
 
         <ImageView
+            android:id="@+id/iv_promotion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:src="@mipmap/shortcuts_icon_promotion"/>
 
         <ImageView
+            android:id="@+id/iv_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"

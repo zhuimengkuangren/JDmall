@@ -2,7 +2,7 @@ package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +17,7 @@ import com.shopping.app.jdmall.bean.LimitBuyBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.iwgang.countdownview.CountdownView;
 
 /**
  * Created by Administrator on 2017/4/6.
@@ -34,6 +35,8 @@ public class LimitBuyView extends RelativeLayout {
     Button mPanicBuyBtn;
     @BindView(R.id.image_view)
     ImageView mImageView;
+    @BindView(R.id.cv_countdownViewTest1)
+    CountdownView mCvCountdownViewTest1;
 
     public LimitBuyView(Context context) {
         this(context, null);
@@ -45,8 +48,8 @@ public class LimitBuyView extends RelativeLayout {
     }
 
     private void initData() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_limit_buy, this);
-        ButterKnife.bind(this,this);
+        View inflate = View.inflate(getContext(), R.layout.view_limit_buy, this);
+        ButterKnife.bind(this, this);
     }
 
     @OnClick(R.id.panic_buy_btn)
@@ -55,11 +58,20 @@ public class LimitBuyView extends RelativeLayout {
     }
 
     public void bindView(LimitBuyBean.ProductListBean productListBean) {
-
         String name = productListBean.getName();
         mCommodityName.setText(name);
-        mEndTime.setText(productListBean.getLeftTime());
-        mBuyPrice.setText(productListBean.getPrice());
+        long leftTime = productListBean.getLeftTime();
+        mCvCountdownViewTest1.start(leftTime);
+        mCvCountdownViewTest1.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+            @Override
+            public void onEnd(CountdownView cv) {
+
+            }
+        });
+        int limitPrice = productListBean.getLimitPrice();
+        String end = " 限时抢购价￥%s";
+        String format = String.format(end, String.valueOf(limitPrice));
+        mBuyPrice.setText(format);
         Glide.with(getContext()).load(Constant.HOST + productListBean.getPic()).into(mImageView);
 
     }

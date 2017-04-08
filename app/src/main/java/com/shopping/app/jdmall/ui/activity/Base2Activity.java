@@ -47,6 +47,12 @@ public abstract class Base2Activity extends BaseActivity {
         startLoadData();
     }
 
+    /*@Nullable
+    @Override
+    public ActionBar getSupportActionBar() {
+        return mSupportActionBar;
+    }
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

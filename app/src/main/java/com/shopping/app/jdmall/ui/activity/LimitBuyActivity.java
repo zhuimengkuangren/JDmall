@@ -20,12 +20,15 @@ import retrofit2.Response;
 public class LimitBuyActivity extends BaseListLoadMoreActivity {
 
     private List<LimitBuyBean.ProductListBean> mDataList;
+    private LimitBuyBean mLimitBuyBean;
+
     @Override
     protected void startLoadMoreData() {
-        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(mDataList.size(), 10);
+        Call<LimitBuyBean> listCall = JDRetrofit.getInstance().getApi().listLimitBuy(mDataList.size(), mLimitBuyBean.getListCount());
         listCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
             public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
+                //mLimitBuyBean.setListCount(mDataList.size());
                 mDataList.addAll(response.body().getProductList());
                 getAdapter().notifyDataSetChanged();
             }
@@ -48,13 +51,15 @@ public class LimitBuyActivity extends BaseListLoadMoreActivity {
         limitBuyBeanCall.enqueue(new Callback<LimitBuyBean>() {
             @Override
             public void onResponse(Call<LimitBuyBean> call, Response<LimitBuyBean> response) {
-                mDataList = response.body().getProductList();
+                mLimitBuyBean = response.body();
+                mDataList = mLimitBuyBean.getProductList();
+                //getSupportActionBar().setTitle(mLimitBuyBean.getResponse());
                 onDataLoadedSuccess();
             }
 
             @Override
             public void onFailure(Call<LimitBuyBean> call, Throwable t) {
-
+                onDataLoadedFailed();
             }
         });
     }

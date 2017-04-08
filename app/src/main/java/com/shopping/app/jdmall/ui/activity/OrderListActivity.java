@@ -9,16 +9,13 @@ import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.OrderListAdapter;
-import com.shopping.app.jdmall.bean.OrderListsBean;
+import com.shopping.app.jdmall.bean.OrderBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
-import com.shopping.app.jdmall.utils.GsonUtils;
 
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,9 +40,9 @@ public class OrderListActivity extends BaseActivity {
     RadioGroup radiogroup;
     @BindView(R.id.listview)
     ListView listview;
-   // private List<OrderListsBean.OrderListBean> mDataList;
+   private List<OrderBean.OrderListBean> mDataList;
     private String[] titles = {"全部订单", "10分钟内订单", "10分钟前订单", "取消的订单"};
-    private List<OrderListsBean.OrderListBean> mOrderList ;
+   // private List<OrderBean.OrderListBean> mOrderList ;
 
 
     @Override
@@ -81,36 +78,27 @@ public class OrderListActivity extends BaseActivity {
                 }
             }
         });
-        OrderListAdapter orderListAdapter = new OrderListAdapter(this,mOrderList);
-        orderListAdapter.setData(mOrderList);
-        listview.setAdapter(orderListAdapter);
+
 
     }
 
     private void startLoadData(int type) {
         String userid = "20428";
         //请求订单列表数据
-        Call<ResponseBody> orderList = JDRetrofit.getInstance().getApi().getOrderList(userid,type, 0, 10);
-        orderList.enqueue(new Callback<ResponseBody>() {
+        Call<OrderBean> orderList = JDRetrofit.getInstance().getApi().getOrderList(userid,type, 0, 10);
+        orderList.enqueue(new Callback<OrderBean>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String string = response.body().string();
-                    Log.d(TAG, "onResponse: " + string);
-                   OrderListsBean mOrderListBean = (OrderListsBean) GsonUtils.fromJson(string, OrderListsBean.class);
-
-                    mOrderList = mOrderListBean.getOrderList();
-                    Log.d(TAG, "onResponse: " + mOrderListBean.getOrderList().get(0).getStatus());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+            public void onResponse(Call<OrderBean> call, Response<OrderBean> response) {
+                mDataList = response.body().getOrderList();
+                OrderListAdapter orderListAdapter = new OrderListAdapter(OrderListActivity.this,mDataList);
+                orderListAdapter.setData(mDataList);
+                listview.setAdapter(orderListAdapter);
 
 
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<OrderBean> call, Throwable t) {
                 Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
             }
         });

@@ -3,7 +3,7 @@ package com.shopping.app.jdmall.adapter;
 import android.content.Context;
 import android.view.View;
 
-import com.shopping.app.jdmall.bean.OrderListsBean;
+import com.shopping.app.jdmall.bean.OrderBean;
 import com.shopping.app.jdmall.widget.OrderListItemView;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import java.util.List;
  * Created by xuanxuan on 2017/4/8.
  */
 
-public class OrderListAdapter extends BaseListAdapter<OrderListsBean.OrderListBean> {
+public class OrderListAdapter extends BaseListAdapter<OrderBean.OrderListBean> {
     private static final String TAG = "OrderListAdapter";
     Context context;
-    List<OrderListsBean.OrderListBean> mDataList;
+    List<OrderBean.OrderListBean> mDataList;
 
-    public OrderListAdapter(Context context, List<OrderListsBean.OrderListBean> list) {
+    public OrderListAdapter(Context context, List<OrderBean.OrderListBean> list) {
         super(context, list);
     }
 
@@ -33,7 +33,7 @@ public class OrderListAdapter extends BaseListAdapter<OrderListsBean.OrderListBe
         ((OrderListItemView)convertView).bindView(mDataList.get(position));
     }
 
-    public void setData(List<OrderListsBean.OrderListBean> orderList) {
+    public void setData(List<OrderBean.OrderListBean> orderList) {
         mDataList = orderList;
       //  Log.d(TAG, "setData: " + mDataList.get(0).getStatus());
     }

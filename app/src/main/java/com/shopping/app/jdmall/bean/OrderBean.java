@@ -6,7 +6,7 @@ import java.util.List;
  * Created by xuanxuan on 2017/4/8.
  */
 
-public class OrderListsBean {
+public class OrderBean {
 
     /**
      * orderList : [{"flag":1,"orderId":"268358","price":402,"status":"未处理","time":"1491613268443"}]

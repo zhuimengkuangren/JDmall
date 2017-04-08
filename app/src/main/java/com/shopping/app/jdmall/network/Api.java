@@ -8,6 +8,7 @@ import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+import com.shopping.app.jdmall.bean.OrderBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -62,7 +63,7 @@ public interface Api {
     Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
 
     @GET("orderlist")
-    Call<ResponseBody> getOrderList(@Header("userid") String userid,@Query("type") int type, @Query("page") int page, @Query("pageNum") int pageNum);
+    Call<OrderBean> getOrderList(@Header("userid") String userid, @Query("type") int type, @Query("page") int page, @Query("pageNum") int pageNum);
 
 //    @GET("addresslist")
 //    Call<ResponseBody> getAddressList(@Header("userid") String userid);

@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.bean.OrderListsBean;
+import com.shopping.app.jdmall.bean.OrderBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +40,7 @@ public class OrderListItemView extends RelativeLayout {
         ButterKnife.bind(this,this);
     }
 
-    public void bindView(OrderListsBean.OrderListBean orderListBean) {
+    public void bindView(OrderBean.OrderListBean orderListBean) {
         mOrderStatus.setText("状态：" + orderListBean.getStatus());
         mOrderId.setText("编号：" + orderListBean.getOrderId());
         mDate.setText("时间：" + orderListBean.getTime());

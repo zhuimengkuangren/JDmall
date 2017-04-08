@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.ui.fragment;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.leon.loopviewpagerlib.CirclePageIndicator;
@@ -78,16 +78,17 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(String event){
-        Log.d(TAG, "onmainEvent: "+Thread.currentThread().getName());
-        mWindow.dismiss();
+        switch (event){
+            case "clickclose":
+            case "animationcompleted":
+                mWindow.dismiss();
+                break;
+        }
     }
 
     View.OnClickListener listerner = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            /*Intent intent = new Intent(getContext(), ImageViewActivity.class);
-            intent.putExtra("imageurl", mUrl);
-            getContext().startActivity(intent);*/
             View convertView = View.inflate(getContext(), R.layout.view_image, null);
             ImageView largeIcon = (ImageView) convertView.findViewById(R.id.img);
             largeIcon.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -104,7 +105,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
             mWindow.setFocusable(true);
             //设置动画样式
             mWindow.setAnimationStyle(R.style.pop_anim);
-            mWindow.showAtLocation(convertView, Gravity.CENTER, 0, 0);//显示在指定位置,在0,0的位置
+            mWindow.showAtLocation(mViewPager, Gravity.START, 0, 0);//显示在指定位置,在0,0的位置
 
         }
     };
@@ -169,6 +170,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         switch (view.getId()) {
             case R.id.tv_collect:
                 //收藏
+                Toast.makeText(getContext(), "已添加到购物车", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_buy_car:
                 //弹出popupwindow
@@ -188,10 +190,11 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         popupView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWindow.dismiss();
+                    mWindow.dismiss();
             }
         });
         mWindow.setFocusable(true);
+        mWindow.setOutsideTouchable(true);
         //设置动画样式
         mWindow.setAnimationStyle(R.style.pop_buycar);
         mWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);//显示在指定位置,在0,0的位置

@@ -4,13 +4,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <ImageView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/default_image" />
     <RelativeLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/rl_image_view"
         android:padding="8dp"
         android:background="#22000000"

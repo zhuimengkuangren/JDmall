@@ -58,6 +58,8 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
     private BuyCarBean.ProductBean mProduct;
     String size="";
     String color="";
+    private String mUrl;
+
     public PopupView(Context context) {
         this(context, null);
     }
@@ -76,7 +78,7 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
 
 
 
-    @OnClick({R.id.decrease_buy, R.id.increase_buy, R.id.ensure_buy})
+    @OnClick({R.id.decrease_buy, R.id.increase_buy, R.id.ensure_buy,R.id.iv_icon_buycar})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.decrease_buy:
@@ -97,6 +99,9 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             case R.id.ensure_buy:
                 addBuyCart();
                 break;
+            case R.id.iv_icon_buycar:
+                EventBus.getDefault().post("clickclose");
+                break;
         }
     }
 
@@ -105,17 +110,19 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         int i = Integer.parseInt(s);
         if (mRgSize.getCheckedRadioButtonId() != -1 && mRgColor.getCheckedRadioButtonId() != -1) {
             //已经选择
-            EventBus.getDefault().post("sended");
+            EventBus.getDefault().post("animationcompleted");
         } else {
             Toast.makeText(getContext(), "请选择颜色和尺寸", Toast.LENGTH_SHORT).show();
         }
     }
 
+
+
     public void bindView(FindBean.ProductListBean bean) {
         mPrice.setText("￥" + bean.getPrice());
-        String url = Constant.HOST + bean.getPic();
-        Log.d(TAG, "bindView: "+url);
-        Glide.with(getContext()).load(url).into(mIcon);
+        mUrl = Constant.HOST + bean.getPic();
+        Log.d(TAG, "bindView: "+ mUrl);
+        Glide.with(getContext()).load(mUrl).into(mIcon);
         mName.setText(bean.getName());
     }
 
@@ -147,7 +154,6 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         }
         if (mRgSize.getCheckedRadioButtonId() != -1 && mRgColor.getCheckedRadioButtonId() != -1) {
             //已经选择
-
             mName.setVisibility(GONE);
             mSelectSizeColor.setText("已选："+size+" "+color);
         }

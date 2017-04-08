@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,8 +28,7 @@ public class DetailTalkView extends RelativeLayout {
     TextView mTvUserTalkcounts;
     @BindView(R.id.tv_detail_good_rate)
     TextView mTvDetailGoodRate;
-    @BindView(R.id.iv_arrow_detail)
-    ImageView mIvArrowDetail;
+
 
     private List<CommentBeans.CommentBean> mComment;
 
@@ -46,7 +44,7 @@ public class DetailTalkView extends RelativeLayout {
     private void init() {
         View view = View.inflate(getContext(), R.layout.view_find_detail_talk, this);
         ButterKnife.bind(this, this);
-        mIvArrowDetail.setOnClickListener(new OnClickListener() {
+        mTvDetailGoodRate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 startCommentActivity();

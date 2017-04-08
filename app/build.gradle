@@ -48,12 +48,9 @@ dependencies {
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
     compile 'com.bm.photoview:library:1.4.1'
 
-<<<<<<< HEAD
+
     compile 'com.android.support:recyclerview-v7:25+'
 
-}
-=======
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
 }
->>>>>>> feature/pan

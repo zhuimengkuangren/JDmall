@@ -275,7 +275,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
             case R.id.btn_collection://收藏
                 break;
             case R.id.tv_empty_car_tobuy:
-                Toast.makeText(getContext(), "去逛逛", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "亲,来逛逛呗~", Toast.LENGTH_SHORT).show();
                 EventBus.getDefault().post(new FragmentEvent(MainActivity.findTagId, MainActivity.findFragmentTag));
                 break;
 

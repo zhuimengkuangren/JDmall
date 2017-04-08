@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.CarAdapter;
@@ -132,19 +133,17 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     private void initData() {
         //模拟点击购物车
-        //updateData();
-
+        updateData();
         showData();
-
 
     }
 
     private void updateData() {
 
-        for (int i = 1; i <= 10; i++) {
-            CarInfoBean carInfoBean = new CarInfoBean();
+        for (int i = 1; i < 3; i++) {
 
-            carInfoBean.setProdNum(3);
+            CarInfoBean carInfoBean1 = new CarInfoBean();
+            carInfoBean1.setProdNum(10);
             CarInfoBean.ProductBean productBean = new CarInfoBean.ProductBean();
             productBean.setId(i);
             productBean.setBuyLimit(10);
@@ -169,14 +168,11 @@ public class CarFragment extends BaseNotLoadDataFragment {
             productBean.setProductProperty(list);
 
             productBean.setPic("/images/product/detail/q1.jpg");
-            carInfoBean.setProduct(productBean);
+            carInfoBean1.setProduct(productBean);
 
-            List<CarInfoBean.ProductBean.ProductPropertyBean> productProperty = carInfoBean.getProduct().getProductProperty();
-
-
-            CarManager.getInstance().update(carInfoBean);
-
+            CarManager.getInstance().add(carInfoBean1);
         }
+
 
     }
 
@@ -192,16 +188,15 @@ public class CarFragment extends BaseNotLoadDataFragment {
         } else if (mCarInfoBeanList != null) {
             for (int i = 0; i < mCarInfoBeanList.size(); i++) {
                 CarInfoBean carInfoBean = mCarInfoBeanList.get(i);
-                carInfoBean.setCheck(false);
                 CarManager.getInstance().update(carInfoBean);//hide之后保存数据
             }
-            //重置底部条
+          /* //重置底部条
             mCheckboxAll.setChecked(false);
-            mCarTotal.setText("合计: ¥0.0");
+            mCarTotal.setText("¥0.0");
             //重置状态
             mTvCarEdit.setTag(ACTION_EDIT);
             mLlDelete.setVisibility(View.GONE);
-            mLlCheckAll.setVisibility(View.VISIBLE);
+            mLlCheckAll.setVisibility(View.VISIBLE);*/
         }
 
     }
@@ -213,10 +208,13 @@ public class CarFragment extends BaseNotLoadDataFragment {
         if (mCarInfoBeanList.size() > 0) {
             //有数据,把默认背景隐藏
             mLlEnptyCar.setVisibility(View.GONE);
+            mTvCarEdit.setVisibility(View.VISIBLE);
+            mLlCheckAll.setVisibility(View.VISIBLE);
 
             if (mCarAdapter == null) {
                 //设置适配器
-                mCarAdapter = new CarAdapter(getContext(), mCarInfoBeanList, mCarTotal, mCheckboxAll,mCbAll);
+                mCarAdapter = new CarAdapter(getContext(), mCarInfoBeanList, mCarTotal, mCheckboxAll, mCbAll);
+                mRecyclerView.getItemAnimator().setChangeDuration(0);//去掉闪屏
                 mRecyclerView.setAdapter(mCarAdapter);
             } else {
                 mCarAdapter.updateData(mCarInfoBeanList);
@@ -228,11 +226,13 @@ public class CarFragment extends BaseNotLoadDataFragment {
         } else {
             //没数据,把默认背景显示
             mLlEnptyCar.setVisibility(View.VISIBLE);
+            mTvCarEdit.setVisibility(View.GONE);
+            mLlDelete.setVisibility(View.GONE);
         }
 
     }
 
-    @OnClick({R.id.btn_check_out, R.id.btn_delete, R.id.btn_collection})
+    @OnClick({R.id.btn_check_out, R.id.btn_delete, R.id.btn_collection, R.id.tv_empty_car_tobuy})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_check_out:
@@ -242,9 +242,21 @@ public class CarFragment extends BaseNotLoadDataFragment {
                 mCarAdapter.deleteData();
                 //校验状态
                 mCarAdapter.checkAll();
+                //数据为空
+                if (mCarAdapter.getItemCount() == 0) {
+                    mLlEnptyCar.setVisibility(View.VISIBLE);
+                    mTvCarEdit.setVisibility(View.GONE);
+                    mLlDelete.setVisibility(View.GONE);
+                }
+
                 break;
             case R.id.btn_collection:
                 break;
+            case R.id.tv_empty_car_tobuy:
+                Toast.makeText(getContext(), "去逛逛", Toast.LENGTH_SHORT).show();
+                break;
+
+
         }
     }
 }

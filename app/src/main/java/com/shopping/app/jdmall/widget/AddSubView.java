@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 
@@ -58,28 +59,36 @@ public class AddSubView extends FrameLayout {
     }
 
     private void addNum() {
-        if(value < maxValue){
+        if (value == maxValue) {
+            Toast.makeText(getContext(), "亲,最多只能买10件哟!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (value < maxValue) {
             value++;
         }
         setValue(value);
-        if(mOnNumberChangeListener != null){
+        if (mOnNumberChangeListener != null) {
             mOnNumberChangeListener.onNumberChange(value);
         }
     }
 
     private void subNum() {
-        if(value > minValue){
+        if (value == minValue) {
+            Toast.makeText(getContext(), "亲,您真的不要伦家了么(；′⌒`)", Toast.LENGTH_SHORT).show();
+        }
+
+        if (value > minValue) {
             value--;
         }
         setValue(value);
-        if(mOnNumberChangeListener != null){
+        if (mOnNumberChangeListener != null) {
             mOnNumberChangeListener.onNumberChange(value);
         }
     }
 
     public int getValue() {
         String valueStr = mTvNum.getText().toString().trim();
-        if(!TextUtils.isEmpty(valueStr)){
+        if (!TextUtils.isEmpty(valueStr)) {
             value = Integer.parseInt(valueStr);
         }
         return value;
@@ -88,7 +97,7 @@ public class AddSubView extends FrameLayout {
 
     public void setValue(int value) {
         this.value = value;
-        mTvNum.setText(value+"");
+        mTvNum.setText(value + "");
     }
 
     public int getMinValue() {
@@ -110,11 +119,11 @@ public class AddSubView extends FrameLayout {
     /**
      * 接口监听数据变化
      */
-    public interface onNumberChangeListener{
+    public interface onNumberChangeListener {
         void onNumberChange(int value);
     }
 
-    public void setonNumberChangeListener(onNumberChangeListener onNumberChangeListener){
+    public void setonNumberChangeListener(onNumberChangeListener onNumberChangeListener) {
         mOnNumberChangeListener = onNumberChangeListener;
     }
 }

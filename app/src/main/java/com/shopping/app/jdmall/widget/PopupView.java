@@ -129,10 +129,13 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         mProductBean.setName(mBean.getName());
         mProductBean.setBuyLimit(10);
         mProductBean.setPic(mBean.getPic());
+        mProductBean.setId(mBean.getId());
+        mProductBean.setPrice(mBean.getPrice());
         mProductBean.setProductProperty(mProductProperty);
         Random random = new Random();
         int i = random.nextInt(90);
         mProductBean.setNumber(i+"");
+        Log.d(TAG, "findBeanToCarInfoBean: "+mProductBean.getProductProperty().get(0).getV()+mProductBean.getId());
         carInfoBean.setProduct(mProductBean);
         CarManager.getInstance().add(carInfoBean);
     }
@@ -182,13 +185,13 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = new CarInfoBean.ProductBean.ProductPropertyBean();
             productPropertyBean.setK("颜色");
             productPropertyBean.setV(color);
+
             mProductProperty.add(productPropertyBean);
 
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean2 = new CarInfoBean.ProductBean.ProductPropertyBean();
             productPropertyBean2.setK("尺码");
             productPropertyBean2.setV(size);
             mProductProperty.add(productPropertyBean2);
-            Toast.makeText(getContext(), ""+ mProductProperty.size(), Toast.LENGTH_SHORT).show();
         }
     }
 }

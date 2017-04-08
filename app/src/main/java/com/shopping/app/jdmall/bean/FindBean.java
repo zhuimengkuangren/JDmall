@@ -60,7 +60,6 @@ public class FindBean {
         private String name;
         private String pic;
         private int price;
-        private List<ProductPropertyBean> productProperty;
 
         public int getNumbers() {
             return numbers;
@@ -110,53 +109,5 @@ public class FindBean {
             this.price = price;
         }
 
-        public List<ProductPropertyBean> getProductProperty() {
-            return productProperty;
-        }
-
-        public void setProductProperty(List<ProductPropertyBean> productProperty) {
-            this.productProperty = productProperty;
-        }
-
-        public static class ProductPropertyBean {
-            private int id;
-            private String k;
-            private String v;
-            private static  ProductPropertyBean bean;
-            public int getId() {
-                return id;
-            }
-            public static ProductPropertyBean getBean(){
-                if (bean==null){
-                    synchronized (ProductPropertyBean.class){
-                        if (bean==null){
-                            bean=new ProductPropertyBean();
-                        }
-                    }
-                }
-
-                return bean;
-            }
-       public ProductPropertyBean(){}
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getK() {
-                return k;
-            }
-
-            public void setK(String k) {
-                this.k = k;
-            }
-
-            public String getV() {
-                return v;
-            }
-
-            public void setV(String v) {
-                this.v = v;
-            }
-        }
     }
 }

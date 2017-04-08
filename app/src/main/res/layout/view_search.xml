@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:padding="@dimen/size_middle"
-                android:layout_height="wrap_content">
+                android:padding="@dimen/size_middle">
 
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:background="@drawable/bg_search"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="30dp">
+        android:layout_height="30dp"
+        android:background="@drawable/bg_search"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/iv_search"
-            android:src="@drawable/icon_search"
             android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_height="20dp"
+            android:src="@drawable/icon_search"/>
 
         <EditText
-            android:background="@drawable/bg_search"
-            android:padding="@dimen/size_smaller"
-            android:textSize="12sp"
+            android:focusableInTouchMode="false"
             android:id="@+id/et_search"
-            android:hint="想给家人买点什么"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search"
+            android:hint="想给家人买点什么"
+            android:padding="@dimen/size_smaller"
+            android:textSize="12sp"/>
 
     </LinearLayout>
+
     <ImageView
-        android:padding="@dimen/size_smaller"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/et_talk"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/size_smaller"
+        android:src="@drawable/et_talk"/>
 
 </RelativeLayout>

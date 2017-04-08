@@ -1,6 +1,8 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
@@ -64,6 +66,7 @@ public class HomePullToRefreshList extends PullToRefreshListView {
         mHomeHeadBanner = new HomeHeadBanner(getContext());
         mHomeHeadBanner.bindView(mBannerBean);
         getRefreshableView().addHeaderView(mHomeHeadBanner);
+        setBackground(new ColorDrawable(Color.WHITE));
     }
 
 

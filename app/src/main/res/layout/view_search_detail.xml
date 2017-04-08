@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+    android:background="@color/search">
 
     <RelativeLayout
         android:layout_gravity="center_vertical"
@@ -27,6 +28,7 @@
 
 
         <EditText
+
             android:id="@+id/et_search"
             android:hint="搜索京东商品店铺"
             android:padding="@dimen/size_middle"
@@ -49,6 +51,8 @@
         android:textSize="16sp"/>
 
     <ListView
+        android:listSelector="@drawable/selector_search_item"
+        android:layout_marginTop="12dp"
         android:id="@+id/list_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

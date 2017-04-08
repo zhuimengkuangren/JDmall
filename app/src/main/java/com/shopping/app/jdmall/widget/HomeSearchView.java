@@ -42,7 +42,7 @@ public class HomeSearchView extends RelativeLayout {
 
     public HomeSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        inflate(getContext(), R.layout.view_serach, this);
+        inflate(getContext(), R.layout.view_home_serach, this);
         ButterKnife.bind(this, this);
         init();
 
@@ -52,7 +52,7 @@ public class HomeSearchView extends RelativeLayout {
 
     }
 
-
+    private static final String TAG = "HomeSearchView";
     @OnClick({R.id.camera, R.id.et_text, R.id.search, R.id.message})
     public void onClick(View view) {
         switch (view.getId()) {

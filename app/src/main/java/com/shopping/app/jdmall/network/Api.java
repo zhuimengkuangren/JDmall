@@ -2,25 +2,17 @@ package com.shopping.app.jdmall.network;
 
 
 import com.shopping.app.jdmall.bean.BannerBean;
-
 import com.shopping.app.jdmall.bean.BrandRenBean;
-
 import com.shopping.app.jdmall.bean.BuyCarBean;
-
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
-
-import com.shopping.app.jdmall.bean.TopicRenBean;
-
-
-
-
 import com.shopping.app.jdmall.bean.SaleBean;
-
+import com.shopping.app.jdmall.bean.SearchRecommentBean;
+import com.shopping.app.jdmall.bean.TopicRenBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -96,6 +88,7 @@ public interface Api {
     @GET("product")
     Call<BuyCarBean> listBuyCar(@Query("pId") int pld);
 
-
-
+    //搜索推荐
+    @GET("search/recommend")
+    Call<SearchRecommentBean> listSearchRecommend();
 }

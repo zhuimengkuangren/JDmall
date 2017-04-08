@@ -1,19 +1,24 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
+import com.shopping.app.jdmall.ui.activity.QueryCargoActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by panpan on 2017/4/7.
@@ -36,6 +41,14 @@ public class HomeListItemView extends RelativeLayout {
     ImageView mImage4;
     @BindView(R.id.text4)
     TextView mText4;
+    @BindView(R.id.ll_01)
+    LinearLayout mLl01;
+    @BindView(R.id.ll_02)
+    LinearLayout mLl02;
+    @BindView(R.id.ll_03)
+    LinearLayout mLl03;
+    @BindView(R.id.ll_04)
+    LinearLayout mLl04;
 
     public HomeListItemView(Context context) {
         this(context, null);
@@ -61,5 +74,23 @@ public class HomeListItemView extends RelativeLayout {
 
         Glide.with(getContext()).load(host + categoryBeen.get(3).getPic()).into(mImage4);
         mText4.setText(categoryBeen.get(3).getName());
+    }
+
+    @OnClick({R.id.ll_01, R.id.ll_02, R.id.ll_03, R.id.ll_04})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_01:
+               getContext().startActivity(new Intent(getContext(), QueryCargoActivity.class));
+                break;
+            case R.id.ll_02:
+                getContext().startActivity(new Intent(getContext(), QueryCargoActivity.class));
+                break;
+            case R.id.ll_03:
+                getContext().startActivity(new Intent(getContext(), QueryCargoActivity.class));
+                break;
+            case R.id.ll_04:
+                getContext().startActivity(new Intent(getContext(), QueryCargoActivity.class));
+                break;
+        }
     }
 }

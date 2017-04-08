@@ -43,7 +43,7 @@ public class pullToRefreshView extends PullToRefreshListView {
         setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                navigateTo(getContext(),DetailListItemActivity.class,mList.get(position));
+                navigateTo(getContext(),DetailListItemActivity.class,mList.get(position - 1));
             }
         });
     }

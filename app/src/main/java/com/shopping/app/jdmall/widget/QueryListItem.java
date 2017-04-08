@@ -3,6 +3,8 @@ package com.shopping.app.jdmall.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,10 +31,10 @@ public class QueryListItem extends RelativeLayout {
     TextView mTvPrice;
     @BindView(R.id.tv_commend)
     TextView mTvCommend;
-    @BindView(R.id.buy_car)
-    ImageView mBuyCar;
     @BindView(R.id.iv_fav)
     ImageView mIvFav;
+    @BindView(R.id.buy_car)
+    ImageView mBuyCar;
 
     private boolean isFav;
 
@@ -58,19 +60,22 @@ public class QueryListItem extends RelativeLayout {
 
         mTvTitle.setText(bean.getName());
         mTvPrice.setText("¥" + bean.getPrice());
-        mTvCommend.setText("精彩评论:"+bean.getCommentCount()+"条");
+        mTvCommend.setText("精彩评论:" + bean.getCommentCount() + "条");
     }
 
     @OnClick({R.id.buy_car, R.id.iv_fav})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buy_car:
+                TranslateAnimation animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 0, Animation.RELATIVE_TO_SELF, 100);
+                animation.setDuration(2000);
+                mBuyCar.startAnimation(animation);
                 break;
             case R.id.iv_fav:
                 isFav = !isFav;
-                if(isFav) {
+                if (isFav) {
                     mIvFav.setImageResource(R.drawable.aid);
-                }else {
+                } else {
                     mIvFav.setImageResource(R.drawable.aic);
                 }
                 break;

@@ -2,6 +2,7 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
@@ -43,6 +45,10 @@ public class QueryCargoActivity extends BaseActivity {
     TextView mTabQuery;
     @BindView(R.id.ll_container)
     LinearLayout mLlContainer;
+    @BindView(R.id.floatingToolbar)
+    FloatingToolbar mFloatingToolbar;
+    @BindView(R.id.fab)
+    FloatingActionButton mFab;
     private int currentPosition = 0;
     private boolean isPriceUp = false;
 
@@ -58,7 +64,24 @@ public class QueryCargoActivity extends BaseActivity {
     protected void init() {
         super.init();
         initToolBar();
+        initAppBar();
         startLoadData();
+    }
+
+    private void initAppBar() {
+        mFloatingToolbar.attachFab(mFab);
+
+        mFloatingToolbar.setClickListener(new FloatingToolbar.ItemClickListener() {
+            @Override
+            public void onItemClick(MenuItem item) {
+                mFloatingToolbar.hide();
+            }
+
+            @Override
+            public void onItemLongClick(MenuItem item) {
+
+            }
+        });
     }
 
     private void initToolBar() {
@@ -164,5 +187,6 @@ public class QueryCargoActivity extends BaseActivity {
             }
         });
     }
+
 
 }

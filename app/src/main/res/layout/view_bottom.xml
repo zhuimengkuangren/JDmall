@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:padding="@dimen/size_middle"
               android:orientation="horizontal"
               android:background="@drawable/bg_car_text"
@@ -8,21 +9,21 @@
 
 
 
-    <ImageView
-        android:padding="@dimen/size_middle"
-        android:id="@+id/buy_car"
-        android:src="@drawable/toolbaricon_shoppingcart_full"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <!-- Appbar -->
 
-    <TextView
-        android:id="@+id/buy_count"
-        android:padding="@dimen/size_middle"
-        android:layout_gravity="center_vertical"
-        android:textSize="30sp"
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <com.github.rubensousa.floatingtoolbar.FloatingToolbar
+            android:id="@+id/floatingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="bottom"
+            app:floatingMenu="@menu/main" />
+
+
+
+
+
+
+
 
 
 </LinearLayout>

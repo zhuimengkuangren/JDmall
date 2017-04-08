@@ -23,19 +23,19 @@
         <activity android:name=".ui.activity.TutorialActivity"/>
         <activity android:name=".ui.activity.LimitBuyActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
-        <activity android:name=".ui.activity.QueryCargoActivity"></activity>
-        <activity android:name=".ui.activity.DetailListItemActivity"></activity>
+        <activity android:name=".ui.activity.QueryCargoActivity"/>
+        <activity android:name=".ui.activity.DetailListItemActivity"/>
         <activity android:name=".ui.activity.CommentActivity"/>
-        <activity android:name=".ui.activity.SearchActivity"></activity>
-        <activity android:name=".ui.activity.FindRecommandActivity"></activity>
+        <activity android:name=".ui.activity.SearchInfoActivity"/>
+        <activity android:name=".ui.activity.FindRecommandActivity"/>
 
         <activity android:name=".ui.activity.UserSettingActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
-
-
-        <activity android:name=".ui.activity.HomeMsgActivity"></activity>
+        <activity android:name=".ui.activity.HomeMsgActivity"/>
+        <activity android:name=".ui.activity.TopicActivity"/>
+        <activity android:name=".ui.activity.BrandActivity"/>
 
     </application>
 

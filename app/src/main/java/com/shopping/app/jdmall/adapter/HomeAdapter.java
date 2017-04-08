@@ -12,7 +12,7 @@ import com.shopping.app.jdmall.widget.PanBannerView;
 import com.shopping.app.jdmall.widget.PanCategroyView;
 import com.shopping.app.jdmall.widget.PanMarqueeView;
 import com.shopping.app.jdmall.widget.RecommendScrollView;
-import com.shopping.app.jdmall.widget.SecondKill;
+import com.shopping.app.jdmall.widget.SecondKillView;
 
 import java.util.List;
 
@@ -79,7 +79,7 @@ public class HomeAdapter extends BaseListLoadAdapter {
         } else if (getItemViewType(position) == ITEM_TYPE_MARQUEE) {
             return new PanMarqueeView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_SCOENDKILL) {
-            return new SecondKill(getContext());
+            return new SecondKillView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_RecommendScrollView) {
             return new RecommendScrollView(getContext());
         } else if (getItemViewType(position) == ITEM_TYPE_BANNER02) {

@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.event.CameraEvent;
 import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
+import com.shopping.app.jdmall.ui.activity.SearchInfoActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -59,8 +60,10 @@ public class HomeSearchView extends RelativeLayout {
                 startPhoto();//拍照
                 break;
             case R.id.et_text:
+                getContext().startActivity(new Intent(getContext(),SearchInfoActivity.class));
                 break;
             case R.id.search:
+                getContext().startActivity(new Intent(getContext(),SearchInfoActivity.class));
                 break;
             case R.id.message:
                 openMsg();

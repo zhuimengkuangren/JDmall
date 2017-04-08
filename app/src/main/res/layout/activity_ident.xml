@@ -8,7 +8,7 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@drawable/bg_search"/>
+        android:background="#ff00ff"/>
 
     <LinearLayout
         android:layout_below="@id/tool_bar"
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/bg_search"
+                android:background="#ff00ff"
                 android:text="提交订单"/>
 
             <TextView

@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_unread"
+        android:id="@+id/iv_back"
         android:icon="@drawable/arr_boolbar_back"
         android:title="返回上一页"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_copy"
+        android:id="@+id/iv_mine"
         android:icon="@drawable/caidan_wd"
         android:title="个人中心"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_google"
+        android:id="@+id/iv_buy"
         android:icon="@drawable/buy"
         android:title="买买买"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_facebook"
+        android:id="@+id/iv_buy_car"
         android:icon="@drawable/head_cart"
         android:title="购物车"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_twitter"
+        android:id="@+id/iv_close"
         android:icon="@drawable/close_presss"
         android:title="关闭功能条"
         app:showAsAction="ifRoom" />

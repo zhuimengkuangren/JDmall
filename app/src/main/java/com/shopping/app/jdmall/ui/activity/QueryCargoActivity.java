@@ -74,7 +74,24 @@ public class QueryCargoActivity extends BaseActivity {
         mFloatingToolbar.setClickListener(new FloatingToolbar.ItemClickListener() {
             @Override
             public void onItemClick(MenuItem item) {
-                mFloatingToolbar.hide();
+                switch (item.getItemId()) {
+                    case R.id.iv_back:
+                        finish();
+                        break;
+                    case R.id.iv_mine:
+                        //跳转到minefragment
+                        break;
+                    case R.id.iv_buy:
+                        //跳转到商品购买界面
+                        break;
+                    case R.id.iv_buy_car:
+                        //跳转到购物车界面
+                        break;
+                    case R.id.iv_close:
+                        mFloatingToolbar.hide();
+                        break;
+                }
+
             }
 
             @Override

@@ -2,16 +2,15 @@ package com.shopping.app.jdmall.ui.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
+import com.shopping.app.jdmall.ui.activity.AddressManagerActivity;
 import com.shopping.app.jdmall.ui.activity.LoginPageActivity;
 import com.shopping.app.jdmall.ui.activity.OrderListActivity;
 import com.shopping.app.jdmall.ui.activity.SettingActivity;
@@ -19,7 +18,6 @@ import com.shopping.app.jdmall.ui.activity.UserSettingActivity;
 import com.shopping.app.jdmall.utils.SPUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -40,6 +38,8 @@ public class MineFragment extends BaseNotLoadDataFragment {
     @BindView(R.id.order)
     TextView order;
     Unbinder unbinder1;
+    @BindView(R.id.address_manager)
+    LinearLayout addressManager;
     private String mUsername;
 
 
@@ -68,7 +68,7 @@ public class MineFragment extends BaseNotLoadDataFragment {
         }
     }
 
-    @OnClick({R.id.user_icon, R.id.setting_icon,R.id.order})
+    @OnClick({R.id.user_icon, R.id.setting_icon, R.id.order,R.id.address_manager})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.user_icon:
@@ -89,8 +89,13 @@ public class MineFragment extends BaseNotLoadDataFragment {
                 break;
 
             case R.id.order:
-                Intent intent1 = new Intent(getContext(),OrderListActivity.class);
-                startActivity(intent1);
+                Intent orderIntent = new Intent(getContext(), OrderListActivity.class);
+                startActivity(orderIntent);
+                break;
+
+            case R.id.address_manager:
+                Intent addressIntent = new Intent(getContext(),AddressManagerActivity.class);
+                startActivity(addressIntent);
                 break;
         }
     }
@@ -113,13 +118,7 @@ public class MineFragment extends BaseNotLoadDataFragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder1 = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+
 
     @Override
     public void onDestroyView() {

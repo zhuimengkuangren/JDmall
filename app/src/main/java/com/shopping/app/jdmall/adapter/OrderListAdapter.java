@@ -13,11 +13,14 @@ import java.util.List;
  */
 
 public class OrderListAdapter extends BaseListAdapter<OrderListsBean.OrderListBean> {
+    private static final String TAG = "OrderListAdapter";
+    Context context;
     List<OrderListsBean.OrderListBean> mDataList;
+
     public OrderListAdapter(Context context, List<OrderListsBean.OrderListBean> list) {
         super(context, list);
-        mDataList = list;
     }
+
 
     @Override
     protected View onCreateView(int position) {
@@ -28,5 +31,10 @@ public class OrderListAdapter extends BaseListAdapter<OrderListsBean.OrderListBe
     @Override
     protected void onBindView(int position, View convertView) {
         ((OrderListItemView)convertView).bindView(mDataList.get(position));
+    }
+
+    public void setData(List<OrderListsBean.OrderListBean> orderList) {
+        mDataList = orderList;
+      //  Log.d(TAG, "setData: " + mDataList.get(0).getStatus());
     }
 }

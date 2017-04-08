@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,6 +55,8 @@ public class IdentActivity extends BaseActivity {
     ListView mListView;
     @BindView(R.id.address)
     AddressView mAddress;
+    @BindView(R.id.head_view)
+    LinearLayout mHeadView;
     private IdentCargoAdapter mAdapter;
     private List<FindBean.ProductListBean> mListData = new ArrayList<>();
 
@@ -77,11 +81,21 @@ public class IdentActivity extends BaseActivity {
         initLocation();
         //获取购物车里的信息
         initBuyCargo();
+
+    }
+
+    private void initMoney(ArrayList<Parcelable> dataList) {
+        //初始化购物车里面的所有数据
+
+
+
     }
 
     private void initBuyCargo() {
         Intent intent = getIntent();
         mDataList = intent.getParcelableArrayListExtra("values");
+        //获取总的金额数
+        initMoney(mDataList);
         mAdapter.setData(mDataList);
     }
 
@@ -142,4 +156,12 @@ public class IdentActivity extends BaseActivity {
     }
 
 
+    @OnClick(R.id.btn_commit)
+    public void onClick(View v) {
+        if(v == mBtnCommit) {
+            //跳转订单页面
+
+        }
+
+    }
 }

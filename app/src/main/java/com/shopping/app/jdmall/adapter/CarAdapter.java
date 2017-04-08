@@ -1,13 +1,14 @@
 package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
@@ -156,11 +157,11 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     }
 
     public void deleteData() {
-        if(mCarInfoBeanList != null && mCarInfoBeanList.size() >0){
-            for (int i = 0; i <mCarInfoBeanList.size() ; i++) {
+        if (mCarInfoBeanList != null && mCarInfoBeanList.size() > 0) {
+            for (int i = 0; i < mCarInfoBeanList.size(); i++) {
                 //删除选中的
                 CarInfoBean carInfoBean = mCarInfoBeanList.get(i);
-                if(carInfoBean.isCheck()){
+                if (carInfoBean.isCheck()) {
                     //内存中移除
                     mCarInfoBeanList.remove(carInfoBean);
 
@@ -223,7 +224,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         View itemView = View.inflate(mContext, R.layout.item_shop_car, null);
         return new ViewHolder(itemView);
     }
-
+    boolean isMin;
+    boolean isMax;
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final CarInfoBean carInfoBean = mCarInfoBeanList.get(position);
@@ -234,6 +236,12 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         //图片
         String url = Constant.HOST + carInfoBean.getProduct().getPic();
         Glide.with(mContext).load(url).into(holder.mIvGov);
+        holder.mIvGov.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "被点击了" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //标题
         holder.mTvTitle.setText(carInfoBean.getProduct().getName());
@@ -246,9 +254,13 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         List<CarInfoBean.ProductBean.ProductPropertyBean> productProperty = carInfoBean.getProduct().getProductProperty();
         for (int i = 0; i < productProperty.size(); i++) {
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = productProperty.get(i);
-            Log.d(TAG, "K= " + productPropertyBean.getK());
             if ("颜色".equals(productPropertyBean.getK())) {
                 holder.mTvColor.setText(String.format(holder.mTvColor.getText().toString(), productPropertyBean.getV()));
+                if ("红色".equals(productPropertyBean.getV())) {
+                    holder.mTvColor.setTextColor(Color.RED);
+                } else {
+                    holder.mTvColor.setTextColor(Color.GREEN);
+                }
 
             } else if ("尺码".equals(productPropertyBean.getK())) {
                 holder.mTvSize.setText(String.format(holder.mTvSize.getText().toString(), productPropertyBean.getV()));
@@ -263,7 +275,8 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         holder.mTvSingle.setText(String.format(holder.mTvSingle.getText().toString(), singlePrice));
 
         //购买数量
-        holder.mAddsubview.setValue(carInfoBean.getProdNum());
+        int prodNum = carInfoBean.getProdNum();
+        holder.mAddsubview.setValue(prodNum);
 
         //总价
         int totalPrice = singlePrice * carInfoBean.getProdNum();

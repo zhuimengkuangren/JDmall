@@ -30,6 +30,7 @@ public class CarInfoBean implements Serializable{
      * productProperty : [{"id":1,"k":"颜色","v":"红色"},{"id":2,"k":"颜色","v":"绿色"},{"id":3,"k":"尺码","v":"M"},{"id":4,"k":"尺码","v":"XXL"}]
      */
 
+
     private ProductBean product;
 
     public int getProdNum() {

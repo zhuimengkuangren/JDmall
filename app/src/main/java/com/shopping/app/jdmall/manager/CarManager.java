@@ -2,6 +2,7 @@ package com.shopping.app.jdmall.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.gson.Gson;
@@ -19,11 +20,12 @@ import java.util.List;
 
 public class CarManager {
 
+    private static final String TAG = "CarManager";
     private static final String CAR_DATA = "car_data";
     private static CarManager mCarManager;
     private final Context mContext;
-    private final SparseArray<CarInfoBean> mSparseArray;//内存缓存,优于hashmap,用商品id作为key
-
+    private final SparseArray<CarInfoBean> mSparseArray;
+    //内存缓存,优于hashmap,用(商品id*100 + 商品颜色属性*10 + 商品尺寸属性)作为key
 
 
     private CarManager(Context context) {
@@ -41,7 +43,8 @@ public class CarManager {
 
         for (int i = 0; i < Datalist.size(); i++) {
             CarInfoBean carInfoBean = Datalist.get(i);
-            mSparseArray.put(carInfoBean.getProduct().getId(), carInfoBean);
+            int beanKey = getBeanKey(carInfoBean);
+            mSparseArray.put(beanKey, carInfoBean);
         }
     }
 
@@ -66,7 +69,7 @@ public class CarManager {
     public List<CarInfoBean> getAllData() {
         ArrayList<CarInfoBean> carInfoBeanList = new ArrayList<>();
 
-        String json = SPUtils.getString(mContext, CAR_DATA,"");
+        String json = SPUtils.getString(mContext, CAR_DATA, "");
         //如果缓存存在,则转换为list
         if (!TextUtils.isEmpty(json)) {
             carInfoBeanList = new Gson().fromJson(json, new TypeToken<List<CarInfoBean>>() {
@@ -76,38 +79,71 @@ public class CarManager {
     }
 
     /**
-     * 增,删,改
+     * 用于添加购物车
      */
-   /* public void add(CarInfoBean carInfoBean) {
+    public void add(CarInfoBean carInfoBean) {
+        int key = getBeanKey(carInfoBean);
 
-        //内存中查找
-        CarInfoBean tempData = mSparseArray.get(carInfoBean.getProduct().getId());
+        CarInfoBean tempData = mSparseArray.get(key);
         if (tempData != null) {
-            tempData.setProdNum(tempData.getProdNum() + 1);
+            int totalNum = tempData.getProdNum() + carInfoBean.getProdNum();
+            if (totalNum > 10) {
+                tempData.setProdNum(10);
+            } else {
+                tempData.setProdNum(totalNum);
+            }
+
         } else {
             tempData = carInfoBean;
         }
 
         //添加到内存
-        mSparseArray.put(tempData.getProduct().getId(),tempData);
+        mSparseArray.put(key, tempData);
 
-        //同步到本地
-        saveLocal();
-    }*/
-
-    //删除数据
-    public void delele(CarInfoBean carInfoBean) {
-
-        //从内存中删除
-        mSparseArray.delete(carInfoBean.getProduct().getId());
+        Log.d(TAG, "add:size "+mSparseArray.size() +"key"+ key);
 
         //同步到本地
         saveLocal();
     }
 
+
+    /**
+     * 用于购物车内部
+     *
+     * @param carInfoBean
+     */
+    public void delele(CarInfoBean carInfoBean) {
+        int key = getBeanKey(carInfoBean);
+
+        //从内存中删除
+        mSparseArray.delete(key);
+        Log.d(TAG, "delele:size "+mSparseArray.size());
+
+
+        //同步到本地
+        saveLocal();
+    }
+
+    private int getBeanKey(CarInfoBean carInfoBean) {
+        CarInfoBean.ProductBean product = carInfoBean.getProduct();
+        List<CarInfoBean.ProductBean.ProductPropertyBean> productProperty = product.getProductProperty();
+        //第一个元素为颜色,第二个元素为尺码
+        int attrValue = productProperty.get(0).getId() * 10 + productProperty.get(1).getId();
+        return carInfoBean.getProduct().getId() * 100 + attrValue;
+    }
+
+    /**
+     * 用于购物车内部
+     *
+     * @param carInfoBean
+     */
     public void update(CarInfoBean carInfoBean) {
+
+        int key = getBeanKey(carInfoBean);
+        Log.d(TAG, "update:size "+mSparseArray.size() + "key" + key);
+
         //更新内存
-        mSparseArray.put(carInfoBean.getProduct().getId(), carInfoBean);
+        mSparseArray.put(key, carInfoBean);
 
         //同步到本地
         saveLocal();
@@ -119,7 +155,7 @@ public class CarManager {
         //list转换为json
         String json = new Gson().toJson(carInfoBeanList);
         //保存到本地
-        SPUtils.setString(mContext,CAR_DATA,json);
+        SPUtils.setString(mContext, CAR_DATA, json);
 
     }
 
@@ -131,6 +167,4 @@ public class CarManager {
         return carBeenList;
     }
 
-
 }
-

@@ -23,4 +23,5 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.shopping.app.jdmall", appContext.getPackageName());
     }
+
 }

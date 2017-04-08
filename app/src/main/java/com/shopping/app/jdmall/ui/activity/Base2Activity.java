@@ -44,8 +44,11 @@ public abstract class Base2Activity extends BaseActivity {
         setSupportActionBar(mToolBar);
         mSupportActionBar = getSupportActionBar();
         mSupportActionBar.setDisplayHomeAsUpEnabled(true);
+        mSupportActionBar.setTitle(getTitleFromSon());
         startLoadData();
     }
+
+    protected abstract String getTitleFromSon();
 
     /*@Nullable
     @Override

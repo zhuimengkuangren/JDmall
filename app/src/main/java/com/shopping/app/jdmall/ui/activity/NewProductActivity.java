@@ -52,6 +52,11 @@ public class NewProductActivity extends BaseListLoadMoreActivity {
     }
 
     @Override
+    protected String getTitleFromSon() {
+        return null;
+    }
+
+    @Override
     protected void startLoadData() {
         Call<FindBean> saleDown = JDRetrofit.getInstance().getApi().listFind(0, 10, "saleDown");
         saleDown.enqueue(new Callback<FindBean>() {

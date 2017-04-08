@@ -28,6 +28,11 @@ public class TopicActivity extends BaseListLoadMoreActivity {
     }
 
     @Override
+    protected String getTitleFromSon() {
+        return "促销快报";
+    }
+
+    @Override
     protected void startLoadData() {
         Call<TopicRenBean> topicRenBeanCall = JDRetrofit.getInstance().getApi().listTopicRen(0, 10);
         topicRenBeanCall.enqueue(new Callback<TopicRenBean>() {

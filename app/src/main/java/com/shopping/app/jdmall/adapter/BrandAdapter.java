@@ -24,4 +24,5 @@ public class BrandAdapter extends BaseListMoreAdapter<BrandRenBean.BrandBean>{
     protected ViewHolder onCreateViewHolder(int position) {
         return new ViewHolder(new BrandView(getContext()));
     }
+
 }

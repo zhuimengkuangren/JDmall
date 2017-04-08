@@ -19,6 +19,11 @@ public class HotProductActivity extends BaseListLoadMoreActivity {
     }
 
     @Override
+    protected String getTitleFromSon() {
+        return null;
+    }
+
+    @Override
     protected void startLoadData() {
 
     }

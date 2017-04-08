@@ -46,6 +46,11 @@ public class LimitBuyActivity extends BaseListLoadMoreActivity {
     }
 
     @Override
+    protected String getTitleFromSon() {
+        return "限时抢购";
+    }
+
+    @Override
     protected void startLoadData() {
         Call<LimitBuyBean> limitBuyBeanCall = JDRetrofit.getInstance().getApi().listLimitBuy(0, 10);
         limitBuyBeanCall.enqueue(new Callback<LimitBuyBean>() {

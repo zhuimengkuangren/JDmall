@@ -11,18 +11,18 @@ import java.util.List;
  * Created by Administrator on 2017/4/6.
  */
 
-public class TopicAdapter extends BaseListMoreAdapter<TopicRenBean.TopicBean> {
+public class TopicAdapter extends BaseLoadEndAdapter<TopicRenBean.TopicBean> {
     public TopicAdapter(Context context, List<TopicRenBean.TopicBean> list) {
         super(context, list);
     }
 
     @Override
-    protected void onBindViewHolder(ViewHolder viewHolder, int position) {
+    protected void onBindNormalViewHolder(ViewHolder viewHolder, int position) {
         ((TopicView)viewHolder.mView).bindView(getList().get(position));
     }
 
     @Override
-    protected ViewHolder onCreateViewHolder(int position) {
+    protected ViewHolder onCreateNormalViewHolder() {
         return new ViewHolder(new TopicView(getContext()));
     }
 }

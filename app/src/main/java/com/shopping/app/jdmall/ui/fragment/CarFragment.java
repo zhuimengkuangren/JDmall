@@ -253,7 +253,6 @@ public class CarFragment extends BaseNotLoadDataFragment {
                     productListBeen = CarToProduct(mCarInfoBeanList);
                 }
                 //验证登录状态
-
                 break;
             case R.id.btn_delete://删除
                 //删除选中

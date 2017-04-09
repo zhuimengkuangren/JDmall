@@ -40,12 +40,6 @@ import retrofit2.Response;
 
 public class IdentActivity extends BaseActivity {
     private static final String TAG = "IdentActivity";
-    int mChickIdPay = 0;
-    int mChickIdSend = 0;
-    int mPayType = 1;
-    int mSend = 1;
-    int mUserCheckId = 1;
-
 
 
     @BindView(R.id.tool_bar)
@@ -187,7 +181,7 @@ public class IdentActivity extends BaseActivity {
     @Override
     public void navigateTo(Class activity) {
         Intent intent = new Intent(this,activity);
-        intent.putExtra("result","fail");
+        intent.putExtra("result","success");
         startActivity(intent);
     }
 }

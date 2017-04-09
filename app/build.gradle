@@ -38,15 +38,13 @@ dependencies {
 
 
     compile 'com.android.support:recyclerview-v7:25+'
-
-
-
+    
 
     compile 'com.sunfusheng:marqueeview:1.0.0'
     compile 'com.github.iwgang:countdownview:2.1.3'
     compile 'com.github.open-android:PullToRefresh:v1.0'
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
-
+    compile 'com.github.uncleleonfan:ViewPagerIndicator:1.0.0'
     compile 'com.github.rubensousa:floatingtoolbar:1.4.4'
     compile 'com.android.support:design:25.3.1'
 

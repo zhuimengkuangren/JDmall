@@ -35,4 +35,9 @@ public abstract class BaseNotLoadDataFragment extends Fragment {
         Intent intent = new Intent(context,clazz);
         context.startActivity(intent);
     }
+
+    public  void toStartActivity(Class<?> tClass){
+        Intent intent = new Intent(getContext(),tClass);
+        startActivity(intent);
+    }
 }

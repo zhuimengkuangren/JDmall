@@ -32,6 +32,7 @@
         <activity android:name=".ui.activity.RegisterActivity"/>
         <activity android:name=".ui.activity.OrderListActivity"/>
         <activity android:name=".ui.activity.AddressManagerActivity"/>
+        <activity android:name=".ui.activity.CollectionActivity"/>
 
 
     </application>

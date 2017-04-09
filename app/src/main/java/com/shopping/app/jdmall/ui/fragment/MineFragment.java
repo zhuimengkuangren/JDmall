@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
+import com.shopping.app.jdmall.bean.UserBean;
+import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.ui.activity.AddressManagerActivity;
+import com.shopping.app.jdmall.ui.activity.CollectionActivity;
 import com.shopping.app.jdmall.ui.activity.LoginPageActivity;
 import com.shopping.app.jdmall.ui.activity.OrderListActivity;
 import com.shopping.app.jdmall.ui.activity.SettingActivity;
@@ -20,14 +23,18 @@ import com.shopping.app.jdmall.utils.SPUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * 我的fragment
  */
 public class MineFragment extends BaseNotLoadDataFragment {
 
-    private static final int REQUEST_CODE_LOGIN = 100;
+    private static final int REQUEST_CODE_LOGIN = 100;//登录界面返回
     private static final String TAG = "MineFragment";
+    private static final int REQUEST_CODE_ORDERLIST = 200;//订单列表界面返回
     @BindView(R.id.user_icon)
     ImageView userIcon;
     @BindView(R.id.setting_icon)
@@ -35,12 +42,23 @@ public class MineFragment extends BaseNotLoadDataFragment {
     Unbinder unbinder;
     @BindView(R.id.login_user)
     TextView loginUser;
-    @BindView(R.id.order)
-    TextView order;
-    Unbinder unbinder1;
     @BindView(R.id.address_manager)
     LinearLayout addressManager;
-    private String mUsername;
+    @BindView(R.id.order)
+    LinearLayout order;
+    @BindView(R.id.collection)
+    LinearLayout collection;
+    @BindView(R.id.shopping_notes)
+    LinearLayout shoppingNotes;
+    @BindView(R.id.look_step)
+    LinearLayout lookStep;
+    @BindView(R.id.favor)
+    LinearLayout favor;
+    @BindView(R.id.order_size)
+    TextView orderSize;
+    @BindView(R.id.favor_count)
+    TextView favorCount;
+
 
 
     @Override
@@ -50,10 +68,31 @@ public class MineFragment extends BaseNotLoadDataFragment {
 
     @Override
     public void init() {
-        //判断上次是否登陆过
-
+        //请求账户中心的数据
+    startLoadData("20428");
 
     }
+
+    private void startLoadData(String userid) {
+        Call<UserBean> call = JDRetrofit.getInstance().getApi().getUserInfo(userid);
+        call.enqueue(new Callback<UserBean>() {
+            @Override
+            public void onResponse(Call<UserBean> call, Response<UserBean> response) {
+                UserBean.UserInfoBean userInfoBean = response.body().getUserInfo();
+                //更新订单个数
+                orderSize.setText(userInfoBean.getOrderCount()+"");
+                //更新喜欢个数
+                favorCount.setText(userInfoBean.getFavoritesCount()+"");
+
+            }
+
+            @Override
+            public void onFailure(Call<UserBean> call, Throwable t) {
+
+            }
+        });
+    }
+
 
     @Override
     public void onResume() {
@@ -68,7 +107,8 @@ public class MineFragment extends BaseNotLoadDataFragment {
         }
     }
 
-    @OnClick({R.id.user_icon, R.id.setting_icon, R.id.order,R.id.address_manager})
+    @OnClick({R.id.user_icon, R.id.setting_icon, R.id.order, R.id.address_manager, R.id.collection,
+            R.id.favor })
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.user_icon:
@@ -80,23 +120,41 @@ public class MineFragment extends BaseNotLoadDataFragment {
                 } else {//否则跳转到登录界面
                     Intent intent = new Intent(getContext(), LoginPageActivity.class);
                     startActivityForResult(intent, REQUEST_CODE_LOGIN);
-                    //(intent);
+
                 }
                 break;
             case R.id.setting_icon:
-                Intent intent = new Intent(getContext(), SettingActivity.class);
-                startActivity(intent);
-                break;
 
+                //跳转到设置界面
+                toStartActivity(SettingActivity.class);
+                break;
             case R.id.order:
-                Intent orderIntent = new Intent(getContext(), OrderListActivity.class);
-                startActivity(orderIntent);
+                if(SPUtils.getString(getContext(),Constant.LOGIN_USERID,null)!=null){
+                    //跳转到订单列表界面
+                   toStartActivity(OrderListActivity.class);
+
+                }else{
+                    toStartActivity(LoginPageActivity.class);
+                }
+
+                break;
+            case R.id.address_manager:
+                if(SPUtils.getString(getContext(),Constant.LOGIN_USERID,null)!=null){
+                    //跳转到地址管理界面
+                    toStartActivity(AddressManagerActivity.class);
+                }else{
+                    toStartActivity(LoginPageActivity.class);
+                }
+
+                break;
+            case R.id.favor:
+                //跳转到喜欢界面
+                toStartActivity(CollectionActivity.class);
+                break;
+            case R.id.collection:
+                toStartActivity(CollectionActivity.class);
                 break;
 
-            case R.id.address_manager:
-                Intent addressIntent = new Intent(getContext(),AddressManagerActivity.class);
-                startActivity(addressIntent);
-                break;
         }
     }
 
@@ -109,20 +167,12 @@ public class MineFragment extends BaseNotLoadDataFragment {
                     //刷新ui
                     loginUser.setText("欢迎，用户" + username);
                 }
-
-
                 Log.d(TAG, "onActivityResult: " + username + "===============");
 
                 break;
+
         }
     }
 
 
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
 }

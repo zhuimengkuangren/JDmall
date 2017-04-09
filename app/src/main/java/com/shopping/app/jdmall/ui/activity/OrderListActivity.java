@@ -93,8 +93,6 @@ public class OrderListActivity extends BaseActivity {
                 OrderListAdapter orderListAdapter = new OrderListAdapter(OrderListActivity.this,mDataList);
                 orderListAdapter.setData(mDataList);
                 listview.setAdapter(orderListAdapter);
-
-
             }
 
             @Override

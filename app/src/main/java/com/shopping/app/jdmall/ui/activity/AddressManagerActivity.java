@@ -1,5 +1,6 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -76,20 +77,6 @@ public class AddressManagerActivity extends BaseActivity {
                         }
                     };
                     listView.setAdapter(mAddressAdapter);
-//                    try {
-//                        String json = response.body().string();
-//                        Log.d(TAG, "onResponse: " + json);
-//                        Gson gson = new Gson();
-//                        dataList = gson.fromJson(json,
-//                                new TypeToken<List<AddressBean>>() {
-//                                }.getType());
-//
-//
-////                        AddressBean addressBean = GsonUtils.fromJson(json,AddressBean.class);
-////                        mDataList = addressBean.getAddressList();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
                 }
 
                 @Override
@@ -99,8 +86,17 @@ public class AddressManagerActivity extends BaseActivity {
             });
     }
 
-    @OnClick(R.id.add_address)
-    public void onViewClicked() {
-        finish();
+    @OnClick({R.id.add_address,R.id.back})
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+            case R.id.back:
+                finish();
+                break;
+            case R.id.add_address:
+                //跳转到新增收货地址界面
+                Intent intent = new Intent(this,AddAddressActivity.class);
+                break;
+        }
+
     }
 }

@@ -293,7 +293,7 @@ public class MainActivity extends BaseActivity {
 
                 HomeFragment homeFragment = (HomeFragment)getFragment("HomeFragment", homeTagId);
                 homeFragment.stratAlphaAnimation();
-                Toast.makeText(this, "这里走了吗", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "上拉刷新了吗", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

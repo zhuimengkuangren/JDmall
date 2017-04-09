@@ -178,9 +178,16 @@ public class IdentActivity extends BaseActivity {
     @OnClick(R.id.btn_commit)
     public void onClick(View v) {
         if(v == mBtnCommit) {
-            //跳转订单页面
-
+            //跳转订单结果界面
+            navigateTo(OrderCommitSuccessActivity.class);
         }
 
+    }
+
+    @Override
+    public void navigateTo(Class activity) {
+        Intent intent = new Intent(this,activity);
+        intent.putExtra("result","fail");
+        startActivity(intent);
     }
 }

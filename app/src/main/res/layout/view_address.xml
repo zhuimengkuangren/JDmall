@@ -6,7 +6,7 @@
               android:layout_height="wrap_content">
 
     <ImageView
-        android:src="@drawable/aff"
+        android:src="@drawable/icon_location"
         android:padding="@dimen/size_large"
         android:layout_width="60dp"
         android:layout_height="match_parent"/>

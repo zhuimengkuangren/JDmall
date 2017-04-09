@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    >
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="状态：未处理"
+            />
+    <TextView
+        android:id="@+id/order_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单编号110110110"
+        />
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <TextView
+           android:id="@+id/date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="时间：20170408"/>
+       <TextView
+           android:id="@+id/total_price"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="实付款：¥250"
+           android:layout_alignParentRight="true"
+           />
+
+   </RelativeLayout>
+
+
+
+</LinearLayout>

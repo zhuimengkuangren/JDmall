@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
+              android:gravity="center_vertical"
               android:layout_height="wrap_content"
               android:background="@drawable/amk"
               android:orientation="horizontal"
               android:padding="@dimen/size_middle">
 
     <ImageView
+        android:id="@+id/iv_icon"
         android:layout_width="60dp"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
         android:padding="@dimen/size_middle"
         android:src="@drawable/icon_member_area_deafult"/>
 
@@ -32,7 +34,7 @@
             android:layout_marginTop="@dimen/size_middle">
 
             <TextView
-                android:id="@+id/tv_address"
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -41,6 +43,7 @@
                 android:textColor="#ff00ff"/>
 
             <TextView
+                android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.shopping.app.jdmall">
 
-    <permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".app.JDApplication"
@@ -38,6 +42,9 @@
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.OrderListActivity"/>
+        <activity android:name=".ui.activity.AddressManagerActivity"/>
+        <activity android:name=".ui.activity.CollectionActivity"/>
 
         <activity android:name=".ui.activity.HomeMsgActivity"/>
         <activity android:name=".ui.activity.TopicActivity"/>
@@ -45,6 +52,11 @@
 
         <activity android:name=".adapter.ImageViewActivity"/>
         <activity android:name=".ui.activity.SalesActivity"/>
+
+        <activity android:name=".ui.activity.OrderCommitSuccessActivity"></activity>
+
+        <activity android:name=".ui.activity.TempImageActivity"/>
+
 
     </application>
 

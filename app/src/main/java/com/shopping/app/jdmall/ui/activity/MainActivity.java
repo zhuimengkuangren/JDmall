@@ -8,14 +8,15 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.event.CameraEvent;
 import com.shopping.app.jdmall.event.FragmentEvent;
+import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.ui.fragment.CarFragment;
 import com.shopping.app.jdmall.ui.fragment.CategoryFragment;
 import com.shopping.app.jdmall.ui.fragment.FindFragment;
@@ -31,7 +32,7 @@ import java.io.File;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
-
+    private static final String TAG = "MainActivity";
 
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
@@ -86,6 +87,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -94,11 +96,13 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 监听Fragment的事件
+     * 监听Fragment的跳转事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onFragmentEvent(FragmentEvent fragmentEvent) {
-
+    public void onFragmentSwitchEvent(FragmentEvent fragmentEvent) {
+        int fragmentId = fragmentEvent.getFragmentId();
+        String fragmentTab = fragmentEvent.getFragmentTab();
+        mTabContainer.check(fragmentId);
     }
 
     private void initListener() {
@@ -109,6 +113,7 @@ public class MainActivity extends BaseActivity {
         mTabContainer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Log.d(TAG, "onCheckedChanged: " + checkedId);
                 switchTab(checkedId);
             }
         });
@@ -120,6 +125,7 @@ public class MainActivity extends BaseActivity {
      * @param tabId
      */
     private void switchTab(int tabId) {
+        Log.d(TAG, "switchTab: " + "切换" + tabId);
         FragmentTransaction ft = mFragmentManager.beginTransaction();
 
         //找出已经保存的fragment
@@ -274,19 +280,27 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-
     /**
      * 通过EvenBus接收RecommendScrollView传过来的信息,实现打开相机功能
      * MAIN线程模型：不管是哪个线程发布事件，都在主线程执行onMainEvent方法
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEvent(CameraEvent event) {
+    public void onMainEvent(HomeEvent event) {
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        file = new File(Environment.getExternalStorageDirectory(),System.currentTimeMillis() + ".jpg");
-        //指定拍照完成保存文件到哪里
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        switch (event.getEvent()) {
+            case "Camera":
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                file = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+                //指定拍照完成保存文件到哪里
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                break;
+            case "Alpha":
+
+                HomeFragment homeFragment = (HomeFragment)getFragment("HomeFragment", homeTagId);
+                homeFragment.stratAlphaAnimation();
+                Toast.makeText(this, "上拉刷新了吗", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

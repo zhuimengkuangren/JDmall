@@ -1,25 +1,27 @@
 package com.shopping.app.jdmall.network;
 
 
+import com.shopping.app.jdmall.bean.AddressBean;
 import com.shopping.app.jdmall.bean.BannerBean;
-
 import com.shopping.app.jdmall.bean.BrandRenBean;
-
 import com.shopping.app.jdmall.bean.BuyCarBean;
-
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
+import com.shopping.app.jdmall.bean.CollectionBean;
 import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
 
+import com.shopping.app.jdmall.bean.LocationBean;
+import com.shopping.app.jdmall.bean.OrderBean;
+import com.shopping.app.jdmall.bean.SaleBean;
 import com.shopping.app.jdmall.bean.TopicRenBean;
-
-
-
+import com.shopping.app.jdmall.bean.UserBean;
 
 import com.shopping.app.jdmall.bean.SaleBean;
+import com.shopping.app.jdmall.bean.SearchRecommentBean;
+import com.shopping.app.jdmall.bean.TopicRenBean;
 
 
 import okhttp3.ResponseBody;
@@ -27,6 +29,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -93,9 +96,31 @@ public interface Api {
     @GET("brand")
     Call<BrandRenBean> listBrandRen();
 
+
+    @GET("orderlist")
+    Call<OrderBean> getOrderList(@Header("userid") String userid, @Query("type") int type, @Query("page") int page, @Query("pageNum") int pageNum);
+
+    @GET("addresslist")
+    Call<AddressBean> getAddressList(@Header("userid") String userid);
+    @GET("userinfo")
+    Call<UserBean> getUserInfo(@Header("userid") String userid);
+
+    @GET("favorites")
+    Call<CollectionBean> getFavorList(@Query("page") int page,@Query("pageNum") int pageNum);
+
     @GET("product")
     Call<BuyCarBean> listBuyCar(@Query("pId") int pld);
 
 
 
+
+    @GET("addresslist")
+    Call<LocationBean> listLocation(@Header("userid") String userid);
+
+
+    //搜索推荐
+    @GET("search/recommend")
+    Call<SearchRecommentBean> listSearchRecommend();
+
 }
+

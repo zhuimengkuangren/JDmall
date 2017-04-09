@@ -4,6 +4,7 @@
               android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/ll_01"
         android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -28,6 +29,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_02"
         android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -52,6 +54,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_03"
         android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -76,6 +79,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_04"
         android:background="@mipmap/a40"
         android:layout_width="0dp"
         android:layout_weight="1"

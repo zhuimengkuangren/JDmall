@@ -10,6 +10,7 @@ import com.sunfusheng.marqueeview.MarqueeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -17,14 +18,17 @@ import butterknife.ButterKnife;
  */
 
 public class PanMarqueeView extends RelativeLayout {
+    @BindView(R.id.marqueeView)
+    MarqueeView mMarqueeView;
+
     public PanMarqueeView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public PanMarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        inflate(getContext(), R.layout.view_marquee,this);
-        ButterKnife.bind(this,this);
+        inflate(getContext(), R.layout.view_marquee, this);
+        ButterKnife.bind(this, this);
         init();
     }
 

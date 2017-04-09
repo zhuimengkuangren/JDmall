@@ -1,6 +1,8 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.Toast;
 
@@ -8,7 +10,10 @@ import com.itheima.pulltorefreshlib.PullToRefreshBase;
 import com.itheima.pulltorefreshlib.PullToRefreshListView;
 import com.shopping.app.jdmall.adapter.HomeAdapter;
 import com.shopping.app.jdmall.bean.BannerBean;
+import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.network.JDRetrofit;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -64,6 +69,7 @@ public class HomePullToRefreshList extends PullToRefreshListView {
         mHomeHeadBanner = new HomeHeadBanner(getContext());
         mHomeHeadBanner.bindView(mBannerBean);
         getRefreshableView().addHeaderView(mHomeHeadBanner);
+        setBackground(new ColorDrawable(Color.WHITE));
     }
 
 
@@ -71,6 +77,7 @@ public class HomePullToRefreshList extends PullToRefreshListView {
         @Override
         public void onPullDownToRefresh(PullToRefreshBase pullToRefreshBase) {
 
+            EventBus.getDefault().post(new HomeEvent("Alpha"));
             loadDatas();
             Toast.makeText(getContext(), "数据刷新成功", Toast.LENGTH_SHORT).show();
             post(new Runnable() {
@@ -79,6 +86,7 @@ public class HomePullToRefreshList extends PullToRefreshListView {
                     onRefreshComplete();
                 }
             });
+
         }
 
         @Override

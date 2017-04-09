@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.event.CameraEvent;
+import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
 import com.shopping.app.jdmall.ui.activity.SearchInfoActivity;
 
@@ -74,7 +74,7 @@ public class HomeSearchView extends RelativeLayout {
 
     //通过EvenBus发送一个消息给mainActivity,让mainActivity去实现打开相机功能
     private void startPhoto() {
-        EventBus.getDefault().post(new CameraEvent());
+        EventBus.getDefault().post(new HomeEvent("Camera"));
     }
 
     private void openMsg() {

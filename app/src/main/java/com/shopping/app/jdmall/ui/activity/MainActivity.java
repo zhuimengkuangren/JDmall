@@ -14,8 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.event.CameraEvent;
 import com.shopping.app.jdmall.event.FragmentEvent;
+import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.ui.fragment.CarFragment;
 import com.shopping.app.jdmall.ui.fragment.CategoryFragment;
 import com.shopping.app.jdmall.ui.fragment.FindFragment;
@@ -274,19 +274,27 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-
     /**
      * 通过EvenBus接收RecommendScrollView传过来的信息,实现打开相机功能
      * MAIN线程模型：不管是哪个线程发布事件，都在主线程执行onMainEvent方法
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMainEvent(CameraEvent event) {
+    public void onMainEvent(HomeEvent event) {
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        file = new File(Environment.getExternalStorageDirectory(),System.currentTimeMillis() + ".jpg");
-        //指定拍照完成保存文件到哪里
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        switch (event.getEvent()) {
+            case "Camera":
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                file = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+                //指定拍照完成保存文件到哪里
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                break;
+            case "Alpha":
+
+                HomeFragment homeFragment = (HomeFragment)getFragment("HomeFragment", homeTagId);
+                homeFragment.stratAlphaAnimation();
+                Toast.makeText(this, "这里走了吗", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }

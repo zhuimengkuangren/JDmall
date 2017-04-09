@@ -34,9 +34,9 @@ public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
     public int getCount() {
         if(mDataList != null) {
 //            return mDataList.size() + 5;
-            return 7;
+            return 10;
         }
-        return 7;
+        return 10;
     }
 
     @Override

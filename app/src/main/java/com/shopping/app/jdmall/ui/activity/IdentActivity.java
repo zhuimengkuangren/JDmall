@@ -1,17 +1,14 @@
 package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -47,6 +44,7 @@ public class IdentActivity extends BaseActivity {
     int mChickIdSend = 0;
     int mPayType = 1;
     int mSend = 1;
+    int mUserCheckId = 1;
 
 
 
@@ -140,70 +138,9 @@ public class IdentActivity extends BaseActivity {
     private void initListView() {
         mAdapter = new SumbitCargoTypeAdapter(this, mListData);
         mListView.setAdapter(mAdapter);
-        Log.d(TAG, "onItemClick: =="+mDataList);
         mDataList = new ArrayList<>();
-        Log.d(TAG, "onItemClick: =="+mDataList);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: =="+mDataList);
-                int subItemPos = position - 2;
-                if (subItemPos == 0 || subItemPos == 1) {
-                    createDialog(subItemPos);
-                }
-            }
-        });
     }
 
-    private void createDialog(int pos) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        switch (pos) {
-            case 0:
-                builder.setTitle("支付方式");
-                builder.setSingleChoiceItems(new String[]{"到付-现金","到付-POS机","支付宝"}, mChickIdPay, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        switch (which) {
-                            case 0:
-                                mPayType = 1;
-                                break;
-                            case 1:
-                                mPayType = 2;
-                                break;
-                            case 2:
-                                mPayType = 3;
-                                break;
-                        }
-                        mChickIdPay = which;
-                    }
-                });
-                break;
-            case 1:
-                builder.setTitle("配送时间");
-                builder.setSingleChoiceItems(new String[]{"周一至周五送货","双休日及公众假期送货","时间不限，工作日双休日及公众假期均可送货"}, mChickIdSend, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        switch (which) {
-                            case 0:
-                                mSend = 1;
-                                break;
-                            case 1:
-                                mSend = 2;
-                                break;
-                            case 2:
-                                mSend = 3;
-                                break;
-                        }
-                        mChickIdSend = which;
-                    }
-                });
-                break;
-        }
-        builder.show();
-
-    }
 
 
     private void initToolBar() {

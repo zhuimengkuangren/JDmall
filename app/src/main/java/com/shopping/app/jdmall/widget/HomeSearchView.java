@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.shopping.app.jdmall.R;
-import com.shopping.app.jdmall.event.CameraEvent;
+import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
 import com.shopping.app.jdmall.ui.activity.SearchInfoActivity;
 
@@ -42,7 +42,7 @@ public class HomeSearchView extends RelativeLayout {
 
     public HomeSearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        inflate(getContext(), R.layout.view_serach, this);
+        inflate(getContext(), R.layout.view_home_serach, this);
         ButterKnife.bind(this, this);
         init();
 
@@ -52,7 +52,7 @@ public class HomeSearchView extends RelativeLayout {
 
     }
 
-
+    private static final String TAG = "HomeSearchView";
     @OnClick({R.id.camera, R.id.et_text, R.id.search, R.id.message})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -74,7 +74,7 @@ public class HomeSearchView extends RelativeLayout {
 
     //通过EvenBus发送一个消息给mainActivity,让mainActivity去实现打开相机功能
     private void startPhoto() {
-        EventBus.getDefault().post(new CameraEvent());
+        EventBus.getDefault().post(new HomeEvent("Camera"));
     }
 
     private void openMsg() {

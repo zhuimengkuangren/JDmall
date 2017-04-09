@@ -5,10 +5,14 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.utils.SPUtils;
 
 import butterknife.BindView;
+
+import static com.shopping.app.jdmall.app.JDApplication.getContext;
 
 /**
  * Created by Administrator on 2017/4/5.
@@ -22,6 +26,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected int getLayoutResId() {
+        SpeechUtility.createUtility(getContext(), SpeechConstant.APPID + "=58e88588");
         return R.layout.activity_splash;
     }
 

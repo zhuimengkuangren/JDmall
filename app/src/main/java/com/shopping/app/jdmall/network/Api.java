@@ -12,11 +12,17 @@ import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+
 import com.shopping.app.jdmall.bean.LocationBean;
 import com.shopping.app.jdmall.bean.OrderBean;
 import com.shopping.app.jdmall.bean.SaleBean;
 import com.shopping.app.jdmall.bean.TopicRenBean;
 import com.shopping.app.jdmall.bean.UserBean;
+
+import com.shopping.app.jdmall.bean.SaleBean;
+import com.shopping.app.jdmall.bean.SearchRecommentBean;
+import com.shopping.app.jdmall.bean.TopicRenBean;
+
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -107,9 +113,14 @@ public interface Api {
 
 
 
+
     @GET("addresslist")
     Call<LocationBean> listLocation(@Header("userid") String userid);
 
+
+    //搜索推荐
+    @GET("search/recommend")
+    Call<SearchRecommentBean> listSearchRecommend();
 
 }
 

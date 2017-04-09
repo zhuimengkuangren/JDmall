@@ -7,6 +7,8 @@
     <dimen name="textsize_normal">17dp</dimen>
     <dimen name="size_smaller">4dp</dimen>
     <dimen name="size_middle">8dp</dimen>
+    <dimen name="padding">10dp</dimen>
+
     <dimen name="size_large">15dp</dimen>
     <dimen name="right_view">100dp</dimen>
 </resources>

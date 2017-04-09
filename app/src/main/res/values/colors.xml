@@ -12,5 +12,9 @@
     <color name="red">#C10826</color>
     <color name="colorGreen">#00ff00</color>
     <color name="purple">#ff00ff</color>
+
     <color name="yellow">#FADB78</color>
+
+    <color name="search">#ffffff</color>
+
 </resources>

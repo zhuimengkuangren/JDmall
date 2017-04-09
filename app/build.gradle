@@ -37,6 +37,7 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
 
 
+
     compile 'com.android.support:recyclerview-v7:25+'
 
 
@@ -52,12 +53,13 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
 
     compile 'com.bm.photoview:library:1.4.1'
-
-
     compile 'com.android.support:recyclerview-v7:25+'
-
     compile 'de.hdodenhof:circleimageview:2.1.0'
+
+
+
+
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.solidfire.code.gson:gson:2.6.2'
 }
-
-
 

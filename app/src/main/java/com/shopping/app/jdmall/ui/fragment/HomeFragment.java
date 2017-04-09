@@ -1,13 +1,14 @@
 package com.shopping.app.jdmall.ui.fragment;
 
 
-import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.FrameLayout;
 
-import com.shopping.app.jdmall.bean.BannerBean;
 import com.shopping.app.jdmall.bean.CategoryItemBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.widget.HomePullToRefreshList;
+import com.shopping.app.jdmall.widget.HomeSearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,8 @@ import retrofit2.Response;
  */
 public class HomeFragment extends BaseFragment {
 
-
-    private BannerBean mBannerBean;
     private CategoryItemBean mCategoryItemBean;
+    private HomeSearchView mHomeSearchView;
 
     @Override
     protected void startLoadData() {
@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private static final String TAG = "HomeFragment";
+
     @Override
     protected View onCreateContentView() {
         List<List<CategoryItemBean.CategoryBean>> parent = new ArrayList<>();
@@ -54,16 +54,28 @@ public class HomeFragment extends BaseFragment {
 
 
         for (int i = 0; i < beanList.size(); i++) {
-            if(i % 5 == 0){
+            if (i % 5 == 0) {
                 child = new ArrayList<>();
                 parent.add(child);
             }
             child.add(beanList.get(i));
         }
-        Log.d(TAG, "onCreateContentView: " + parent.size() + "=====" +child.size());
 
-        HomePullToRefreshList homePullToRefreshList = new HomePullToRefreshList(getContext(),parent,0);
-        return homePullToRefreshList;
+        HomePullToRefreshList homePullToRefreshList = new HomePullToRefreshList(getContext(), parent, 0);
+
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.addView(homePullToRefreshList);
+        mHomeSearchView = new HomeSearchView(getContext());
+        frameLayout.addView(mHomeSearchView);
+
+        return frameLayout;
+    }
+
+
+    //搜索栏实现透明动画功能
+    public void stratAlphaAnimation(){
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1,0);
+        mHomeSearchView.startAnimation(alphaAnimation);
     }
 
 }

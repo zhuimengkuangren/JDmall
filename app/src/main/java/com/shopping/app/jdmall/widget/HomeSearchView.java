@@ -13,6 +13,7 @@ import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.event.HomeEvent;
 import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
 import com.shopping.app.jdmall.ui.activity.SearchInfoActivity;
+import com.shopping.app.jdmall.ui.activity.TestScanActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -57,7 +58,7 @@ public class HomeSearchView extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.camera:
-                startPhoto();//拍照
+                getContext().startActivity(new Intent(getContext(), TestScanActivity.class));
                 break;
             case R.id.et_text:
                 getContext().startActivity(new Intent(getContext(),SearchInfoActivity.class));

@@ -48,7 +48,7 @@ public class HomeFragment extends BaseFragment {
             startActivity(intent);
 */
             Toast.makeText(getContext(),"向用户请求权限",Toast.LENGTH_SHORT).show();
-            ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.RECORD_AUDIO},0);
+            ActivityCompat.requestPermissions(getActivity(),new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO},0);
         }
     }
 
@@ -57,7 +57,13 @@ public class HomeFragment extends BaseFragment {
         super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         if(requestCode == 0) {
             if(grantResults[0] == PackageManager.PERMISSION_DENIED) {
-                Toast.makeText(getContext(),"用户拒绝了权限请求",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"用户拒绝了相机权限",Toast.LENGTH_SHORT).show();
+            }
+            if(grantResults[1] == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(getContext(),"用户拒绝了写内存卡权限",Toast.LENGTH_SHORT).show();
+            }
+            if(grantResults[2] == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(getContext(),"用户拒绝了录音权限",Toast.LENGTH_SHORT).show();
             }
         }
     }

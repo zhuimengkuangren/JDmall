@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.leon.loopviewpagerlib.CirclePageIndicator;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
@@ -20,6 +19,7 @@ import com.shopping.app.jdmall.widget.DetailBottomView;
 import com.shopping.app.jdmall.widget.DetailInfoView;
 import com.shopping.app.jdmall.widget.DetailTalkView;
 import com.shopping.app.jdmall.widget.PopupView;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

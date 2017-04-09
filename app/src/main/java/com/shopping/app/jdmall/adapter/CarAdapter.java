@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,7 +15,9 @@ import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.CarInfoBean;
+import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.manager.CarManager;
+import com.shopping.app.jdmall.ui.activity.DetailListItemActivity;
 import com.shopping.app.jdmall.widget.AddSubView;
 
 import java.util.List;
@@ -31,14 +34,16 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
 
     private final Context mContext;
     private List<CarInfoBean> mCarInfoBeanList;
+    private List<FindBean.ProductListBean> mProductList;
     private TextView mCarTotal;
     private CheckBox mCheckboxAll;
     private CheckBox mCbAll;
     private OnItemClickListener mOnItemClickListener;
 
-    public CarAdapter(Context context, List<CarInfoBean> carInfoBeanList, TextView carTotal, CheckBox checkboxAll, CheckBox cbAll) {
+    public CarAdapter(Context context, List<CarInfoBean> carInfoBeanList, List<FindBean.ProductListBean> productList, TextView carTotal, CheckBox checkboxAll, CheckBox cbAll) {
         mContext = context;
         mCarInfoBeanList = carInfoBeanList;
+        mProductList = productList;
         mCarTotal = carTotal;
         mCheckboxAll = checkboxAll;//完成状态的checkbox
         mCbAll = cbAll;//编辑状态的checkbox
@@ -239,6 +244,10 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
         holder.mIvGov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //跳转详情
+                Intent intent = new Intent(mContext, DetailListItemActivity.class);
+                intent.putExtra("values",mProductList.get(position));
+                mContext.startActivity(intent);
                 Toast.makeText(mContext, "被点击了" + position, Toast.LENGTH_SHORT).show();
             }
         });

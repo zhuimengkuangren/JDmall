@@ -11,16 +11,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        >
 
         <CheckBox
             android:id="@+id/cb_gov"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/car_checkbox_selector"
-            android:button="@null"
-            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="false"
             android:gravity="center_vertical"
             android:visibility="visible"/>
@@ -47,7 +43,7 @@
                 android:ellipsize="end"
                 android:text="嘿嘿嘿"
                 android:textColor="#747474"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,7 +58,7 @@
                     android:ellipsize="end"
                     android:text="颜色: %s"
                     android:textColor="#747474"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
                 <TextView
                     android:layout_marginLeft="8dp"
@@ -73,7 +69,7 @@
                     android:ellipsize="end"
                     android:text="尺码: %s"
                     android:textColor="#747474"
-                    android:textSize="14sp"/>
+                    android:textSize="12sp"/>
 
             </LinearLayout>
 
@@ -86,7 +82,7 @@
                 android:ellipsize="end"
                 android:text="每个ID限购: %s件"
                 android:textColor="#747474"
-                android:textSize="14sp"/>
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/tv_soh"
@@ -96,7 +92,7 @@
                 android:ellipsize="end"
                 android:text="库存数量: %s件"
                 android:textColor="#747474"
-                android:textSize="14sp"/>
+                android:textSize="12sp"/>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -107,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="40dp"/>
+                    android:layout_marginTop="30dp"/>
 
                 <TextView
                     android:id="@+id/tv_single"

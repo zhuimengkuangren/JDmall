@@ -60,110 +60,105 @@
                 android:layout_weight="1"
                 android:background="@android:color/white"
                 />
-        </LinearLayout>
 
-        <!--结算-->
+            <!--结算-->
 
-        <LinearLayout
-            android:id="@+id/ll_check_all"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bottom_tab_bg"
-            android:orientation="horizontal"
-            android:visibility="visible">
-
-            <CheckBox
-                android:id="@+id/checkbox_all"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_check_all"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:button="@null"
-                android:drawableLeft="@drawable/car_checkbox_selector"
-                android:drawablePadding="10dp"
-                android:padding="10dp"
-                android:paddingLeft="0dp"
-                android:text="全选"
-                android:textColor="#303235"
-                android:textSize="15sp"/>
+                android:layout_gravity="bottom"
+                android:background="@drawable/bottom_tab_bg"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
-            <TextView
-                android:layout_marginLeft="50dp"
-                android:layout_width="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkbox_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:paddingLeft="0dp"
+                    android:text="全选"
+                    android:textColor="#303235"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:layout_marginLeft="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="合计:"
+                    android:textColor="#303235"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/car_total"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="¥0.00"
+                    android:textColor="#ed3f3f"
+                    android:textSize="15sp"/>
+
+                <Button
+                    android:id="@+id/btn_check_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ed3f3f"
+                    android:text="去结算"
+                    android:textColor="#fff"/>
+
+            </LinearLayout>
+
+
+            <!--删除-->
+            <LinearLayout
+                android:id="@+id/ll_delete"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="合计:"
-                android:textColor="#303235"
-                android:textSize="15sp"/>
+                android:layout_gravity="bottom"
+                android:background="@drawable/bottom_tab_bg"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:visibility="gone">
 
-            <TextView
-                android:id="@+id/car_total"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="¥0.00"
-                android:textColor="#ed3f3f"
-                android:textSize="15sp"/>
+                <CheckBox
+                    android:id="@+id/cb_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:paddingLeft="0dp"
+                    android:text="全选"
+                    android:textColor="#303235"
+                    android:textSize="15sp"/>
 
-            <Button
-                android:id="@+id/btn_check_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ed3f3f"
-                android:text="去结算"
-                android:textColor="#fff"/>
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:text="删除"
+                    android:background="#33000000"
+                    android:textColor="#fff"
+                    android:textSize="15sp"/>
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btn_collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="#ed3f3f"
+                    android:text="收藏"
+                    android:textColor="#fff"
+                    android:textSize="15sp"/>
 
-
-        <!--删除-->
-        <LinearLayout
-            android:id="@+id/ll_delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bottom_tab_bg"
-            android:orientation="horizontal"
-            android:padding="5dp"
-
-            android:visibility="gone">
-
-            <CheckBox
-                android:id="@+id/cb_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawableLeft="@drawable/car_checkbox_selector"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:paddingLeft="0dp"
-                android:text="全选"
-                android:textColor="#303235"
-                android:textSize="15sp"/>
-
-            <Button
-                android:id="@+id/btn_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:text="删除"
-                android:background="#33000000"
-                android:textColor="#fff"
-                android:textSize="15sp"/>
-
-            <Button
-                android:id="@+id/btn_collection"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="#ed3f3f"
-                android:text="收藏"
-                android:textColor="#fff"
-                android:textSize="15sp"/>
+            </LinearLayout>
 
         </LinearLayout>
-
 
         <!--数据为空时显示的布局-->
         <include layout="@layout/enpty_car"></include>

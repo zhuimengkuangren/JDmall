@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,7 +32,7 @@ import java.io.File;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
-
+    private static final String TAG = "MainActivity";
 
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
@@ -86,6 +87,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -94,11 +96,13 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 监听Fragment的事件
+     * 监听Fragment的跳转事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onFragmentEvent(FragmentEvent fragmentEvent) {
-
+    public void onFragmentSwitchEvent(FragmentEvent fragmentEvent) {
+        int fragmentId = fragmentEvent.getFragmentId();
+        String fragmentTab = fragmentEvent.getFragmentTab();
+        mTabContainer.check(fragmentId);
     }
 
     private void initListener() {
@@ -109,6 +113,7 @@ public class MainActivity extends BaseActivity {
         mTabContainer.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                Log.d(TAG, "onCheckedChanged: " + checkedId);
                 switchTab(checkedId);
             }
         });
@@ -120,6 +125,7 @@ public class MainActivity extends BaseActivity {
      * @param tabId
      */
     private void switchTab(int tabId) {
+        Log.d(TAG, "switchTab: " + "切换" + tabId);
         FragmentTransaction ft = mFragmentManager.beginTransaction();
 
         //找出已经保存的fragment

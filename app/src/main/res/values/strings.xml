@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">JDMall</string>
+    <string name="title1">全部订单</string>
+    <string name="title2">10分钟前订单</string>
+    <string name="title3">10分钟内订单</string>
+    <string name="title4">取消的订单</string>
 
 </resources>

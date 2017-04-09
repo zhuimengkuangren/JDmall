@@ -38,6 +38,9 @@
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
         <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.OrderListActivity"/>
+        <activity android:name=".ui.activity.AddressManagerActivity"/>
+        <activity android:name=".ui.activity.CollectionActivity"/>
 
         <activity android:name=".ui.activity.HomeMsgActivity"/>
         <activity android:name=".ui.activity.TopicActivity"/>

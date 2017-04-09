@@ -14,10 +14,13 @@ public abstract class BasePagerAdapter extends PagerAdapter {
     public Context mContext;
     public int[] mList;
 
+
     public BasePagerAdapter(Context context,int[] list){
         mContext = context;
         mList = list;
     }
+
+
     @Override
     public int getCount() {
         if (mList != null){
@@ -41,6 +44,7 @@ public abstract class BasePagerAdapter extends PagerAdapter {
         container.removeView((View) object);
     }
 
-    abstract View CreatePagerView(ViewGroup container,int position);
+
+    abstract View CreatePagerView(ViewGroup container, int position);
 
 }

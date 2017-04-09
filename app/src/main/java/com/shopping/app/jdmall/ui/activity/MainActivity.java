@@ -1,6 +1,10 @@
 package com.shopping.app.jdmall.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.event.CameraEvent;
 import com.shopping.app.jdmall.event.FragmentEvent;
 import com.shopping.app.jdmall.ui.fragment.CarFragment;
 import com.shopping.app.jdmall.ui.fragment.CategoryFragment;
@@ -21,11 +26,12 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
+
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
-    //wwh在mainactivity增加一个注解
 
     //fragment的标记
     public static final String homeFragmentTag = "HomeFragment";
@@ -40,6 +46,7 @@ public class MainActivity extends BaseActivity {
     public static final int findTagId = R.id.tab_find;
     public static final int carTagId = R.id.tab_car;
     public static final int mineTagId = R.id.tab_mine;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 
 
     @BindView(R.id.fragment_container)
@@ -50,6 +57,7 @@ public class MainActivity extends BaseActivity {
     private FragmentManager mFragmentManager;
     private long lastBackTime;//最后一次点击back的时间
     private int currentTabId = homeTagId;//当前显示的tab ID,默认初始化为home
+    private File file;
 
     @Override
     protected int getLayoutResId() {
@@ -67,7 +75,7 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState == null) {
             Fragment fragment = new HomeFragment();
             mFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment, homeFragmentTag).commit();//replace会重新刷新
+                    .replace(R.id.fragment_container, fragment, homeFragmentTag).commit();//replace会重新刷新view视图
         }
 
         //初始化监听器
@@ -145,7 +153,7 @@ public class MainActivity extends BaseActivity {
                     homeFragment = new HomeFragment();
                     ft.add(R.id.fragment_container, homeFragment, homeFragmentTag);//添加fragment和标记
                 } else {
-                    ft.show(homeFragment);//不会重新刷新,保留之前的页面状态
+                    ft.show(homeFragment);//不会重新刷新view视图,保留之前的页面状态
                 }
                 break;
             case categoryTagId:
@@ -266,4 +274,19 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+
+
+    /**
+     * 通过EvenBus接收RecommendScrollView传过来的信息,实现打开相机功能
+     * MAIN线程模型：不管是哪个线程发布事件，都在主线程执行onMainEvent方法
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEvent(CameraEvent event) {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        file = new File(Environment.getExternalStorageDirectory(),System.currentTimeMillis() + ".jpg");
+        //指定拍照完成保存文件到哪里
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
 }

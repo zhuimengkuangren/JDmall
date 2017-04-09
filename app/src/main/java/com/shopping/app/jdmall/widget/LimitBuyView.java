@@ -14,9 +14,8 @@ import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
 
-import java.util.List;
-
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -47,25 +46,21 @@ public class LimitBuyView extends RelativeLayout {
 
     private void initData() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_limit_buy, this);
-    }
-
-    public void bindView(LimitBuyBean flashSaleBean) {
-        List<LimitBuyBean.ProductListBean> productList =
-                flashSaleBean.getProductList();
-        for (int i = 0; i < productList.size(); i++) {
-            LimitBuyBean.ProductListBean productListBean = productList.get(i);
-            String name = productListBean.getName();
-            mCommodityName.setText(name);
-            mEndTime.setText(productListBean.getLeftTime());
-            mBuyPrice.setText(productListBean.getPrice());
-            Glide.with(getContext()).load(Constant.HOST+productListBean.getPic()).into(mImageView);
-        }
-
-
+        ButterKnife.bind(this,this);
     }
 
     @OnClick(R.id.panic_buy_btn)
     public void onClick() {
-        Toast.makeText(getContext(),"需要升级付费版",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "需要升级付费版", Toast.LENGTH_SHORT).show();
+    }
+
+    public void bindView(LimitBuyBean.ProductListBean productListBean) {
+
+        String name = productListBean.getName();
+        mCommodityName.setText(name);
+        mEndTime.setText(productListBean.getLeftTime());
+        mBuyPrice.setText(productListBean.getPrice());
+        Glide.with(getContext()).load(Constant.HOST + productListBean.getPic()).into(mImageView);
+
     }
 }

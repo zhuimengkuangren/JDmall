@@ -2,7 +2,9 @@ package com.shopping.app.jdmall.adapter;
 
 import android.content.Context;
 import android.view.View;
+
 import com.shopping.app.jdmall.widget.LoadingMoreView;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,6 @@ import java.util.List;
 public abstract class BaseListLoadAdapter<T> extends BaseListAdapter<T> {
     private static final int ITEM_TYPE_NORMAL = 0;
     private static final int ITEM_TYPE_LOADING = 1;
-
 
     public BaseListLoadAdapter(Context context, List<T> list) {
         super(context, list);

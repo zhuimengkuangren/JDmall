@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
+        android:name=".app.JDApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,10 +23,17 @@
         <activity android:name=".ui.activity.TutorialActivity"/>
         <activity android:name=".ui.activity.LimitBuyActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
+
         <activity android:name=".ui.activity.QueryCargoActivity"></activity>
         <activity android:name=".ui.activity.DetailListItemActivity"></activity>
-        <activity android:name=".ui.activity.SearchActivity"></activity>
+
         <activity android:name=".ui.activity.FindRecommandActivity"></activity>
+        <activity android:name=".ui.activity.IdentActivity"></activity>
+
+        <activity android:name=".ui.activity.CommentActivity"/>
+        <activity android:name=".ui.activity.SearchInfoActivity"/>
+
+
         <activity android:name=".ui.activity.UserSettingActivity"/>
         <activity android:name=".ui.activity.SettingActivity"/>
         <activity android:name=".ui.activity.LoginPageActivity"/>
@@ -34,6 +42,13 @@
         <activity android:name=".ui.activity.AddressManagerActivity"/>
         <activity android:name=".ui.activity.CollectionActivity"/>
 
+        <activity android:name=".ui.activity.HomeMsgActivity"/>
+        <activity android:name=".ui.activity.TopicActivity"/>
+        <activity android:name=".ui.activity.BrandActivity"/>
+
+        <activity android:name=".adapter.ImageViewActivity"/>
+        <activity android:name=".ui.activity.SalesActivity"/>
+        <activity android:name=".ui.activity.OrderCommitSuccessActivity"></activity>
 
     </application>
 

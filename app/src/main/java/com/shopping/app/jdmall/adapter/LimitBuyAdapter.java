@@ -12,9 +12,9 @@ import java.util.List;
  * 限时抢购的adapter
  */
 
-public class LimitBuyAdapter extends BaseLoadMoreAdapter<LimitBuyBean> {
+public class LimitBuyAdapter extends BaseLoadMoreAdapter<LimitBuyBean.ProductListBean> {
 
-    public LimitBuyAdapter(Context context, List list) {
+    public LimitBuyAdapter(Context context, List<LimitBuyBean.ProductListBean> list) {
         super(context, list);
     }
 

@@ -3,6 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="8dp"
+              android:background="@android:color/white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -21,7 +22,7 @@
             android:layout_toRightOf="@id/tv_user_talk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="评论数"
+            android:text="（2）"
             />
         <LinearLayout
             android:layout_alignParentRight="true"
@@ -34,11 +35,13 @@
                 android:text="好评度"
                 />
             <TextView
+                android:drawablePadding="6dp"
                 android:id="@+id/tv_detail_good_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="100%"
                 android:textColor="#ff0000"
+                android:drawableRight="@mipmap/arrow"
                 />
         </LinearLayout>
     </RelativeLayout>
@@ -47,8 +50,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minLines="6"
+        android:maxLines="6"
         android:text="暂无评论精华"
         android:gravity="center"
         />
+
 
 </LinearLayout>

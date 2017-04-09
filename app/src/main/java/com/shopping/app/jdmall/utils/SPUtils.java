@@ -35,5 +35,4 @@ public class SPUtils {
         sharePreferences.edit().putString(key,value).apply();
 
     }
-
 }

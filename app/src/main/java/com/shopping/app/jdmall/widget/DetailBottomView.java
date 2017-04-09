@@ -12,17 +12,6 @@ import com.shopping.app.jdmall.R;
  */
 
 public class DetailBottomView extends RelativeLayout {
-    /*@Override
-    protected void startLoadData() {
-
-    }
-
-    @Override
-    protected View onCreateContentView() {
-        View view = View.inflate(getContext(), R.layout.view_detail_bottom_viewpager, null);
-
-        return view;
-    }*/
     public DetailBottomView(Context context) {
         this(context,null);
     }

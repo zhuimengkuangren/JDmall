@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -14,8 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.ui.activity.FindRecommandActivity;
+import com.shopping.app.jdmall.ui.activity.SalesActivity;
 import com.shopping.app.jdmall.utils.AnimationUtils;
 
 /**
@@ -105,33 +109,35 @@ public class FindCategoryView extends RelativeLayout {
                         }
                         switch (position){
                             case 0:
-
+                            case 3:
+                            case 6:
+                            case 9:
+                                //加载热门商品
+                                Intent intent1 = new Intent(getContext(), FindRecommandActivity.class);
+                                intent1.putExtra(FindHorizotalScrollView.PRODUCT, "热门商品");
+                                getContext().startActivity(intent1);
+                                //Toast.makeText(getContext(),"条目被点击0",Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:
+                            case 4:
+                            case 7:
+                            case 10:
+                                Intent intent2 = new Intent(getContext(), FindRecommandActivity.class);
+                                intent2.putExtra(FindHorizotalScrollView.PRODUCT, "新品上架");
+                                getContext().startActivity(intent2);
+                                Toast.makeText(getContext(),"条目被点击1",Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
                             case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
                             case 8:
-                                break;
-                            case 9:
-                                break;
-                            case 10:
-                                break;
                             case 11:
+                                Intent intent3 = new Intent(getContext(), SalesActivity.class);
+                                getContext().startActivity(intent3);
                                 break;
                             case 12:
-                                break;
                             case 13:
+                                Intent intent4 = new Intent(getContext(), SalesActivity.class);
+                                getContext().startActivity(intent4);
                                 break;
                         }
                     }

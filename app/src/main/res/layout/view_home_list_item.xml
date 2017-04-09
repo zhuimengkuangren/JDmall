@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@mipmap/a40"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image1"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/recommend_brand_3"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image2"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/recommend_brand_3"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image3"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/recommend_brand_3"/>
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@mipmap/a40"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:padding="6dp"
+            android:id="@+id/image4"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/recommend_brand_3"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="商品信息"/>
+
+    </LinearLayout>
+
+</LinearLayout>

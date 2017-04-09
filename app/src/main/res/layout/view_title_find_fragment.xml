@@ -7,6 +7,7 @@
     android:padding="8dp">
 
     <ImageView
+        android:layout_centerVertical="true"
         android:id="@+id/sao_yi_sao_find_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
         android:src="@mipmap/bar_find"/>
 
     <ImageView
+        android:layout_centerVertical="true"
         android:id="@+id/message_find"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +30,7 @@
         />
 
     <ImageView
+        android:layout_centerVertical="true"
         android:id="@+id/bar_person_find_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

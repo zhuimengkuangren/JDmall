@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 public abstract class BaseListAdapter<T> extends BaseAdapter {
-
+    private static final String TAG = "BaseListAdapter";
     private Context mContext;
     private List<T> mList;
 

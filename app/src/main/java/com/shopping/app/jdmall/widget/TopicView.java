@@ -7,9 +7,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.app.Constant;
+import com.shopping.app.jdmall.bean.TopicRenBean;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/4/6.
@@ -32,5 +36,11 @@ public class TopicView extends LinearLayout {
 
     private void initData() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_topic, this);
+        ButterKnife.bind(this,this);
+    }
+
+    public void bindView(TopicRenBean.TopicBean topicBean) {
+        mTextView.setText(topicBean.getName());
+        Glide.with(getContext()).load(Constant.HOST + topicBean.getPic()).into(mImageView);
     }
 }

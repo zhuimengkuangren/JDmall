@@ -11,16 +11,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="10dp">
+        >
 
         <CheckBox
             android:id="@+id/cb_gov"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/car_checkbox_selector"
-            android:button="@null"
-            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:clickable="false"
             android:gravity="center_vertical"
             android:visibility="visible"/>

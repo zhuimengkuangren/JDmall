@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Administrator on 2017/4/6.
  */
 
-public class TopicAdapter extends BaseLoadMoreAdapter<TopicRenBean.TopicBean> {
+public class TopicAdapter extends BaseLoadEndAdapter<TopicRenBean.TopicBean> {
     public TopicAdapter(Context context, List<TopicRenBean.TopicBean> list) {
         super(context, list);
     }

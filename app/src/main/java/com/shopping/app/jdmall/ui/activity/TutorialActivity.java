@@ -5,8 +5,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.leon.loopviewpagerlib.CirclePageIndicator;
 import com.shopping.app.jdmall.R;
@@ -23,7 +23,7 @@ public class TutorialActivity extends BaseActivity {
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
     @BindView(R.id.start)
-    Button mStart;
+    TextView mStart;
     @BindView(R.id.indicator)
     CirclePageIndicator mIndicator;
     private int[] mImages = {R.mipmap.timg_2, R.mipmap.timg_3, R.mipmap.timg_4};
@@ -76,8 +76,10 @@ public class TutorialActivity extends BaseActivity {
         public void onPageSelected(int position) {
             if (position == mImages.length - 1) {
                 mStart.setVisibility(View.VISIBLE);
+                mIndicator.setVisibility(View.GONE);
             } else {
                 mStart.setVisibility(View.GONE);
+                mIndicator.setVisibility(View.VISIBLE);
             }
         }
 

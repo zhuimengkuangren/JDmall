@@ -20,10 +20,16 @@ import retrofit2.Response;
 public class BrandActivity extends BaseListActivity {
 
     private List<BrandRenBean.BrandBean> mDataList;
+    private BrandRenBean mBrandRenBean;
 
     @Override
     protected BaseAdapter oncreateAdapter() {
         return new BrandAdapter(BrandActivity.this,mDataList);
+    }
+
+    @Override
+    protected String getTitleFromSon() {
+        return "推荐品牌";
     }
 
     @Override
@@ -33,7 +39,8 @@ public class BrandActivity extends BaseListActivity {
         brandRenBeanCall.enqueue(new Callback<BrandRenBean>() {
             @Override
             public void onResponse(Call<BrandRenBean> call, Response<BrandRenBean> response) {
-                mDataList = response.body().getBrand();
+                mBrandRenBean = response.body();
+                mDataList = mBrandRenBean.getBrand();
                 onDataLoadedSuccess();
             }
 

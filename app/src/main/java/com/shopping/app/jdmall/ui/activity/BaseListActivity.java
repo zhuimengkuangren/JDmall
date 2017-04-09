@@ -32,7 +32,7 @@ public abstract class BaseListActivity extends Base2Activity {
         mListView.setDivider(null);
         View holder = onCreatHolderView();
         if(holder != null) {
-            mListView.addHeaderView(holder);
+            mListView.addFooterView(holder);
         }
         initListView();
         return mListView;

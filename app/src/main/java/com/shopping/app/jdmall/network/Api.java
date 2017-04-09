@@ -56,7 +56,7 @@ public interface Api {
 
     //限时促销请求
     @GET("limitbuy")
-    Call<LimitBuyBean> listLimitBuy(@Query("page") int page, @Query("page") int pageNum);
+    Call<LimitBuyBean> listLimitBuy(@Query("page") int page, @Query("pageNum") int pageNum);
 
 
     @GET("product/comment")

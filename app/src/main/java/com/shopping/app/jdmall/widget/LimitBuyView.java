@@ -1,18 +1,20 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
+import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
+import com.shopping.app.jdmall.ui.activity.DetailListItemActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,7 @@ public class LimitBuyView extends RelativeLayout {
     ImageView mImageView;
     @BindView(R.id.cv_countdownViewTest1)
     CountdownView mCvCountdownViewTest1;
+    private LimitBuyBean.ProductListBean mProductListBean;
 
     public LimitBuyView(Context context) {
         this(context, null);
@@ -48,16 +51,25 @@ public class LimitBuyView extends RelativeLayout {
     }
 
     private void initData() {
-        View inflate = View.inflate(getContext(), R.layout.view_limit_buy, this);
+        View.inflate(getContext(), R.layout.view_limit_buy, this);
         ButterKnife.bind(this, this);
     }
 
     @OnClick(R.id.panic_buy_btn)
     public void onClick() {
-        Toast.makeText(getContext(), "需要升级付费版", Toast.LENGTH_SHORT).show();
+        FindBean.ProductListBean productListBean = new FindBean.ProductListBean();
+        productListBean.setName(mProductListBean.getName());
+        productListBean.setId(mProductListBean.getId());
+        productListBean.setPic(mProductListBean.getPic());
+        productListBean.setMarketPrice(mProductListBean.getPrice());
+        productListBean.setPrice(mProductListBean.getLimitPrice());
+        Intent intent = new Intent(getContext(), DetailListItemActivity.class);
+        intent.putExtra("values",productListBean);
+        getContext().startActivity(intent);
     }
 
     public void bindView(LimitBuyBean.ProductListBean productListBean) {
+        mProductListBean = productListBean;
         String name = productListBean.getName();
         mCommodityName.setText(name);
         long leftTime = productListBean.getLeftTime();
@@ -73,6 +85,5 @@ public class LimitBuyView extends RelativeLayout {
         String format = String.format(end, String.valueOf(limitPrice));
         mBuyPrice.setText(format);
         Glide.with(getContext()).load(Constant.HOST + productListBean.getPic()).into(mImageView);
-
     }
 }

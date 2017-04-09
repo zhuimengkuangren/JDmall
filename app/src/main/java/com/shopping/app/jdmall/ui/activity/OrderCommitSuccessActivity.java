@@ -96,7 +96,6 @@ public class OrderCommitSuccessActivity extends BaseActivity {
 
     }
 
-
     @OnClick(R.id.result)
     public void onClick() {
         finish();

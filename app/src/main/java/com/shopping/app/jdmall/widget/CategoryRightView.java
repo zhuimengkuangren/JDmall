@@ -3,8 +3,8 @@ package com.shopping.app.jdmall.widget;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -41,18 +41,18 @@ public class CategoryRightView extends LinearLayout {
     public CategoryRightView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+
     }
 
     private void init() {
         View.inflate(getContext(), R.layout.view_category_right, this);
         ButterKnife.bind(this);
-        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mWidth = getMeasuredWidth();
-                getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int widthPixels = displayMetrics.widthPixels;
+
+        int size = getResources().getDimensionPixelSize(R.dimen.right_view);
+        mWidth = widthPixels - size;
 
     }
 
@@ -67,9 +67,8 @@ public class CategoryRightView extends LinearLayout {
         for (int i = 0; i < end; i++) {
             TableRow.LayoutParams params = new TableRow.LayoutParams();
             TableRow tableRow = new TableRow(getContext());
-            measure(0,0);
             //此处有个bug,无法获取到布局后的宽度,权益之际,写的,要改
-            params.width = 173;
+            params.width = mWidth / 3;
             int last = 0 ;
             if(i == end - 1) {
                 last = list.size();

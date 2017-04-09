@@ -1,7 +1,6 @@
 package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.shopping.app.jdmall.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -105,10 +103,4 @@ public class OrderCommitSuccessActivity extends BaseActivity {
         navigateTo(MainActivity.class);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

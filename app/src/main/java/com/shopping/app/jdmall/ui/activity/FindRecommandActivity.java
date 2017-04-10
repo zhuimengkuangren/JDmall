@@ -85,9 +85,6 @@ public class FindRecommandActivity extends BaseActivity {
         }
 
 
-
-
-
         mGvRecommand.setOnScrollListener(mScrollListener);
 
         //界面消失
@@ -313,9 +310,7 @@ public class FindRecommandActivity extends BaseActivity {
                 mFindRecomAdapter.notifyDataSetChanged();
 
 
-                //Log.d(TAG, "onResponse: ++++++++++" + mProductList.size());
 
-                //Log.d(TAG, "onResponse: +++++++++++++" + listCount + "-----" + productList.get(0).getName());
             }
 
             @Override

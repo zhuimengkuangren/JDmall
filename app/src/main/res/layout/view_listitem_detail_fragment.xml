@@ -103,7 +103,6 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/iv_set_guanzhu"
-                android:saveEnabled="false"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp"
                 android:layout_gravity="center"
@@ -128,7 +127,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <ImageView
-                android:saveEnabled="false"
                 android:id="@+id/iv_set_collect"
                 android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"

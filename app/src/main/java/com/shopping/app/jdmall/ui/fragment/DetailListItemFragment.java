@@ -90,8 +90,8 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 showShare();
             }
         });
-        isCollect = SPUtils.getCollect(getContext(), false);
-        isGuanZhu = SPUtils.getGuanZhu(getContext(), false);
+        isCollect = SPUtils.getCollect(getContext(),String.valueOf(mBean.getId()), false);
+        isGuanZhu = SPUtils.getGuanZhu(getContext(),String.valueOf(mBean.getId()), false);
         mIvSetCollect.setEnabled(isCollect);
         mIvSetGuanzhu.setEnabled(isGuanZhu);
     }
@@ -193,14 +193,14 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
 
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now, R.id.tv_customer, R.id.tv_guanzhu})
     public void onClick(View view) {
-        isCollect = SPUtils.getCollect(getContext(), false);
-        isGuanZhu = SPUtils.getGuanZhu(getContext(), false);
+        isCollect = SPUtils.getCollect(getContext(),String.valueOf(mBean.getId()), false);
+        isGuanZhu = SPUtils.getGuanZhu(getContext(), String.valueOf(mBean.getId()),false);
         switch (view.getId()) {
             case R.id.tv_collect:
                 //TODO 收藏
                 isCollect = !isCollect;
                 mIvSetCollect.setEnabled(isCollect);
-                SPUtils.setCollect(getContext(),isCollect);
+                SPUtils.setCollect(getContext(),String.valueOf(mBean.getId()),isCollect);
                 Toast.makeText(getContext(), "您选择的物品已收藏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_buy_car:
@@ -218,7 +218,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 //Todo 关注
                 isGuanZhu = !isGuanZhu;
                 mIvSetGuanzhu.setEnabled(isGuanZhu);
-                SPUtils.setGuanZhu(getContext(),isGuanZhu);
+                SPUtils.setGuanZhu(getContext(),String.valueOf(mBean.getId()),isGuanZhu);
                 Toast.makeText(getContext(), "您选择的物品已关注", Toast.LENGTH_SHORT).show();
                 break;
         }

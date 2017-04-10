@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.manager;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.gson.Gson;
@@ -103,8 +102,6 @@ public class CarManager {
         //添加到内存
         mSparseArray.put(key, tempData);
 
-        Log.d(TAG, "add:size " + mSparseArray.size() + "key= " + key + " 数量" + tempData.getProdNum());
-
         //同步到本地
         saveLocal();
 
@@ -133,9 +130,6 @@ public class CarManager {
         List<CarInfoBean.ProductBean.ProductPropertyBean> productProperty = product.getProductProperty();
         //第一个元素为颜色,第二个元素为尺码
         int attrValue = productProperty.get(0).getId() * 10 + productProperty.get(1).getId();
-
-        Log.d(TAG, "商品id= " + carInfoBean.getProduct().getId() + " 颜色id= " + productProperty.get(0).getId() + " 尺寸id= " + productProperty.get(1).getId());
-
         return carInfoBean.getProduct().getId() * 100 + attrValue;
     }
 

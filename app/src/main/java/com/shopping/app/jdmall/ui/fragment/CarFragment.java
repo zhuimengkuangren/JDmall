@@ -330,6 +330,8 @@ public class CarFragment extends BaseNotLoadDataFragment {
             productListBean.setNumbers(Integer.parseInt(number));
             productListBean.setBuyCounts(prodNum);
 
+            Log.d(TAG, "CarToSelectedProduct : BuyCounts=" + productListBean .getBuyCounts());
+
 
             productListBeen.add(productListBean);
 

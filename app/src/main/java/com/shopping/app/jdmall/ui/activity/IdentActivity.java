@@ -104,7 +104,6 @@ public class IdentActivity extends BaseActivity {
         for (int i = 0; i < dataList.size(); i++) {
             FindBean.ProductListBean bean = (FindBean.ProductListBean) dataList.get(i);
             int counts = bean.getBuyCounts();
-            counts = 1;
             Toast.makeText(this,""+counts,Toast.LENGTH_SHORT).show();
             int price = bean.getPrice();
             sum += (counts * price);

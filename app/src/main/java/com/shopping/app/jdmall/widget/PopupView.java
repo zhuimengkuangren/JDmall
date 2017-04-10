@@ -168,7 +168,6 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         mId=id;
         mPrice.setText("￥" + bean.getPrice());
         mUrl = Constant.HOST + bean.getPic();
-        Log.d(TAG, "bindView: "+ mUrl);
         Glide.with(getContext()).load(mUrl).into(mIcon);
         mName.setText(bean.getName());
     }
@@ -208,6 +207,12 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = new CarInfoBean.ProductBean.ProductPropertyBean();
             productPropertyBean.setK("颜色");
             productPropertyBean.setV(color);
+            Log.d(TAG, "onCheckedChanged:888888888888888888888888888 "+color);
+            if ("红色".equals(color)){
+                productPropertyBean.setId(1);
+            }else if ("绿色".equals(color)){
+                productPropertyBean.setId(2);
+            }
 
             mProductProperty.add(productPropertyBean);
 
@@ -215,6 +220,13 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             productPropertyBean2.setK("尺码");
             productPropertyBean2.setV(size);
             mProductProperty.add(productPropertyBean2);
+            if ("M".equals(size)){
+                productPropertyBean2.setId(3);
+            }else if("XXL".equals(size)){
+                productPropertyBean2.setId(4);
+            }else{
+                productPropertyBean2.setId(5);
+            }
         }
     }
 }

@@ -93,12 +93,12 @@
         >
 
         <TextView
-            android:id="@+id/tv_buy_say"
             style="@style/textViewStyle"
             android:text="买家留言"
             />
 
         <EditText
+            android:id="@+id/tv_buy_say"
             android:background="@drawable/bg_search"
             android:layout_width="250dp"
             android:layout_height="wrap_content"

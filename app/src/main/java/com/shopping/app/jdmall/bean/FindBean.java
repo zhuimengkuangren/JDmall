@@ -50,7 +50,6 @@ public class FindBean {
     }
 
     public void setProductList(List<ProductListBean> productList) {
-        this.productList = productList;
     }
 
     public static class ProductListBean implements Parcelable {

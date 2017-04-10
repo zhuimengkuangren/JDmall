@@ -207,7 +207,6 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
             CarInfoBean.ProductBean.ProductPropertyBean productPropertyBean = new CarInfoBean.ProductBean.ProductPropertyBean();
             productPropertyBean.setK("颜色");
             productPropertyBean.setV(color);
-            Log.d(TAG, "onCheckedChanged:888888888888888888888888888 "+color);
             if ("红色".equals(color)){
                 productPropertyBean.setId(1);
             }else if ("绿色".equals(color)){

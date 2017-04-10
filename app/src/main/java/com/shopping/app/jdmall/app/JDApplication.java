@@ -22,4 +22,5 @@ public class JDApplication extends Application {
     public static Context getContext() {
         return mContext;
     }
+
 }

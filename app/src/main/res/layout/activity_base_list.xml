@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--限时抢购等五个页面的根布局-->
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/activity_content"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-    </android.support.v7.widget.Toolbar>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <!--进度动画-->
-    <ImageView
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:src="@drawable/loadding_frame"/>
 
     <!-- 加载失败布局-->
     <LinearLayout
@@ -46,4 +31,28 @@
             android:text="加载失败，点击重试"/>
 
     </LinearLayout>
-</FrameLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/activity_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1000">
+
+        <ImageView
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/loadding_frame"/>
+
+    </FrameLayout>
+</LinearLayout>

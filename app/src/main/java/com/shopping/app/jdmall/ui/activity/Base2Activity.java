@@ -44,9 +44,18 @@ public abstract class Base2Activity extends BaseActivity {
         setSupportActionBar(mToolBar);
         mSupportActionBar = getSupportActionBar();
         mSupportActionBar.setDisplayHomeAsUpEnabled(true);
+        mSupportActionBar.setTitle(getTitleFromSon());
         startLoadData();
     }
 
+    protected abstract String getTitleFromSon();
+
+    /*@Nullable
+    @Override
+    public ActionBar getSupportActionBar() {
+        return mSupportActionBar;
+    }
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

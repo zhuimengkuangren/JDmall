@@ -21,7 +21,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         //子类初始化
         init(savedInstanceState);//重载
         init();
+
     }
+
 
     /**
      * 子类初始化

@@ -21,6 +21,7 @@ import com.shopping.app.jdmall.manager.CarManager;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -67,6 +68,7 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
     private FindBean.ProductListBean mBean;
     private CarInfoBean.ProductBean mProductBean;
     private List<CarInfoBean.ProductBean.ProductPropertyBean> mProductProperty;
+    private int mId;
 
     public PopupView(Context context) {
         this(context, null);
@@ -116,14 +118,29 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
     private void addBuyCart() {
         String s = mActualNumbers.getText().toString();
         int i = Integer.parseInt(s);
+        //TODO  拿到数量
         if (mRgSize.getCheckedRadioButtonId() != -1 && mRgColor.getCheckedRadioButtonId() != -1) {
             //已经选择
-            findBeanToCarInfoBean();
+            mBean.setBuyCounts(i);
+            if (mId==R.id.tv_buy_car){
+                //点击的是购物车
+                findBeanToCarInfoBean();
+                Toast.makeText(getContext(), "您已成功添加到购物车", Toast.LENGTH_SHORT).show();
+            }else if(mId==R.id.buy_now){
+                //TODO 跳转到立即购买界面
+                Toast.makeText(getContext(), "跳转到立即购买界面", Toast.LENGTH_SHORT).show();
+                ArrayList<FindBean.ProductListBean> productBeenList = new ArrayList<>();
+                for (int j = 0; j < i; j++) {
+                    productBeenList.add(mBean);
+                }
+                //将集合传递过去即可
+            }
             EventBus.getDefault().post("animationcompleted");
         } else {
             Toast.makeText(getContext(), "请选择颜色和尺寸", Toast.LENGTH_SHORT).show();
         }
     }
+    //数据存放到购物车
     private void findBeanToCarInfoBean() {
         CarInfoBean carInfoBean = new CarInfoBean();
         mProductBean.setName(mBean.getName());
@@ -131,18 +148,19 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         mProductBean.setPic(mBean.getPic());
         mProductBean.setId(mBean.getId());
         mProductBean.setPrice(mBean.getPrice());
+        mProductBean.setNumber(mBean.getBuyCounts()+"");
         mProductBean.setProductProperty(mProductProperty);
         Random random = new Random();
         int i = random.nextInt(90);
         mProductBean.setNumber(i+"");
-        Log.d(TAG, "findBeanToCarInfoBean: "+mProductBean.getProductProperty().get(0).getV()+mProductBean.getId());
         carInfoBean.setProduct(mProductBean);
         CarManager.getInstance().add(carInfoBean);
     }
 
 
-    public void bindView(FindBean.ProductListBean bean) {
+    public void bindView(FindBean.ProductListBean bean,int id) {
         mBean=bean;
+        mId=id;
         mPrice.setText("￥" + bean.getPrice());
         mUrl = Constant.HOST + bean.getPic();
         Log.d(TAG, "bindView: "+ mUrl);

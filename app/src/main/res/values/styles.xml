@@ -20,6 +20,14 @@
         <item name="android:padding">8dp</item>
         <item name="android:button">@null</item>
     </style>
+    <!--底部导航条安全保障样式-->
+    <style name="SafeStyle">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:button">@null</item>
+    </style>
     <!--包邮的选择样式-->
     <style name="find_detail_baoyou">
         <item name="android:layout_weight">1</item>

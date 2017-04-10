@@ -12,6 +12,7 @@ import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/4/7.
@@ -34,6 +35,7 @@ public class BrandViewInfo extends LinearLayout {
 
     private void initData() {
         LayoutInflater.from(getContext()).inflate(R.layout.view_brand_info, this);
+        ButterKnife.bind(this,this);
     }
 
     public void bindView(String name, String pic) {

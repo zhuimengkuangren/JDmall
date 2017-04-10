@@ -27,8 +27,6 @@ import com.shopping.app.jdmall.utils.AnimationUtils;
  */
 
 public class FindCategoryView extends RelativeLayout {
-    String[] categorys={"京东号","型男号","潮女号","爱搞基","生活家","女神范","亲子园","数码控",
-            "文艺咖","理财师","吃货党","品牌家","家居馆","视频购"};
     private int mHeight;//这是总高度
     int padding= (int) getResources().getDimension(R.dimen.size_middle);
     private FlowLayout mFlowLayout;
@@ -37,14 +35,23 @@ public class FindCategoryView extends RelativeLayout {
     private TextView mTextView;
     private int mLeft;
     int rowHeight=0;
+    String[] categorys={"京东号","型男号","潮女号","爱搞基","生活家","女神范","亲子园","数码控",
+            "文艺咖","理财师","吃货党","品牌家","家居馆","视频购"};
     public FindCategoryView(Context context) {
         this(context,null);
     }
-
     public FindCategoryView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setCategorys(categorys);
         init();
         mFl.getViewTreeObserver().addOnGlobalLayoutListener(listerner);
+    }
+
+    public String[] getCategorys(){
+        return categorys;
+    }
+    public String[] setCategorys(String[] categorys){
+        return this.categorys;
     }
     ViewTreeObserver.OnGlobalLayoutListener listerner=new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
@@ -66,9 +73,9 @@ public class FindCategoryView extends RelativeLayout {
         mIv = (ImageView) view.findViewById(R.id.iv_arrow_find);
 
         mFlowLayout = new FlowLayout(getContext());
-        for (int i = 0; i < categorys.length; i++) {
+        for (int i = 0; i < getCategorys().length; i++) {
                 mTextView = getTextView();
-                mTextView.setText(categorys[i]);
+                mTextView.setText(getCategorys()[i]);
                 StateListDrawable stateListDrawable = getStateListDrawable();
                 mTextView.setBackgroundDrawable(stateListDrawable);
                 final int position=i;

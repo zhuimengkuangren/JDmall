@@ -1,6 +1,8 @@
 package com.shopping.app.jdmall.bean;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -51,15 +53,49 @@ public class FindBean {
         this.productList = productList;
     }
 
-    public static class ProductListBean implements Serializable {
+    public static class ProductListBean implements Parcelable {
 
 
+
+        private int buyCounts;
         private int numbers;
         private int id;
         private int marketPrice;
         private String name;
         private String pic;
         private int price;
+
+        public ProductListBean() {
+
+        }
+        public int getBuyCounts() {
+            return buyCounts;
+        }
+
+        public void setBuyCounts(int buyCounts) {
+            this.buyCounts = buyCounts;
+        }
+        public ProductListBean(Parcel in) {
+            numbers = in.readInt();
+            id = in.readInt();
+            marketPrice = in.readInt();
+            name = in.readString();
+            pic = in.readString();
+            price = in.readInt();
+        }
+
+        public static final Creator<ProductListBean> CREATOR = new Creator<ProductListBean>() {
+
+            @Override
+            public ProductListBean createFromParcel(Parcel in) {
+                return new ProductListBean(in);
+            }
+
+            @Override
+            public ProductListBean[] newArray(int size) {
+                return new ProductListBean[size];
+            }
+        };
 
         public int getNumbers() {
             return numbers;
@@ -109,5 +145,19 @@ public class FindBean {
             this.price = price;
         }
 
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(numbers);
+            dest.writeInt(id);
+            dest.writeInt(marketPrice);
+            dest.writeString(name);
+            dest.writeString(pic);
+            dest.writeInt(price);
+        }
     }
 }

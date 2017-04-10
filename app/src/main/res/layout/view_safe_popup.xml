@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@android:color/white"
+              android:layout_width="match_parent"
+              android:layout_height="400dp">
+
+    <RadioGroup
+        android:id="@+id/rg_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RadioButton
+            android:id="@+id/first_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="卖家承诺24消失发货"/>
+
+        <RadioButton
+            android:id="@+id/second_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="7天无理由退货"/>
+
+        <RadioButton
+            android:id="@+id/third_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="运费险"/>
+
+        <RadioButton
+            android:id="@+id/fourth_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="白条"/>
+
+        <RadioButton
+            android:id="@+id/five_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="信用卡支付"/>
+
+        <RadioButton
+            android:id="@+id/six_page_home"
+            style="@style/SafeStyle"
+            android:drawableLeft="@mipmap/checkbox_on"
+            android:drawablePadding="8dp"
+            android:text="如实描述"/>
+
+
+    </RadioGroup>
+    <TextView
+        android:padding="8dp"
+        android:background="#FD5509"
+        android:textColor="#ffffff"
+        android:text="确定"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

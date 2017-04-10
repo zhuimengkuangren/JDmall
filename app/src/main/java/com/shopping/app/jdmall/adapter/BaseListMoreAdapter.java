@@ -15,7 +15,6 @@ public abstract class BaseListMoreAdapter<T> extends BaseListAdapter<T> {
     public BaseListMoreAdapter(Context context, List list) {
         super(context, list);
     }
-
     class ViewHolder {
         View mView;
 
@@ -36,6 +35,7 @@ public abstract class BaseListMoreAdapter<T> extends BaseListAdapter<T> {
         onBindViewHolder(viewHolder, position);
         return viewHolder.mView;
     }
+
 
     protected abstract void onBindViewHolder(ViewHolder viewHolder, int position);
 

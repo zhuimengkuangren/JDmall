@@ -20,10 +20,16 @@ import retrofit2.Response;
 public class TopicActivity extends BaseListLoadMoreActivity {
 
     private List<TopicRenBean.TopicBean> mDataList;
+    private TopicRenBean mTopicRenBean;
 
     @Override
     protected BaseAdapter oncreateAdapter() {
-        return new TopicAdapter(TopicActivity.this,mDataList);
+        return new TopicAdapter(TopicActivity.this, mDataList);
+    }
+
+    @Override
+    protected String getTitleFromSon() {
+        return "促销快报";
     }
 
     @Override
@@ -32,7 +38,9 @@ public class TopicActivity extends BaseListLoadMoreActivity {
         topicRenBeanCall.enqueue(new Callback<TopicRenBean>() {
             @Override
             public void onResponse(Call<TopicRenBean> call, Response<TopicRenBean> response) {
-                mDataList = response.body().getTopic();
+                mTopicRenBean = response.body();
+                mDataList = mTopicRenBean.getTopic();
+                //getSupportActionBar().setTitle(mTopicRenBean.getResponse());
                 onDataLoadedSuccess();
             }
 
@@ -42,13 +50,14 @@ public class TopicActivity extends BaseListLoadMoreActivity {
             }
         });
     }
+
     @Override
     protected void startLoadMoreData() {
-        Call<TopicRenBean> topicRenBeanCall = JDRetrofit.getInstance().getApi().listTopicRen(mDataList.size(), 10);
+        Call<TopicRenBean> topicRenBeanCall = JDRetrofit.getInstance().getApi().listTopicRen(mDataList.size(), mTopicRenBean.getListCount());
         topicRenBeanCall.enqueue(new Callback<TopicRenBean>() {
             @Override
             public void onResponse(Call<TopicRenBean> call, Response<TopicRenBean> response) {
-                mDataList = response.body().getTopic();
+                mDataList.addAll(response.body().getTopic());
                 getAdapter().notifyDataSetChanged();
             }
 

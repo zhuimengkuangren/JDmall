@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.FrameLayout;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.ui.fragment.DetailListItemFragment;
@@ -24,6 +25,7 @@ public class DetailListItemActivity extends AppCompatActivity {
 
     protected void init() {
         //子类初始化
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.fl_find_listitem);
         FragmentManager supportManager = getSupportFragmentManager();
         DetailListItemFragment itemFragment = new DetailListItemFragment();
         FragmentTransaction tr = supportManager.beginTransaction();

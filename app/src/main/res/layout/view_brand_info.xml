@@ -3,6 +3,9 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center"
+              android:background="@drawable/grid_item_bg"
+              android:clickable="true"
+              android:padding="8dp"
               android:orientation="vertical">
 
     <ImageView

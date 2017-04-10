@@ -1,6 +1,7 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.shopping.app.jdmall.bean.BuyCarBean;
 import com.shopping.app.jdmall.bean.CarInfoBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.manager.CarManager;
+import com.shopping.app.jdmall.ui.activity.IdentActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -134,6 +136,9 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
                     productBeenList.add(mBean);
                 }
                 //将集合传递过去即可
+                Intent intent = new Intent(getContext(), IdentActivity.class);
+                intent.putParcelableArrayListExtra("values",productBeenList);
+                getContext().startActivity(intent);
             }
             EventBus.getDefault().post("animationcompleted");
         } else {
@@ -148,7 +153,7 @@ public class PopupView extends RelativeLayout implements RadioGroup.OnCheckedCha
         mProductBean.setPic(mBean.getPic());
         mProductBean.setId(mBean.getId());
         mProductBean.setPrice(mBean.getPrice());
-        mProductBean.setNumber(mBean.getBuyCounts()+"");
+        carInfoBean.setProdNum(mBean.getBuyCounts());
         mProductBean.setProductProperty(mProductProperty);
         Random random = new Random();
         int i = random.nextInt(90);

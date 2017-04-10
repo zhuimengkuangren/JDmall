@@ -102,12 +102,13 @@
             android:layout_weight="1"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/iv_set_guanzhu"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/apb"
+                android:background="@drawable/guanzhu_redheart_selector"
                 />
             <TextView
                 android:gravity="center"
@@ -126,10 +127,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/iv_set_collect"
                 android:layout_marginBottom="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/shortcuts_icon_collect"
+                android:background="@drawable/collect_wuxing_selector"
                 />
             <TextView
                 android:gravity="bottom"

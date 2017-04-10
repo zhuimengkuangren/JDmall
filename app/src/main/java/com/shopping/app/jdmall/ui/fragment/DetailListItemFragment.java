@@ -1,10 +1,8 @@
 package com.shopping.app.jdmall.ui.fragment;
 
-import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,9 +26,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
@@ -55,22 +51,23 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     @BindView(R.id.buy_now)
     TextView mBuyNow;
 
-    @BindView(R.id.indicator_circle)
-    CirclePageIndicator mIndicatorCircle;
-
-
     @BindView(R.id.detail_bottom_view)
     DetailBottomView mDetailBottomView;
     @BindView(R.id.tv_customer)
     LinearLayout mTvCustomer;
     @BindView(R.id.tv_guanzhu)
     LinearLayout mTvGuanzhu;
-    Unbinder unbinder;
-    Unbinder unbinder1;
+
+    @BindView(R.id.indicator_circle)
+    CirclePageIndicator mIndicatorCircle;
+    @BindView(R.id.iv_set_guanzhu)
+    ImageView mIvSetGuanzhu;
+    @BindView(R.id.iv_set_collect)
+    ImageView mIvSetCollect;
+
     private FindBean.ProductListBean mBean;
     private String mUrl;
     private PopupWindow mWindow;
-    private View mRoot;
 
     @Override
     public int getResId() {
@@ -187,6 +184,8 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         }
     };
 
+    boolean isGuanZhu;
+    boolean isCollect;
 
 
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now, R.id.tv_customer, R.id.tv_guanzhu})
@@ -194,7 +193,13 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         switch (view.getId()) {
             case R.id.tv_collect:
                 //TODO 收藏
+                if (isCollect) {
+                    mIvSetCollect.setEnabled(false);
 
+                } else {
+                    mIvSetCollect.setEnabled(true);
+                }
+                isCollect = !isCollect;
                 Toast.makeText(getContext(), "您选择的物品已收藏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_buy_car:
@@ -210,7 +215,12 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 break;
             case R.id.tv_guanzhu:
                 //Todo 关注
-
+                if (isGuanZhu) {
+                    mIvSetGuanzhu.setEnabled(false);
+                } else {
+                    mIvSetGuanzhu.setEnabled(true);
+                }
+                isGuanZhu = !isGuanZhu;
                 break;
         }
     }
@@ -234,25 +244,4 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         mWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);//显示在指定位置,在0,0的位置
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
-
-
-    /*@Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }*/
 }

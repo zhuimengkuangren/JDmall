@@ -14,6 +14,7 @@ import com.shopping.app.jdmall.bean.FindBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by 龚浩 on 2017/4/8.
@@ -40,10 +41,10 @@ public class CargoBuyInfoView extends LinearLayout {
     }
 
     public void setData(FindBean.ProductListBean bean) {
-        String pic = Constant.HOST+bean.getPic();
-        Glide.with(getContext()).load(pic).into(mIvIcon);
+        String pic = Constant.HOST + bean.getPic();
+        Glide.with(getContext()).load(pic).bitmapTransform(new CropCircleTransformation(getContext())).crossFade(1000).into(mIvIcon);
         mTvLabel.setText(bean.getName());
         mTvPrice.setText(bean.getPrice());
-
+        mTvCount.setText("x " + bean.getBuyCounts());
     }
 }

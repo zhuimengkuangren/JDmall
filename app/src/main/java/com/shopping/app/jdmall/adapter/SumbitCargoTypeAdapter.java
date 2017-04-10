@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.iflytek.cloud.thirdparty.T;
+import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.widget.CargoInfoView;
 import com.shopping.app.jdmall.widget.SubmitItem;
 
@@ -16,12 +18,12 @@ import java.util.List;
  * Created by 龚浩 on 2017/3/29.
  */
 
-public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
+public class SumbitCargoTypeAdapter extends BaseAdapter {
 
     private static final int TYPE_NOMAL = 0;
     private static final int TYPE_PROGRESS = 1;
     private Context mContext;
-    private List<T> mDataList;
+    private List mDataList;
 
     public SumbitCargoTypeAdapter(Context context, List<T> dataList) {
         mContext = context;
@@ -32,23 +34,26 @@ public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(mDataList != null) {
-//            return mDataList.size() + 5;
-            return 10;
+        if (mDataList != null) {
+            return mDataList.size() + 5;
+
         }
-        return 10;
+        return 5;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(position < getCount() - 5) {
+        if (position < getCount() - 5) {
             convertView = new CargoInfoView(mContext);
-        }else {
+        } else {
             convertView = new SubmitItem(mContext);
         }
-        if(position < getCount() - 5) {
+        if (position < getCount() - 5) {
             CargoInfoView infoView = (CargoInfoView) convertView;
-        }else {
+            FindBean.ProductListBean bean = (FindBean.ProductListBean) mDataList.get(position);
+            infoView.setData(bean);
+
+        } else {
             SubmitItem sumbitIetm = (SubmitItem) convertView;
             sumbitIetm.setData(getCount() - position);
         }
@@ -68,9 +73,9 @@ public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        if(position >= getCount() - 5) {
+        if (position > getCount() - 5) {
             return TYPE_PROGRESS;
-        }else {
+        } else {
             return TYPE_NOMAL;
         }
     }
@@ -82,5 +87,6 @@ public class SumbitCargoTypeAdapter<T> extends BaseAdapter {
 
 
     public void setData(ArrayList<Parcelable> list) {
+        mDataList = list;
     }
 }

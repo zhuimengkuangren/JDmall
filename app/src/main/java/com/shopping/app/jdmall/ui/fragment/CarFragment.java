@@ -288,6 +288,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
                 mCarAdapter.checkAll();
                 //数据为空
                 if (mCarAdapter.getItemCount() == 0) {
+                    mCarTotal.setText("¥0.0");//还原合计
                     mLlEnptyCar.setVisibility(View.VISIBLE);
                     mTvCarEdit.setVisibility(View.GONE);
                     mLlDelete.setVisibility(View.GONE);

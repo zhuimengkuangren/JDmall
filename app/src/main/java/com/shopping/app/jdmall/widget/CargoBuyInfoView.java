@@ -44,7 +44,7 @@ public class CargoBuyInfoView extends LinearLayout {
         String pic = Constant.HOST + bean.getPic();
         Glide.with(getContext()).load(pic).bitmapTransform(new CropCircleTransformation(getContext())).crossFade(1000).into(mIvIcon);
         mTvLabel.setText(bean.getName());
-        mTvPrice.setText(bean.getPrice());
+        mTvPrice.setText("¥: "+bean.getPrice());
         mTvCount.setText("x " + bean.getBuyCounts());
     }
 }

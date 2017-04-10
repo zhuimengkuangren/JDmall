@@ -2,58 +2,138 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="8dp"
               android:background="@android:color/white"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="8dp">
 
     <RelativeLayout
-        android:background="@android:color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/tv_user_talk"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="用户评论"
-        android:layout_marginRight="5dp"
-        />
+        android:background="@android:color/white">
+
         <TextView
-            android:id="@+id/tv_user_talkcounts"
-            android:layout_toRightOf="@id/tv_user_talk"
+            android:id="@+id/tv_user_talk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="用户评论"
+            />
+
+        <TextView
+            android:id="@+id/tv_user_talkcounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_user_talk"
             android:text="（2）"
             />
+
         <LinearLayout
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="好评度"
                 />
+
             <TextView
-                android:drawablePadding="6dp"
                 android:id="@+id/tv_detail_good_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawablePadding="6dp"
+                android:drawableRight="@mipmap/arrow"
                 android:text="100%"
                 android:textColor="#ff0000"
-                android:drawableRight="@mipmap/arrow"
                 />
         </LinearLayout>
     </RelativeLayout>
-    <TextView
-        android:id="@+id/tv_detail_talkarea"
+
+
+    <FrameLayout
+        android:id="@+id/fl_category_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minLines="6"
-        android:maxLines="6"
-        android:text="暂无评论精华"
-        android:gravity="center"
-        />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/aliuser_place_holder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="6dp"
+            android:text="隔壁老王"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/apc"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/apc"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/apc"/>
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/apc"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="东西不错，高端大气上档次,
+    低调奢华有内涵,奔放洋气有深度,简约时尚国际范,
+    低端粗俗甩节操,土憋矫情无下限,装模作样绿茶婊,
+    外猛内柔女汉子,卖萌嘟嘴剪刀手,忧郁深沉无所谓,
+    狂拽帅气吊炸天,冷艳高贵接地气,时尚亮丽小清新,
+    可爱乡村非主流,贵族王朝杀马特，提莫团战必须死"
+            />
+        <TextView
+            android:text="颜色分类:红色;尺码M"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_look_comment"
+            android:background="@drawable/coment_look_selector"
+            android:text="查看全部评价"
+            android:textColor="#FD5509"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
 
 
 </LinearLayout>

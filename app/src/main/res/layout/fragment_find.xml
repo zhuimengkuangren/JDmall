@@ -25,11 +25,12 @@
         android:layout_height="wrap_content">
 
     </com.shopping.app.jdmall.widget.FindCategoryView>
- <fragment
-     class="com.shopping.app.jdmall.ui.fragment.FindListFragment"
-     android:id="@+id/fg_find_listview"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent">
 
- </fragment>
+    <fragment
+        android:id="@+id/fg_find_listview"
+        class="com.shopping.app.jdmall.ui.fragment.FindListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </fragment>
 </LinearLayout>

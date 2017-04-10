@@ -3,6 +3,7 @@ package com.shopping.app.jdmall.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -89,22 +90,32 @@ public class DetailBottomView extends RelativeLayout {
         horizotalView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                horizotalView.getChildCount();
+                Log.d(TAG, "onClick: dianjile"+v.getTransitionName());
+                if (v==horizotalView.getChildAt(horizotalView.getChildCount()-1)){
 
+                }
             }
         });
-        /*horizotalView.setOnScrollChangeListener(new OnScrollChangeListener() {
+        horizotalView.setOnScrollChangeListener(new OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
+                if (horizotalView.getClipChildren()){
+                    if (v==horizotalView.getChildAt(horizotalView.getChildCount()-1)){
+                    }
+                }
+                if (v==horizotalView.getChildAt(horizotalView.getChildCount()-1)){
+                    Log.d(TAG, "onScrollChange: gengduo222");
+                }
             }
-        });*/
-       /* horizotalView.setOnDragListener(new OnDragListener() {
+        });
+        horizotalView.setOnDragListener(new OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
                 Log.d(TAG, "onDrag: "+event.toString());
                 return true;
             }
-        });*/
+        });
         ButterKnife.bind(this, this);
     }
 }

@@ -37,7 +37,7 @@
         <activity android:name=".ui.activity.LimitBuyActivity"/>
         <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.QueryCargoActivity"/>
-        <activity android:name=".ui.activity.DetailListItemActivity"/>
+        <activity android:name=".ui.activity.DetailListItemActivity" />
         <activity android:name=".ui.activity.CommentActivity"/>
         <activity android:name=".ui.activity.SearchInfoActivity"/>
         <activity android:name=".ui.activity.FindRecommandActivity"/>

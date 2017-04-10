@@ -52,7 +52,7 @@ public class FindBean {
     public void setProductList(List<ProductListBean> productList) {
     }
 
-    public static class ProductListBean implements Parcelable {
+    public static class  ProductListBean implements Parcelable {
 
 
 

@@ -202,7 +202,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
             if (mCarAdapter == null) {
                 //设置适配器
-                mCarAdapter = new CarAdapter(getContext(), mCarInfoBeanList,productList,mCarTotal, mCheckboxAll, mCbAll);
+                mCarAdapter = new CarAdapter(getContext(), mCarInfoBeanList,productList,mCarTotal, mCheckboxAll, mCbAll,mBtnCollection);
                 mRecyclerView.getItemAnimator().setChangeDuration(0);//去掉闪屏
                 mRecyclerView.setAdapter(mCarAdapter);
             } else {
@@ -292,8 +292,6 @@ public class CarFragment extends BaseNotLoadDataFragment {
                     mTvCarEdit.setVisibility(View.GONE);
                     mLlDelete.setVisibility(View.GONE);
                 }
-                break;
-            case R.id.btn_collection://收藏
                 break;
             case R.id.tv_empty_car_tobuy:
                 Toast.makeText(getContext(), "亲,来逛逛呗~", Toast.LENGTH_SHORT).show();

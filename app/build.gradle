@@ -40,10 +40,8 @@ dependencies {
     compile 'com.github.iwgang:countdownview:2.1.3'
     compile 'com.github.open-android:PullToRefresh:v1.0'
     compile 'com.github.uncleleonfan:funbanner:1.1.5'
-    compile 'com.android.support:design:25.1.1'
-    compile 'com.github.uncleleonfan:ViewPagerIndicator:1.0.0'
-    compile 'com.github.rubensousa:floatingtoolbar:1.4.4'
-    compile 'com.android.support:design:25.3.1'
+
+
     compile 'com.bm.photoview:library:1.4.1'
     compile 'com.android.support:recyclerview-v7:25+'
     compile 'de.hdodenhof:circleimageview:2.1.0'
@@ -51,9 +49,10 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     // If you want to use the GPU Filters
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
-//    集成二维码扫描
+    //    集成二维码扫描
     compile 'com.google.zxing:core:3.2.1'
     compile 'cn.bingoogolapple:bga-qrcodecore:1.1.7@aar'
     compile 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
+    compile project(':loopviewpagerlib')
 }
 

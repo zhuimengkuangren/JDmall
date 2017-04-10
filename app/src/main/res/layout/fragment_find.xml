@@ -20,16 +20,16 @@
     </com.shopping.app.jdmall.widget.FindHorizotalScrollView>
 
     <com.shopping.app.jdmall.widget.FindCategoryView
-        android:id="@+id/category_find_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:id="@+id/category_find_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     </com.shopping.app.jdmall.widget.FindCategoryView>
- <fragment
-     class="com.shopping.app.jdmall.ui.fragment.FindListFragment"
-     android:id="@+id/fg_find_listview"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent">
+<fragment
+class="com.shopping.app.jdmall.ui.fragment.FindListFragment"
+android:id="@+id/fg_find_listview"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
 
- </fragment>
-</LinearLayout>
+</fragment>
+    </LinearLayout>

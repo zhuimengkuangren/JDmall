@@ -1,8 +1,10 @@
 package com.shopping.app.jdmall.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.leon.loopviewpagerlib.CirclePageIndicator;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
@@ -19,13 +22,13 @@ import com.shopping.app.jdmall.widget.DetailBottomView;
 import com.shopping.app.jdmall.widget.DetailInfoView;
 import com.shopping.app.jdmall.widget.DetailTalkView;
 import com.shopping.app.jdmall.widget.PopupView;
-import com.viewpagerindicator.CirclePageIndicator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -44,14 +47,15 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     @BindView(R.id.ll_find_listitem)
     LinearLayout mLlFindListitem;
     private static final String TAG = "DetailListItemFragment";
-    @BindView(R.id.indicator_circle)
-    CirclePageIndicator mIndicator;
     @BindView(R.id.tv_collect)
     TextView mCollect;
     @BindView(R.id.tv_buy_car)
     TextView mBuyCar;
     @BindView(R.id.buy_now)
     TextView mBuyNow;
+    @BindView(R.id.indicator_circle)
+    CirclePageIndicator mIndicatorCircle;
+
     private FindBean.ProductListBean mBean;
     private String mUrl;
     private PopupWindow mWindow;
@@ -67,18 +71,20 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         mBean = (FindBean.ProductListBean) getActivity().getIntent().getSerializableExtra("values");
         mInfoView.bindView(mBean);//minfoview为null
         mViewPager.setAdapter(adapter);
-        mIndicator.setViewPager(mViewPager);
+        mIndicatorCircle.setViewPager(mViewPager);
         mViewPagerBottom.setAdapter(bottomAdapter);
         EventBus.getDefault().register(this);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(String event){
-        switch (event){
+    public void onEvent(String event) {
+        switch (event) {
             case "clickclose":
             case "animationcompleted":
                 mWindow.dismiss();
@@ -164,7 +170,6 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     };
 
 
-
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -183,7 +188,6 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     }
 
 
-
     private void startPopupWindow() {
         PopupView popupView = new PopupView(getContext());
         popupView.bindView(mBean);
@@ -193,7 +197,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         popupView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    mWindow.dismiss();
+                mWindow.dismiss();
             }
         });
         mWindow.setFocusable(true);
@@ -201,5 +205,13 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         //设置动画样式
         mWindow.setAnimationStyle(R.style.pop_buycar);
         mWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);//显示在指定位置,在0,0的位置
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

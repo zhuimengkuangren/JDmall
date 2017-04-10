@@ -16,6 +16,7 @@ import com.leon.loopviewpagerlib.CirclePageIndicator;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
+import com.shopping.app.jdmall.utils.SPUtils;
 import com.shopping.app.jdmall.widget.DetailBottomView;
 import com.shopping.app.jdmall.widget.DetailInfoView;
 import com.shopping.app.jdmall.widget.DetailTalkView;
@@ -68,6 +69,8 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     private FindBean.ProductListBean mBean;
     private String mUrl;
     private PopupWindow mWindow;
+    private boolean isCollect;
+    private boolean isGuanZhu;
 
     @Override
     public int getResId() {
@@ -87,7 +90,10 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 showShare();
             }
         });
-
+        isCollect = SPUtils.getCollect(getContext(), false);
+        isGuanZhu = SPUtils.getGuanZhu(getContext(), false);
+        mIvSetCollect.setEnabled(isCollect);
+        mIvSetGuanzhu.setEnabled(isGuanZhu);
     }
 
     @Override
@@ -184,22 +190,17 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         }
     };
 
-    boolean isGuanZhu;
-    boolean isCollect;
-
 
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now, R.id.tv_customer, R.id.tv_guanzhu})
     public void onClick(View view) {
+        isCollect = SPUtils.getCollect(getContext(), false);
+        isGuanZhu = SPUtils.getGuanZhu(getContext(), false);
         switch (view.getId()) {
             case R.id.tv_collect:
                 //TODO 收藏
-                if (isCollect) {
-                    mIvSetCollect.setEnabled(false);
-
-                } else {
-                    mIvSetCollect.setEnabled(true);
-                }
                 isCollect = !isCollect;
+                mIvSetCollect.setEnabled(isCollect);
+                SPUtils.setCollect(getContext(),isCollect);
                 Toast.makeText(getContext(), "您选择的物品已收藏", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_buy_car:
@@ -215,12 +216,10 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
                 break;
             case R.id.tv_guanzhu:
                 //Todo 关注
-                if (isGuanZhu) {
-                    mIvSetGuanzhu.setEnabled(false);
-                } else {
-                    mIvSetGuanzhu.setEnabled(true);
-                }
                 isGuanZhu = !isGuanZhu;
+                mIvSetGuanzhu.setEnabled(isGuanZhu);
+                SPUtils.setGuanZhu(getContext(),isGuanZhu);
+                Toast.makeText(getContext(), "您选择的物品已关注", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

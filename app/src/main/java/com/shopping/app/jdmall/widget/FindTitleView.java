@@ -1,12 +1,15 @@
 package com.shopping.app.jdmall.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.shopping.app.jdmall.R;
+import com.shopping.app.jdmall.ui.activity.HomeMsgActivity;
+import com.shopping.app.jdmall.ui.activity.TestScanActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,7 +37,7 @@ public class FindTitleView extends RelativeLayout {
     }
 
     private void init() {
-        View.inflate(getContext(), R.layout.view_title_find_fragment, this);
+        View view = View.inflate(getContext(), R.layout.view_title_find_fragment, this);
         ButterKnife.bind(this, this);
     }
 
@@ -42,12 +45,14 @@ public class FindTitleView extends RelativeLayout {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sao_yi_sao_find_title:
-                //TODO扫描
+                getContext().startActivity(new Intent(getContext(), TestScanActivity.class));
                 break;
             case R.id.message_find:
-
+                getContext().startActivity(new Intent(getContext(),HomeMsgActivity.class));
                 break;
             case R.id.bar_person_find_title:
+                //个人信息
+
                 break;
         }
     }

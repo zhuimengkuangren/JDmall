@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
@@ -37,15 +39,17 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
     private TextView mCarTotal;
     private CheckBox mCheckboxAll;
     private CheckBox mCbAll;
+    private Button mBtnCollection;
     private OnItemClickListener mOnItemClickListener;
 
-    public CarAdapter(Context context, List<CarInfoBean> carInfoBeanList, List<FindBean.ProductListBean> productList, TextView carTotal, CheckBox checkboxAll, CheckBox cbAll) {
+    public CarAdapter(Context context, List<CarInfoBean> carInfoBeanList, List<FindBean.ProductListBean> productList, TextView carTotal, CheckBox checkboxAll, CheckBox cbAll, Button btnCollection) {
         mContext = context;
         mCarInfoBeanList = carInfoBeanList;
         mProductList = productList;
         mCarTotal = carTotal;
         mCheckboxAll = checkboxAll;//完成状态的checkbox
         mCbAll = cbAll;//编辑状态的checkbox
+        mBtnCollection = btnCollection;//收藏
         showTotalPrice();
         //设置点击事件
         initListener();
@@ -97,6 +101,18 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
                 checkAllOrNone(isCheck);
             }
 
+        });
+
+        mBtnCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isCheck = hasSelect();
+                if(isCheck){
+                    Toast.makeText(mContext, "收藏成功!!O(∩_∩)O~~", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(mContext, "亲,要请勾选您想收藏的商品哟!", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
     }
 
@@ -180,6 +196,19 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
                 }
             }
         }
+    }
+
+    public boolean hasSelect(){
+        if (mCarInfoBeanList != null && mCarInfoBeanList.size() > 0) {
+            for (int i = 0; i < mCarInfoBeanList.size(); i++) {
+                //删除选中的
+                CarInfoBean carInfoBean = mCarInfoBeanList.get(i);
+                if(carInfoBean.isCheck()){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 

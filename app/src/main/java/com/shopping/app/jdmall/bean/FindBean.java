@@ -53,7 +53,7 @@ public class FindBean {
         this.productList = productList;
     }
 
-    public static class ProductListBean implements Parcelable {
+    public static class  ProductListBean implements Parcelable {
 
 
 

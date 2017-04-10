@@ -2,6 +2,7 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,12 +42,6 @@ import retrofit2.Response;
 
 public class IdentActivity extends BaseActivity {
     private static final String TAG = "IdentActivity";
-    int mChickIdPay = 0;
-    int mChickIdSend = 0;
-    int mPayType = 1;
-    int mSend = 1;
-    int mUserCheckId = 1;
-
 
 
     @BindView(R.id.tool_bar)
@@ -64,11 +60,14 @@ public class IdentActivity extends BaseActivity {
     AddressView mAddress;
     @BindView(R.id.head_view)
     LinearLayout mHeadView;
+    @BindView(R.id.tv_sum)
+    TextView mTvSum;
     private SumbitCargoTypeAdapter mAdapter;
     private List<FindBean.ProductListBean> mListData = new ArrayList<>();
 
     Context mContext = this;
     private ArrayList<Parcelable> mDataList;
+    private int sum = 0;
 
     @Override
     protected int getLayoutResId() {
@@ -90,11 +89,23 @@ public class IdentActivity extends BaseActivity {
         //获取购物车里的信息
         initBuyCargo();
 
+        //初始化显示信息
+        initView();
+
+    }
+
+    private void initView() {
+        mTvSum.setText("合计: ¥" + sum);
     }
 
     private void initMoney(ArrayList<Parcelable> dataList) {
         //初始化购物车里面的所有数据
-
+        for (int i = 0; i < dataList.size(); i++) {
+            FindBean.ProductListBean bean = (FindBean.ProductListBean) dataList.get(i);
+            int counts = bean.getBuyCounts();
+            int price = bean.getPrice();
+            sum += (counts * price);
+        }
 
 
     }
@@ -136,11 +147,10 @@ public class IdentActivity extends BaseActivity {
     }
 
     private void initListView() {
-        mAdapter = new SumbitCargoTypeAdapter(this, mListData);
+        mAdapter = new SumbitCargoTypeAdapter<FindBean.ProductListBean>(this, mListData);
         mListView.setAdapter(mAdapter);
         mDataList = new ArrayList<>();
     }
-
 
 
     private void initToolBar() {
@@ -177,7 +187,7 @@ public class IdentActivity extends BaseActivity {
 
     @OnClick(R.id.btn_commit)
     public void onClick(View v) {
-        if(v == mBtnCommit) {
+        if (v == mBtnCommit) {
             //跳转订单结果界面
             navigateTo(OrderCommitSuccessActivity.class);
         }
@@ -186,8 +196,15 @@ public class IdentActivity extends BaseActivity {
 
     @Override
     public void navigateTo(Class activity) {
-        Intent intent = new Intent(this,activity);
-        intent.putExtra("result","fail");
+        Intent intent = new Intent(this, activity);
+        intent.putExtra("result", "success");
         startActivity(intent);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

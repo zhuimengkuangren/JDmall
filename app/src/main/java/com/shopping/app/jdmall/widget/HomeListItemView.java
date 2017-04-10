@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by panpan on 2017/4/7.
@@ -63,16 +64,37 @@ public class HomeListItemView extends RelativeLayout {
 
     public void bindView(List<CategoryItemBean.CategoryBean> categoryBeen) {
         String host = "http://10.0.2.2:8080/market";
-        Glide.with(getContext()).load(host + categoryBeen.get(0).getPic()).into(mImage1);
+        //Glide.with(getContext()).load(host + categoryBeen.get(0).getPic()).into(mImage1);
+
+        Glide.with(getContext())
+                .load(host + categoryBeen.get(0).getPic())
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), 30, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
+                .into(mImage1);
+        Glide.with(getContext())
+                .load(host + categoryBeen.get(1).getPic())
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), 30, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
+                .into(mImage2);
+
+        Glide.with(getContext())
+                .load(host + categoryBeen.get(2).getPic())
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), 30, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
+                .into(mImage3);
+
+        Glide.with(getContext())
+                .load(host + categoryBeen.get(3).getPic())
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), 30, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
+                .into(mImage4);
         mText1.setText(categoryBeen.get(0).getName());
 
-        Glide.with(getContext()).load(host + categoryBeen.get(1).getPic()).into(mImage2);
+
         mText2.setText(categoryBeen.get(1).getName());
 
-        Glide.with(getContext()).load(host + categoryBeen.get(2).getPic()).into(mImage3);
         mText3.setText(categoryBeen.get(2).getName());
 
-        Glide.with(getContext()).load(host + categoryBeen.get(3).getPic()).into(mImage4);
         mText4.setText(categoryBeen.get(3).getName());
     }
 

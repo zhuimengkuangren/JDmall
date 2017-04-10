@@ -1,8 +1,10 @@
 package com.shopping.app.jdmall.ui.fragment;
 
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -15,11 +17,16 @@ import android.widget.Toast;
 
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.adapter.CarAdapter;
+import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.CarInfoBean;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.event.FragmentEvent;
 import com.shopping.app.jdmall.manager.CarManager;
+import com.shopping.app.jdmall.ui.activity.BaseActivity;
+import com.shopping.app.jdmall.ui.activity.IdentActivity;
+import com.shopping.app.jdmall.ui.activity.LoginPageActivity;
 import com.shopping.app.jdmall.ui.activity.MainActivity;
+import com.shopping.app.jdmall.utils.SPUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -186,6 +193,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
         if (mCarInfoBeanList.size() > 0) {
             //转换集合
             List<FindBean.ProductListBean> productList = CarToProduct(mCarInfoBeanList);
+            Log.d(TAG, "productList: " + productList.size());
 
             //有数据,把默认背景隐藏
             mLlEnptyCar.setVisibility(View.GONE);
@@ -213,10 +221,13 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     }
 
-    private List<FindBean.ProductListBean> CarToProduct(List<CarInfoBean> carInfoBeanList) {
-        List<FindBean.ProductListBean> productListBeen =  new ArrayList<>();
+    private ArrayList<FindBean.ProductListBean> CarToProduct(List<CarInfoBean> carInfoBeanList) {
+        ArrayList<FindBean.ProductListBean> productListBeen =  new ArrayList<>();
         for (int i = 0; i <carInfoBeanList.size() ; i++) {
             CarInfoBean carInfoBean = carInfoBeanList.get(i);
+            /*if(!carInfoBean.isCheck()){
+                continue;
+            }*/
             CarInfoBean.ProductBean product = carInfoBean.getProduct();
 
             int prodNum = carInfoBean.getProdNum();
@@ -229,9 +240,13 @@ public class CarFragment extends BaseNotLoadDataFragment {
             //填充数据
             FindBean.ProductListBean productListBean = new FindBean.ProductListBean();
             productListBean.setId(id);
-            productListBean.setMarketPrice(price);
+            productListBean.setMarketPrice(price + 100);//市场价
+            productListBean.setPrice(price);
             productListBean.setName(name);
             productListBean.setPic(pic);
+            productListBean.setNumbers(Integer.parseInt(number));
+            productListBean.setBuyCounts(prodNum);
+
 
             productListBeen.add(productListBean);
 
@@ -247,12 +262,23 @@ public class CarFragment extends BaseNotLoadDataFragment {
         switch (view.getId()) {
             case R.id.btn_check_out://去结算
                 Toast.makeText(getContext(), "去结算!", Toast.LENGTH_SHORT).show();
-                List<FindBean.ProductListBean> productListBeen;
+                ArrayList<FindBean.ProductListBean> productListBeen = null;
                 //转换集合
                 if(mCarInfoBeanList != null && mCarInfoBeanList.size() >0){
                     productListBeen = CarToProduct(mCarInfoBeanList);
                 }
                 //验证登录状态
+                String userId = SPUtils.getString(getContext(), Constant.LOGIN_USERID, null);
+                if (userId == null) {
+                    ((BaseActivity)getActivity()).navigateTo(LoginPageActivity.class);
+                } else {
+                    //只传递勾选的商品
+                    productListBeen = CarToSelectedProduct(mCarInfoBeanList);
+
+                    Intent intent = new Intent(getContext(),IdentActivity.class);
+                    intent.putParcelableArrayListExtra("values",productListBeen);
+                    getContext().startActivity(intent);
+                }
 
                 break;
             case R.id.btn_delete://删除
@@ -276,5 +302,39 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
 
         }
+    }
+
+    private ArrayList<FindBean.ProductListBean> CarToSelectedProduct(List<CarInfoBean> carInfoBeanList) {
+        ArrayList<FindBean.ProductListBean> productListBeen =  new ArrayList<>();
+        for (int i = 0; i <carInfoBeanList.size() ; i++) {
+            CarInfoBean carInfoBean = carInfoBeanList.get(i);
+            //忽略未勾选的商品
+            if(!carInfoBean.isCheck()){
+                continue;
+            }
+            CarInfoBean.ProductBean product = carInfoBean.getProduct();
+
+            int prodNum = carInfoBean.getProdNum();
+            int id = product.getId();
+            String name = product.getName();
+            String number = product.getNumber();
+            String pic = product.getPic();
+            int price = product.getPrice();
+
+            //填充数据
+            FindBean.ProductListBean productListBean = new FindBean.ProductListBean();
+            productListBean.setId(id);
+            productListBean.setMarketPrice(price + 100);//市场价
+            productListBean.setPrice(price);
+            productListBean.setName(name);
+            productListBean.setPic(pic);
+            productListBean.setNumbers(Integer.parseInt(number));
+            productListBean.setBuyCounts(prodNum);
+
+
+            productListBeen.add(productListBean);
+
+        }
+        return productListBeen;
     }
 }

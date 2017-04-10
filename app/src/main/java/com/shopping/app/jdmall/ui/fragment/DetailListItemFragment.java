@@ -50,18 +50,21 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     TextView mBuyCar;
     @BindView(R.id.buy_now)
     TextView mBuyNow;
+
     @BindView(R.id.detail_bottom_view)
     DetailBottomView mDetailBottomView;
     @BindView(R.id.tv_customer)
     LinearLayout mTvCustomer;
     @BindView(R.id.tv_guanzhu)
     LinearLayout mTvGuanzhu;
+
     @BindView(R.id.indicator_circle)
     CirclePageIndicator mIndicatorCircle;
     @BindView(R.id.iv_set_guanzhu)
     ImageView mIvSetGuanzhu;
     @BindView(R.id.iv_set_collect)
     ImageView mIvSetCollect;
+
     private FindBean.ProductListBean mBean;
     private String mUrl;
     private PopupWindow mWindow;
@@ -184,6 +187,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     boolean isGuanZhu;
     boolean isCollect;
 
+
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now, R.id.tv_customer, R.id.tv_guanzhu})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -222,6 +226,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     }
 
 
+
     private void startPopupWindow(int id) {
         PopupView popupView = new PopupView(getContext());
         popupView.bindView(mBean, id);
@@ -238,7 +243,5 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         mWindow.setAnimationStyle(R.style.pop_buycar);
         mWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);//显示在指定位置,在0,0的位置
     }
-
-
 
 }

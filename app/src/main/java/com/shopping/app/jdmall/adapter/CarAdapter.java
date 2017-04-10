@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.shopping.app.jdmall.R;
@@ -248,7 +247,6 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.ViewHolder> {
                 Intent intent = new Intent(mContext, DetailListItemActivity.class);
                 intent.putExtra("values",mProductList.get(position));
                 mContext.startActivity(intent);
-                Toast.makeText(mContext, "被点击了" + position, Toast.LENGTH_SHORT).show();
             }
         });
 

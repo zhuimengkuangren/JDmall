@@ -14,6 +14,8 @@ import com.shopping.app.jdmall.bean.CategoryItemBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by 龚浩 on 2017/4/5.
@@ -45,7 +47,8 @@ public class CategoryItemView extends LinearLayout {
         String pic = bean.getPic();
         mTvName.setText(name);
         String url = Constant.HOST + pic;
-        Glide.with(getContext()).load(url).into(mIvIcon);
+       Glide.with(getContext()).load(url).bitmapTransform(new CropCircleTransformation(getContext())).crossFade(1000).into(mIvIcon);
+
 
     }
 }

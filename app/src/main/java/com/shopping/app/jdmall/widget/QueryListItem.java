@@ -17,6 +17,7 @@ import com.shopping.app.jdmall.bean.CargoBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by 龚浩 on 2017/4/6.
@@ -55,9 +56,13 @@ public class QueryListItem extends RelativeLayout {
 
     public void setData(CargoBean.ProductListBean bean) {
         String url = Constant.HOST + bean.getPic();
-        Glide.with(getContext()).load(url).into(mIvIcon);
+      //  Glide.with(getContext()).load(url).bitmapTransform(new CropCircleTransformation(getContext())).crossFade(1000).into(mIvIcon);
 
-
+        Glide.with(getContext())
+                .load(url)
+                .bitmapTransform(new RoundedCornersTransformation(getContext(), 30, 0,
+                        RoundedCornersTransformation.CornerType.ALL))
+                .into(mIvIcon);
         mTvTitle.setText(bean.getName());
         mTvPrice.setText("¥" + bean.getPrice());
         mTvCommend.setText("精彩评论:" + bean.getCommentCount() + "条");

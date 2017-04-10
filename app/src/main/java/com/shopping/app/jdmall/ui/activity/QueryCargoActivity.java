@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -12,14 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 import com.shopping.app.jdmall.R;
 import com.shopping.app.jdmall.bean.CargoBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.widget.pullToRefreshView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,14 +40,9 @@ public class QueryCargoActivity extends BaseActivity {
     TextView mTabQuery;
     @BindView(R.id.ll_container)
     LinearLayout mLlContainer;
-    @BindView(R.id.floatingToolbar)
-    FloatingToolbar mFloatingToolbar;
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
-    private int currentPosition = 0;
-    private boolean isPriceUp = false;
 
-    private List<CargoBean> mList = new ArrayList<>();
+    private int currentPosition = 0;
+
     private CargoBean mBean;
 
     @Override
@@ -64,43 +54,10 @@ public class QueryCargoActivity extends BaseActivity {
     protected void init() {
         super.init();
         initToolBar();
-        initAppBar();
         startLoadData();
     }
 
-    private void initAppBar() {
-        mFloatingToolbar.attachFab(mFab);
 
-        mFloatingToolbar.setClickListener(new FloatingToolbar.ItemClickListener() {
-            @Override
-            public void onItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.iv_back:
-                        finish();
-                        break;
-                    case R.id.iv_mine:
-                        //跳转到minefragment
-                        break;
-                    case R.id.iv_buy:
-                        //跳转到商品购买界面
-                        navigateTo(IdentActivity.class);
-                        break;
-                    case R.id.iv_buy_car:
-                        //跳转到购物车界面
-                        break;
-                    case R.id.iv_close:
-                        mFloatingToolbar.hide();
-                        break;
-                }
-
-            }
-
-            @Override
-            public void onItemLongClick(MenuItem item) {
-
-            }
-        });
-    }
 
     private void initToolBar() {
         Intent intent = getIntent();

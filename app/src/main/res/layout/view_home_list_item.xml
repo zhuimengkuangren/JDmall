@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:scaleType="fitXY"
             android:padding="6dp"
             android:id="@+id/image1"
             android:layout_width="96dp"
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:scaleType="fitXY"
             android:padding="6dp"
             android:id="@+id/image2"
             android:layout_width="96dp"
@@ -62,6 +64,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:scaleType="fitXY"
             android:padding="6dp"
             android:id="@+id/image3"
             android:layout_width="96dp"
@@ -87,6 +90,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:scaleType="fitXY"
             android:padding="6dp"
             android:id="@+id/image4"
             android:layout_width="96dp"

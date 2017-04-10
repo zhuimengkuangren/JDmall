@@ -9,14 +9,6 @@
 
 
 
-        <!-- Appbar -->
-
-        <com.github.rubensousa.floatingtoolbar.FloatingToolbar
-            android:id="@+id/floatingToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="bottom"
-            app:floatingMenu="@menu/main" />
 
 
 

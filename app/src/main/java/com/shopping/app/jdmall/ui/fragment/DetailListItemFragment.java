@@ -54,6 +54,11 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     TextView mBuyCar;
     @BindView(R.id.buy_now)
     TextView mBuyNow;
+
+    @BindView(R.id.indicator_circle)
+    CirclePageIndicator mIndicatorCircle;
+
+
     @BindView(R.id.detail_bottom_view)
     DetailBottomView mDetailBottomView;
     @BindView(R.id.tv_customer)
@@ -61,8 +66,6 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     @BindView(R.id.tv_guanzhu)
     LinearLayout mTvGuanzhu;
     Unbinder unbinder;
-    @BindView(R.id.indicator_circle)
-    CirclePageIndicator mIndicatorCircle;
     Unbinder unbinder1;
     private FindBean.ProductListBean mBean;
     private String mUrl;
@@ -185,6 +188,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     };
 
 
+
     @OnClick({R.id.tv_collect, R.id.tv_buy_car, R.id.buy_now, R.id.tv_customer, R.id.tv_guanzhu})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -212,6 +216,7 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     }
 
 
+
     private void startPopupWindow(int id) {
         PopupView popupView = new PopupView(getContext());
         popupView.bindView(mBean, id);
@@ -233,9 +238,10 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder1 = ButterKnife.bind(this, rootView);
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
+
 
     @Override
     public void onDestroyView() {
@@ -249,5 +255,4 @@ public class DetailListItemFragment extends BaseNotLoadDataFragment {
         super.onDestroyView();
         unbinder.unbind();
     }*/
-
 }

@@ -117,7 +117,8 @@ public interface Api {
     @GET("search/recommend")
     Call<SearchRecommentBean> listSearchRecommend();
 
-    @GET("ordersumbit")
+    @FormUrlEncoded
+    @POST("ordersumbit")
     Call<OrderSumbitBean> listOrderSumbit(@Header("userid") int userid, @Field("sku") String sku, @Field("addressId") int addressId, @Field("paymentType") int paymentType, @Field("deliveryType") int deliveryType, @Field("invoiceType") int invoiceType, @Field("invoiceTitle") String invoiceTitle, @Field("invoiceContent") int invoiceContent);
 
 }

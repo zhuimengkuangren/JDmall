@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/iv_icon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:padding="@dimen/size_middle"
         android:src="@drawable/icon_member_area_deafult"/>
 

@@ -22,8 +22,10 @@ import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.LocationBean;
 import com.shopping.app.jdmall.bean.OrderSumbitBean;
+import com.shopping.app.jdmall.bean.SkuBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.utils.SPUtils;
+import com.shopping.app.jdmall.utils.SkuTransferUtils;
 import com.shopping.app.jdmall.widget.AddressView;
 
 import java.util.ArrayList;
@@ -68,7 +70,7 @@ public class IdentActivity extends BaseActivity {
     private ArrayList<Parcelable> mDataList;
     private int sum = 0;
     private int mAddressId;
-    private String result = "success";
+    private List<SkuBean> mList = new ArrayList<>();
 
     @Override
     protected int getLayoutResId() {
@@ -104,7 +106,6 @@ public class IdentActivity extends BaseActivity {
         for (int i = 0; i < dataList.size(); i++) {
             FindBean.ProductListBean bean = (FindBean.ProductListBean) dataList.get(i);
             int counts = bean.getBuyCounts();
-            Toast.makeText(this,""+counts,Toast.LENGTH_SHORT).show();
             int price = bean.getPrice();
             sum += (counts * price);
         }
@@ -115,9 +116,21 @@ public class IdentActivity extends BaseActivity {
     private void initBuyCargo() {
         Intent intent = getIntent();
         mDataList = intent.getParcelableArrayListExtra("values");
+        initSku(mDataList);
         //获取总的金额数
         initMoney(mDataList);
         mAdapter.setData(mDataList);
+    }
+
+    private void initSku(ArrayList<Parcelable> list) {
+        for (int i = 0; i < list.size() ; i++) {
+            FindBean.ProductListBean bean = (FindBean.ProductListBean) list.get(i);
+            SkuBean skuBean = new SkuBean();
+            skuBean.setNum(bean.getBuyCounts());
+            skuBean.setId(bean.getId());
+            skuBean.setAttrs(new int[] {1,4});
+            mList.add(skuBean);
+        }
     }
 
     private void initLocation() {
@@ -131,11 +144,9 @@ public class IdentActivity extends BaseActivity {
     }
 
     private void startLoadLocationData(String userId) {
-        Toast.makeText(this, "fsadfas", Toast.LENGTH_SHORT).show();
         JDRetrofit.getInstance().getApi().listLocation(userId).enqueue(new Callback<LocationBean>() {
             @Override
             public void onResponse(Call<LocationBean> call, Response<LocationBean> response) {
-                Log.d(TAG, "onResponse: " + response.body().getResponse());
                 List<LocationBean.AddressListBean> list = response.body().getAddressList();
                 LocationBean.AddressListBean addressListBean = list.get(1);
                 mAddressId = addressListBean.getId();
@@ -188,6 +199,7 @@ public class IdentActivity extends BaseActivity {
         return true;
     }
 
+    String mResult = "success";
     @OnClick(R.id.btn_commit)
     public void onClick(View v) {
         if (v == mBtnCommit) {
@@ -198,16 +210,16 @@ public class IdentActivity extends BaseActivity {
     }
 
     private void startMakeIdent() {
-        String sku = null;
+        String sku = SkuTransferUtils.ListToString(mList);
         Call<OrderSumbitBean> call = JDRetrofit.getInstance().getApi().listOrderSumbit(20428,sku, mAddressId, 1, 1, 1, "传智慧播客教育科技有限公司", 1);
         call.enqueue(new Callback<OrderSumbitBean>() {
             @Override
             public void onResponse(Call<OrderSumbitBean> call, Response<OrderSumbitBean> response) {
                 String result = response.body().getResponse();
-                if(result.equals("orderSumbit")) {
-                    result = "success";
-                }else {
-                    result = "faild";
+                if("orderSubmit".equals(result)) {
+                    mResult = "success";
+                }else{
+                    mResult = "faild";
                 }
 
                 //跳转到订单结果界面
@@ -224,7 +236,8 @@ public class IdentActivity extends BaseActivity {
     @Override
     public void navigateTo(Class activity) {
         Intent intent = new Intent(this, activity);
-        intent.putExtra("result", result);
+        intent.putExtra("result", mResult);
+        Log.d(TAG, "navigateTo: ===="+mResult);
         startActivity(intent);
     }
 

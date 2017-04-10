@@ -12,17 +12,13 @@ import com.shopping.app.jdmall.bean.CommentBeans;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.HomeTopicbean;
 import com.shopping.app.jdmall.bean.LimitBuyBean;
-
 import com.shopping.app.jdmall.bean.LocationBean;
 import com.shopping.app.jdmall.bean.OrderBean;
-import com.shopping.app.jdmall.bean.SaleBean;
-import com.shopping.app.jdmall.bean.TopicRenBean;
-import com.shopping.app.jdmall.bean.UserBean;
-
+import com.shopping.app.jdmall.bean.OrderSumbitBean;
 import com.shopping.app.jdmall.bean.SaleBean;
 import com.shopping.app.jdmall.bean.SearchRecommentBean;
 import com.shopping.app.jdmall.bean.TopicRenBean;
-
+import com.shopping.app.jdmall.bean.UserBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -64,7 +60,6 @@ public interface Api {
 
     //热门商品请求
     @GET("hotproduct")
-
     Call<FindBean> listHotProduct(@Query("page") int page, @Query("pageNum") int pageNum, @Query("orderby") String orderby);
 
     @FormUrlEncoded
@@ -85,6 +80,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("register")
     Call<ResponseBody> register(@Field("username") String username, @Field("password") String password);
+
     @GET("topic")
     Call<SaleBean> listSale(@Query("page") int page, @Query("pageNum") int pageNum);
 
@@ -102,16 +98,15 @@ public interface Api {
 
     @GET("addresslist")
     Call<AddressBean> getAddressList(@Header("userid") String userid);
+
     @GET("userinfo")
     Call<UserBean> getUserInfo(@Header("userid") String userid);
 
     @GET("favorites")
-    Call<CollectionBean> getFavorList(@Query("page") int page,@Query("pageNum") int pageNum);
+    Call<CollectionBean> getFavorList(@Query("page") int page, @Query("pageNum") int pageNum);
 
     @GET("product")
     Call<BuyCarBean> listBuyCar(@Query("pId") int pld);
-
-
 
 
     @GET("addresslist")
@@ -121,6 +116,9 @@ public interface Api {
     //搜索推荐
     @GET("search/recommend")
     Call<SearchRecommentBean> listSearchRecommend();
+
+    @GET("ordersumbit")
+    Call<OrderSumbitBean> listOrderSumbit(@Header("userid") int userid, @Field("sku") String sku, @Field("addressId") int addressId, @Field("paymentType") int paymentType, @Field("deliveryType") int deliveryType, @Field("invoiceType") int invoiceType, @Field("invoiceTitle") String invoiceTitle, @Field("invoiceContent") int invoiceContent);
 
 }
 

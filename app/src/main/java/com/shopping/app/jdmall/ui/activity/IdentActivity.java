@@ -2,7 +2,6 @@ package com.shopping.app.jdmall.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +21,7 @@ import com.shopping.app.jdmall.adapter.SumbitCargoTypeAdapter;
 import com.shopping.app.jdmall.app.Constant;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.bean.LocationBean;
+import com.shopping.app.jdmall.bean.OrderSumbitBean;
 import com.shopping.app.jdmall.network.JDRetrofit;
 import com.shopping.app.jdmall.utils.SPUtils;
 import com.shopping.app.jdmall.widget.AddressView;
@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,6 +67,8 @@ public class IdentActivity extends BaseActivity {
     Context mContext = this;
     private ArrayList<Parcelable> mDataList;
     private int sum = 0;
+    private int mAddressId;
+    private String result = "success";
 
     @Override
     protected int getLayoutResId() {
@@ -103,6 +104,7 @@ public class IdentActivity extends BaseActivity {
         for (int i = 0; i < dataList.size(); i++) {
             FindBean.ProductListBean bean = (FindBean.ProductListBean) dataList.get(i);
             int counts = bean.getBuyCounts();
+            Toast.makeText(this,""+counts,Toast.LENGTH_SHORT).show();
             int price = bean.getPrice();
             sum += (counts * price);
         }
@@ -136,6 +138,7 @@ public class IdentActivity extends BaseActivity {
                 Log.d(TAG, "onResponse: " + response.body().getResponse());
                 List<LocationBean.AddressListBean> list = response.body().getAddressList();
                 LocationBean.AddressListBean addressListBean = list.get(1);
+                mAddressId = addressListBean.getId();
                 mAddress.setData(addressListBean);
             }
 
@@ -189,15 +192,39 @@ public class IdentActivity extends BaseActivity {
     public void onClick(View v) {
         if (v == mBtnCommit) {
             //跳转订单结果界面
-            navigateTo(OrderCommitSuccessActivity.class);
+            startMakeIdent();
         }
 
+    }
+
+    private void startMakeIdent() {
+        String sku = null;
+        Call<OrderSumbitBean> call = JDRetrofit.getInstance().getApi().listOrderSumbit(20428,sku, mAddressId, 1, 1, 1, "传智慧播客教育科技有限公司", 1);
+        call.enqueue(new Callback<OrderSumbitBean>() {
+            @Override
+            public void onResponse(Call<OrderSumbitBean> call, Response<OrderSumbitBean> response) {
+                String result = response.body().getResponse();
+                if(result.equals("orderSumbit")) {
+                    result = "success";
+                }else {
+                    result = "faild";
+                }
+
+                //跳转到订单结果界面
+                navigateTo(OrderCommitSuccessActivity.class);
+            }
+
+            @Override
+            public void onFailure(Call<OrderSumbitBean> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
     public void navigateTo(Class activity) {
         Intent intent = new Intent(this, activity);
-        intent.putExtra("result", "success");
+        intent.putExtra("result", result);
         startActivity(intent);
     }
 

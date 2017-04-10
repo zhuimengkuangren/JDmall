@@ -95,12 +95,15 @@ public class CarManager {
 
         } else {
             tempData = carInfoBean;
+            if (tempData.getProdNum() > 10) {
+                tempData.setProdNum(10);
+            }
         }
 
         //添加到内存
         mSparseArray.put(key, tempData);
 
-        Log.d(TAG, "add:size "+mSparseArray.size() +"key"+ key);
+        Log.d(TAG, "add:size " + mSparseArray.size() + "key= " + key + " 数量" + tempData.getProdNum());
 
         //同步到本地
         saveLocal();
@@ -119,7 +122,6 @@ public class CarManager {
 
         //从内存中删除
         mSparseArray.delete(key);
-        Log.d(TAG, "delele:size "+mSparseArray.size());
 
 
         //同步到本地
@@ -131,6 +133,9 @@ public class CarManager {
         List<CarInfoBean.ProductBean.ProductPropertyBean> productProperty = product.getProductProperty();
         //第一个元素为颜色,第二个元素为尺码
         int attrValue = productProperty.get(0).getId() * 10 + productProperty.get(1).getId();
+
+        Log.d(TAG, "商品id= " + carInfoBean.getProduct().getId() + " 颜色id= " + productProperty.get(0).getId() + " 尺寸id= " + productProperty.get(1).getId());
+
         return carInfoBean.getProduct().getId() * 100 + attrValue;
     }
 
@@ -142,7 +147,6 @@ public class CarManager {
     public void update(CarInfoBean carInfoBean) {
 
         int key = getBeanKey(carInfoBean);
-        Log.d(TAG, "update:size "+mSparseArray.size() + "key" + key);
 
         //更新内存
         mSparseArray.put(key, carInfoBean);

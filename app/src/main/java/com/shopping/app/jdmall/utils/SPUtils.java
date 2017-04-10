@@ -9,6 +9,9 @@ import android.content.SharedPreferences;
 
 public class SPUtils {
     private static final String NAME = "JDMall";
+    private static final String COLLECT = "collect";
+    private static final String GUANZHU = "guanzhu";
+
 
     private static SharedPreferences getSharePreferences(Context context){
         return context.getSharedPreferences(NAME,Context.MODE_PRIVATE);
@@ -35,4 +38,19 @@ public class SPUtils {
         sharePreferences.edit().putString(key,value).apply();
 
     }
+    public static boolean getCollect(Context context,boolean values){
+        boolean aBoolean = getBoolean(context, COLLECT, values);
+        return aBoolean;
+    }
+    public static void setCollect (Context context, boolean values) {
+        setBoolean(context,COLLECT,values);
+    }
+    public static boolean getGuanZhu(Context context,boolean values){
+        boolean aBoolean = getBoolean(context, GUANZHU, values);
+        return aBoolean;
+    }
+    public static void setGuanZhu (Context context, boolean values) {
+        setBoolean(context,GUANZHU,values);
+    }
+
 }

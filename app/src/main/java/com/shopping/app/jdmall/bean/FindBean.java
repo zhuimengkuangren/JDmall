@@ -81,6 +81,7 @@ public class FindBean {
             name = in.readString();
             pic = in.readString();
             price = in.readInt();
+            buyCounts = in.readInt();
         }
 
         public static final Creator<ProductListBean> CREATOR = new Creator<ProductListBean>() {
@@ -157,6 +158,7 @@ public class FindBean {
             dest.writeString(name);
             dest.writeString(pic);
             dest.writeInt(price);
+            dest.writeInt(buyCounts);
         }
     }
 }

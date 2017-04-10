@@ -77,6 +77,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
     private static final int ACTION_EDIT = 0;//编辑状态
 
     private static final int ACTION_COMPLETED = 1;//完成状态
+    private int mAction = ACTION_EDIT;//默认是编辑状态
 
     @Override
     public int getResId() {
@@ -128,6 +129,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
     private void showEdit() {
         //设置文本 - 完成
         mTvCarEdit.setTag(ACTION_COMPLETED);
+        mAction = ACTION_COMPLETED;//记录状态
         mTvCarEdit.setText("完成");
         //非勾选
         mCheckboxAll.setChecked(false);
@@ -145,6 +147,7 @@ public class CarFragment extends BaseNotLoadDataFragment {
 
     private void hideEdit() {
         mTvCarEdit.setTag(ACTION_EDIT);
+        mAction = ACTION_EDIT;//记录状态
         mTvCarEdit.setText("编辑");
 
         mCheckboxAll.setChecked(true);
@@ -196,9 +199,16 @@ public class CarFragment extends BaseNotLoadDataFragment {
             Log.d(TAG, "productList: " + productList.size());
 
             //有数据,把默认背景隐藏
-            mLlEnptyCar.setVisibility(View.GONE);
             mTvCarEdit.setVisibility(View.VISIBLE);
-            mLlCheckAll.setVisibility(View.VISIBLE);
+            mLlEnptyCar.setVisibility(View.GONE);
+
+            if(mAction == ACTION_EDIT){
+                mLlCheckAll.setVisibility(View.VISIBLE);//显示价格栏
+                mLlDelete.setVisibility(View.GONE);
+            }else {
+                mLlCheckAll.setVisibility(View.GONE);
+                mLlDelete.setVisibility(View.VISIBLE);
+            }
 
             if (mCarAdapter == null) {
                 //设置适配器
@@ -329,9 +339,6 @@ public class CarFragment extends BaseNotLoadDataFragment {
             productListBean.setPic(pic);
             productListBean.setNumbers(Integer.parseInt(number));
             productListBean.setBuyCounts(prodNum);
-
-            Log.d(TAG, "CarToSelectedProduct : BuyCounts=" + productListBean .getBuyCounts());
-
 
             productListBeen.add(productListBean);
 

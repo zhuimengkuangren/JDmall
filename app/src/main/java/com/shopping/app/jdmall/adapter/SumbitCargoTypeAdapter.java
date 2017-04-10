@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.iflytek.cloud.thirdparty.T;
 import com.shopping.app.jdmall.bean.FindBean;
 import com.shopping.app.jdmall.widget.CargoInfoView;
 import com.shopping.app.jdmall.widget.SubmitItem;
@@ -25,7 +24,7 @@ public class SumbitCargoTypeAdapter extends BaseAdapter {
     private Context mContext;
     private List mDataList;
 
-    public SumbitCargoTypeAdapter(Context context, List<T> dataList) {
+    public SumbitCargoTypeAdapter(Context context, List dataList) {
         mContext = context;
 
         mDataList = dataList;

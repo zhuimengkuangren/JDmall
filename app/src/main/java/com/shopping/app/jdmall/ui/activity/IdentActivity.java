@@ -147,7 +147,7 @@ public class IdentActivity extends BaseActivity {
     }
 
     private void initListView() {
-        mAdapter = new SumbitCargoTypeAdapter<FindBean.ProductListBean>(this, mListData);
+        mAdapter = new SumbitCargoTypeAdapter(this, mListData);
         mListView.setAdapter(mAdapter);
         mDataList = new ArrayList<>();
     }

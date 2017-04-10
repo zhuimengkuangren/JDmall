@@ -24,7 +24,7 @@
         app:radius="5dp"
         app:strokeWidth="0dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
